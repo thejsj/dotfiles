@@ -1,0 +1,51 @@
+;; -*- mode: emacs-lisp; coding: emacs-mule; -*-
+;; --------------------------------------------------------------------------
+;; Desktop File for Emacs
+;; --------------------------------------------------------------------------
+;; Created Mon Sep 15 21:06:15 2014
+;; Desktop file format version 206
+;; Emacs version 24.3.1
+
+;; Global section:
+(setq desktop-missing-file-warning nil)
+(setq tags-file-name nil)
+(setq tags-table-list nil)
+(setq search-ring '("ingredient_occurrance" "ingredient-occurance" "ingredient_oc"))
+(setq regexp-search-ring nil)
+(setq register-alist '((48 . "ingredient")))
+(setq file-name-history '("~/Sites/2014/hack-reactor/2014-10-underbar/src/underbar.js" "~/Sites/2014/hack-reactor/2014-10-javascript-koans/koans/" "~/Sites/2014/hack-reactor/2014-10-javascript-koans/lib/koans.js" "~/.emacs"))
+
+;; Buffer section -- buffers listed in same order as in buffer list:
+(desktop-create-buffer 206
+  "/Users/jorgesilva/Sites/2014/hack-reactor/2014-10-underbar/src/underbar.js"
+  "underbar.js"
+  'js-mode
+  '(linum-mode)
+  320
+  '(1223 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/Users/jorgesilva/Sites/2014/hack-reactor/2014-10-javascript-koans/koans/AboutApplyingWhatWeHaveLearnt.js"
+  "AboutApplyingWhatWeHaveLearnt.js"
+  'js-mode
+  '(linum-mode)
+  3681
+  '(2715 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/Users/jorgesilva/Sites/2014/hack-reactor/2014-10-javascript-koans/lib/koans.js"
+  "koans.js"
+  'js-mode
+  '(linum-mode)
+  1692
+  '(2021 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix)))
+
