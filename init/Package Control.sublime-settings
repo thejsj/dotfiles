@@ -1,6 +1,5 @@
 {
-    "installed_packages":
-    [
+    "installed_packages": [
         "GitGutter",
         "JsFormat",
         "JSON Reindent",
@@ -12,6 +11,7 @@
         "SmartMarkdown",
         "Strapdown Markdown Preview",
         "SublimeCodeIntel",
+        "SublimeLinter",
         "SublimeLinter-contrib-jslint",
         "SublimeLinter-jshint",
         "SublimeREPL"
