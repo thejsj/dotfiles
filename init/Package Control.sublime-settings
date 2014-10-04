@@ -1,18 +1,17 @@
 {
     "installed_packages":
     [
-        "CheckTypos",
-        "Git",
         "GitGutter",
-        "Google Spell Check",
         "JsFormat",
-        "JSHint",
         "JSON Reindent",
-        "KeyboardSpellCheck",
+        "Markdown Extended",
+        "Markdown Preview",
+        "MarkdownEditing",
         "SCSS",
         "SideBarEnhancements",
+        "SmartMarkdown",
+        "Strapdown Markdown Preview",
         "SublimeCodeIntel",
-        "sublimelint",
         "SublimeLinter-contrib-jslint",
         "SublimeLinter-jshint",
         "SublimeREPL"
