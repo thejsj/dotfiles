@@ -1,0 +1,15 @@
+{
+    "installed_packages":
+    [
+        "CheckTypos",
+        "Google Spell Check",
+        "JSHint",
+        "JSON Reindent",
+        "KeyboardSpellCheck",
+        "SCSS",
+        "sublimelint",
+        "SublimeLinter-contrib-jslint",
+        "SublimeLinter-jshint",
+        "SublimeREPL"
+    ]
+}
