@@ -2,11 +2,16 @@
     "installed_packages":
     [
         "CheckTypos",
+        "Git",
+        "GitGutter",
         "Google Spell Check",
+        "JsFormat",
         "JSHint",
         "JSON Reindent",
         "KeyboardSpellCheck",
         "SCSS",
+        "SideBarEnhancements",
+        "SublimeCodeIntel",
         "sublimelint",
         "SublimeLinter-contrib-jslint",
         "SublimeLinter-jshint",
