@@ -76,5 +76,12 @@ install zopfli
 
 install homebrew/versions/lua52
 
+# Jorge's Installs
+install docker
+install boot2docker
+install mysql
+install mongodb
+install cask
+
 # Remove outdated versions from the cellar
 cleanup
