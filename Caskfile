@@ -20,4 +20,5 @@ cask install sublime-text 2> /dev/null
 cask install firefox 2> /dev/null
 cask install spotify 2> /dev/null
 cask install onepassword 2> /dev/null
+cask install slack 2> /dev/null
 
