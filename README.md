@@ -1,7 +1,5 @@
 # Jorge's Dotfiles
 
-My dotfiles. A work in progress.
-
 ### Setup
 
 1. Clone Repo Into ~/.../dotfiles and run bootstrap.sh
@@ -38,4 +36,11 @@ brew bundle ~/Caskfile
 ```
 source ~/sublime
 ```
+
+7. Install SPF13 for VIM
+
+```
+curl https://j.mp/spf13-vim3 -L > spf13-vim.sh && sh spf13-vim.sh
+```
+
 Based on [mathiasbynens's dotfiles](https://github.com/mathiasbynens/dotfiles).
