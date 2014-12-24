@@ -1,12 +1,12 @@
 {
-    "color_scheme": "Packages/Color Scheme - Default/Solarized (Dark).tmTheme",
+    "color_scheme": "Packages/User/Solarized (Dark) (SL).tmTheme",
     "default_encoding": "UTF-8",
     "default_line_ending": "unix",
     "detect_indentation": true,
+    "dictionary": "Packages/Language - English/en_US.dic",
     "draw_white_space": "all",
     "ensure_newline_at_eof_on_save": false,
-    "file_exclude_patterns":
-    [
+    "file_exclude_patterns": [
         ".DS_Store",
         "Desktop.ini",
         "*.pyc",
@@ -15,28 +15,29 @@
         ".Spotlight-V100",
         ".Trashes"
     ],
-    "folder_exclude_patterns":
-    [
-        ".git",
+    "folder_exclude_patterns": [
+        ".git"
     ],
     "font_face": "Monaco",
-    "font_size": 11,
+    "font_size": 12,
     "highlight_modified_tabs": true,
     "hot_exit": false,
+    "ignored_packages": [
+        "Markdown"
+    ],
     "line_padding_bottom": 5,
     "match_brackets": true,
     "match_brackets_angle": true,
+    "open_files_in_new_window": false,
     "remember_open_files": false,
-    "rulers":
-    [
+    "rulers": [
         80
     ],
     "show_encoding": true,
     "show_line_endings": true,
-    "tab_size": 4,
+    "spell_check": true,
+    "tab_size": 2,
     "translate_tabs_to_spaces": true,
     "trim_trailing_white_space_on_save": true,
-    "word_wrap": true,
-    "spell_check": true,
-    "dictionary": "Packages/Language - English/en_US.dic"
+    "word_wrap": true
 }
