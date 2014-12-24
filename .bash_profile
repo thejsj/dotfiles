@@ -2,8 +2,11 @@
 export PATH="$HOME/bin:$PATH";
 export PATH="/usr/local/bin:$PATH";
 export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
+export PATH="$HOME/.cask/bin:$PATH"
 
 export ARCHFLAGS="-arch x86_64"
+
+alias copy_path="pwd | pbcopy"
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
@@ -50,3 +53,15 @@ complete -W "NSGlobalDomain" defaults;
 
 # Add `killall` tab completion for common apps
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
+
+# http://viget.com/extend/how-to-use-docker-on-os-x-the-missing-guide
+docker-ip() {
+  boot2docker ip 2> /dev/null
+}
+
+git-remove-all() {
+  git filter-branch --force --index-filter \
+      'git rm --cached --ignore-unmatch $1' \
+      --prune-empty --tag-name-filter cat -- --all
+}
+
