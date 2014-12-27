@@ -55,7 +55,6 @@ install tcpflow
 install tcpreplay
 install tcptrace
 install ucspi-tcp # `tcpserver` et al.
-install xpdf
 install xz
 
 # Install other useful binaries
@@ -74,7 +73,7 @@ install tree
 install webkit2png
 install zopfli
 
-install homebrew/versions/lua52
+# install homebrew/versions/lua52
 
 # Jorge's Installs
 install docker
