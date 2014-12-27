@@ -15,10 +15,10 @@ cask install the-unarchiver 2> /dev/null
 cask install transmission 2> /dev/null
 cask install virtualbox 2> /dev/null
 cask install vlc 2> /dev/null
-cask install slate 2> /dev/v/null
-cask install sublime-text 2> /dev/null
+cask install slate 2> /dev/null
+cask install sublime-text> /dev/null
 cask install firefox 2> /dev/null
 cask install spotify 2> /dev/null
-cask install onepassword 2> /dev/null
+cask install 1password 2> /dev/null
 cask install slack 2> /dev/null
 

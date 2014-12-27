@@ -1,8 +1,12 @@
 # Add `~/bin` to the `$PATH`
+
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH" 
 export PATH="$HOME/bin:$PATH";
 export PATH="/usr/local/bin:$PATH";
 export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
 export PATH="$HOME/.cask/bin:$PATH"
+
+MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
 export ARCHFLAGS="-arch x86_64"
 
@@ -65,3 +69,6 @@ git-remove-all() {
       --prune-empty --tag-name-filter cat -- --all
 }
 
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
+fi

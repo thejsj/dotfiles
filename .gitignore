@@ -1,14 +1,30 @@
-# Compiled Python files
-*.pyc
+# Ignore All Files
+*
+*.*
 
-# Folder view configuration files
-.DS_Store
-Desktop.ini
-
-# Thumbnail cache files
-._*
-Thumbs.db
-
-# Files that might appear on external disks
-.Spotlight-V100
-.Trashes
+!.aliases
+!.bash_profile
+!.bash_prompt
+!.bashrc
+!.curlrc
+!.editorconfig
+!.emacs
+!.emacs.d
+!.exports
+!.functions
+!.gitattributes
+!.gitconfig
+!.gitignore
+!.inputrc
+!.osx
+!.screenrc
+!.slate
+!.sublime
+!.wgetrc
+!Brewfile
+!Cask
+!LICENSE-MIT.txt
+!README.md
+!bin
+!bootstrap.sh
+!init
