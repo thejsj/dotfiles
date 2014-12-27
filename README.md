@@ -43,4 +43,16 @@ source ~/sublime
 curl https://j.mp/spf13-vim3 -L > spf13-vim.sh && sh spf13-vim.sh
 ```
 
+### Backup
+
+If you ever need to backup your files, these are probably the things you need to backup.
+
+1. ~/Documents
+2. ~/Desktop
+3. ~/Sites
+4. ~/.ssh
+5. MySQL datbases
+6. Mongo Databases
+ 
+### Credit
 Based on [mathiasbynens's dotfiles](https://github.com/mathiasbynens/dotfiles).
