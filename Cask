@@ -21,4 +21,4 @@ cask install firefox 2> /dev/null
 cask install spotify 2> /dev/null
 cask install 1password 2> /dev/null
 cask install slack 2> /dev/null
-
+cask install istat-menus 2> /dev/null
