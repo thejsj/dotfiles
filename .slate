@@ -11,3 +11,9 @@ bind right:alt;ctrl;cmd  push right bar-resize:screenSizeX/2
 bind left:alt;ctrl;cmd   push left  bar-resize:screenSizeX/2  
 bind up:alt;ctrl;cmd     push up    bar-resize:screenSizeY/2  
 bind down:alt;ctrl;cmd   push down  bar-resize:screenSizeY/2 
+
+# Push Bindings
+bind right:alt;ctrl;cmd;shift  corner top-right resize:screenSizeX/2;screenSizeY/2
+bind down:alt;ctrl;cmd;shift   corner bottom-right resize:screenSizeX/2;screenSizeY/2
+bind left:alt;ctrl;cmd;shift   corner bottom-left resize:screenSizeX/2;screenSizeY/2
+bind up:alt;ctrl;cmd;shift     corner top-left resize:screenSizeX/2;screenSizeY/2
