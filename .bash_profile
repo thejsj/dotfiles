@@ -72,3 +72,10 @@ git-remove-all() {
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
+
+source ~/.nvm/nvm.sh
+
+export GOPATH=$HOME/Sites/go-projects
+export PATH=$PATH:$GOPATH/bin
+
+source /Users/jorgesilvajetter/.iterm2_shell_integration.bash

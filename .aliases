@@ -11,29 +11,21 @@ alias d="cd ~/Documents/Dropbox"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias p="cd ~/projects"
-alias s="cd ~/Sites/2014/"
+alias s="cd ~/Sites/2015/"
+alias ss="cd ~/Sites/2014/"
 alias g="git"
 alias h="history"
 alias j="jobs"
 alias hr="cd ~/Sites/2014/hack-reactor/"
 alias toy="cd ~/Sites/2014/hack-reactor/toy-problems/"
-alias cf="cd ~/Sites/2014/hack-reactor/CodeFriends/"
+alias cf="cd ~/Sites/2014/hack-reactor/code-friends/"
+alias r="cd ~/Documents/RethinkDB/"
 
 # Git
 alias gl="git log --pretty=format:'%Cblue%h%Creset %Cgreen%ad%Creset | %s%C(yellow)%d%Creset [%an]' --graph --date=short --decorate"
 
 alias adelle="cd ~/Sites/2014/Adelle/content/themes/adelle-theme"
 alias thejsj="cd ~/Sites/2014/thejsj9/wp-content/themes/thejsj9"
-
-alias ssh-thejsj="ssh root@107.170.18.175"
-alias sftp-thejsj="sftp root@107.170.18.175"
-alias ssh-adelle="ssh root@162.243.11.38"
-alias sftp-adelle="sftp root@162.243.11.38"
-alias ssh-ghost="ssh root@104.131.185.246"
-alias sftp-ghost="sftp root@104.131.185.246"
-alias ssh-docker="ssh root@104.131.185.246"
-alias sftp-docker="sftp root@104.131.185.246"
-alias em="/Applications/Emacs.app/Contents/MacOS/Emacs -nw"
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`

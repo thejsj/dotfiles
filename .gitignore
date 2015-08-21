@@ -1,6 +1,5 @@
 # Ignore All Files
 *
-*.*
 
 !.aliases
 !.bash_profile
@@ -9,7 +8,6 @@
 !.curlrc
 !.editorconfig
 !.emacs
-!.emacs.d
 !.exports
 !.functions
 !.gitattributes
@@ -20,11 +18,12 @@
 !.screenrc
 !.slate
 !.sublime
+!.vimrc.local
 !.wgetrc
 !Brewfile
 !Cask
 !LICENSE-MIT.txt
 !README.md
 !bin
-!bootstrap.sh
 !init
+!.irssi

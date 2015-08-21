@@ -32,7 +32,7 @@ install ringojs
 install narwhal
 
 # Install more recent versions of some OS X tools
-install vim --override-system-vi
+install vim --override-system-vi --with-lua
 install homebrew/dupes/grep
 install homebrew/dupes/screen
 # install homebrew/php/php55 --with-gmp

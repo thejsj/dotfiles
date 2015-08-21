@@ -1,0 +1,28 @@
+set nofoldenable
+let g:DisableAutoPHPFolding = 1
+let g:DisableAutoPythonFolding = 1
+set colorcolumn=80
+
+" My Own Mappings"
+map <Tab>j :bp<CR>
+map <Tab>k :bn<CR>
+
+" http://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/ "
+let mapleader = ","
+
+nnoremap <Leader>o :CtrlP<CR>
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>c :bd<CR>
+nnoremap <Leader>j :bp<CR>
+nnoremap <Leader>k :bn<CR>
+
+vmap <Leader>y "+y
+vmap <Leader>d "+d
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+vmap <Leader>p "+p
+vmap <Leader>P "+P
+
+nmap <Leader><Leader> V
+
+autocmd filetype crontab setlocal nobackup nowritebackup
