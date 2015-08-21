@@ -23,6 +23,21 @@ nmap <Leader>P "+P
 vmap <Leader>p "+p
 vmap <Leader>P "+P
 
+" Set delay to 0 when pressing ESC:
+" http://www.johnhawthorn.com/2012/09/vi-escape-delays/
+set timeoutlen=1000 ttimeoutlen=0
+
+" Set indentation to 2
+set shiftwidth=2
+set softtabstop=2
+autocmd FileType html setlocal shiftwidth=2 tabstop=2
+autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4
+
+" Disable code folding
+set nofoldenable                " disable code folding
+let g:DisableAutoPHPFolding = 1 " disable PIV's folding
+
 nmap <Leader><Leader> V
 
+" Make sure crontabs are saved correctly
 autocmd filetype crontab setlocal nobackup nowritebackup
