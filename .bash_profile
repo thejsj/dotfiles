@@ -64,8 +64,9 @@ docker-ip() {
 }
 
 git-remove-all() {
+  echo "$1";
   git filter-branch --force --index-filter \
-      'git rm --cached --ignore-unmatch $1' \
+      "git rm --cached -r --ignore-unmatch $1" \
       --prune-empty --tag-name-filter cat -- --all
 }
 
@@ -78,4 +79,8 @@ source ~/.nvm/nvm.sh
 export GOPATH=$HOME/Sites/go-projects
 export PATH=$PATH:$GOPATH/bin
 
-source /Users/jorgesilvajetter/.iterm2_shell_integration.bash
+# Add check to make sure file exists
+if [ -e "~/.iterm2_shell_integration.bash" ]
+then
+    source ~/.iterm2_shell_integration.bash
+fi
