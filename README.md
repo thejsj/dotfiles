@@ -2,10 +2,10 @@
 
 ### Setup
 
-1. Clone Repo Into ~/.../dotfiles and run bootstrap.sh
+1. Clone Repo Into ~/.../dotfiles and copy into ~
 
 ```
-git clone https://github.com/thejsj/dotfiles.git && cd dotfiles && source bootstrap.sh
+git clone https://github.com/thejsj/dotfiles.git && cd dotfiles && cp * ../
 ```
 
 2. Change OSX preferences programmatically
