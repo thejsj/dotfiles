@@ -58,18 +58,6 @@ complete -W "NSGlobalDomain" defaults;
 # Add `killall` tab completion for common apps
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
 
-# http://viget.com/extend/how-to-use-docker-on-os-x-the-missing-guide
-docker-ip() {
-  boot2docker ip 2> /dev/null
-}
-
-git-remove-all() {
-  echo "$1";
-  git filter-branch --force --index-filter \
-      "git rm --cached -r --ignore-unmatch $1" \
-      --prune-empty --tag-name-filter cat -- --all
-}
-
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi

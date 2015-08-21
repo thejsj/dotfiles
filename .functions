@@ -244,3 +244,21 @@ function o() {
 function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
+
+# http://viget.com/extend/how-to-use-docker-on-os-x-the-missing-guide
+docker-ip() {
+  boot2docker ip 2> /dev/null
+}
+
+git-remove-all() {
+  echo "$1";
+  git filter-branch --force --index-filter \
+      "git rm --cached -r --ignore-unmatch $1" \
+      --prune-empty --tag-name-filter cat -- --all
+}
+
+rload() {
+  echo "Reloading .bash_profile";
+  source ~/.bash_profile
+}
+
