@@ -21,6 +21,7 @@
 !.slate
 !.sublime
 !.wgetrc
+!.vimrc.bundles.local
 !Brewfile
 !Cask
 !LICENSE-MIT.txt

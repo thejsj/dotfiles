@@ -7,17 +7,19 @@ alias ~="cd ~" # `cd` is probably faster to type though
 alias -- -="cd -"
 
 # Shortcuts
-alias d="cd ~/Documents/Dropbox"
 alias dl="cd ~/Downloads"
-alias dt="cd ~/Desktop"
+alias d="cd ~/Desktop"
 alias p="cd ~/projects"
-alias s="cd ~/Sites/2014/"
 alias g="git"
-alias h="history"
+alias hh="history"
+alias hh="history"
 alias j="jobs"
+alias t="vim ~/runnable/TODO.md"
 alias hr="cd ~/Sites/2014/hack-reactor/"
 alias toy="cd ~/Sites/2014/hack-reactor/toy-problems/"
 alias cf="cd ~/Sites/2014/hack-reactor/CodeFriends/"
+alias r="cd ~/runnable"
+alias s="cd ~/runnable"
 
 # Git
 alias gl="git log --pretty=format:'%Cblue%h%Creset %Cgreen%ad%Creset | %s%C(yellow)%d%Creset [%an]' --graph --date=short --decorate"
