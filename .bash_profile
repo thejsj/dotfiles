@@ -2,13 +2,19 @@
 
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH" 
 export PATH="$HOME/bin:$PATH";
+# Hombrew
 export PATH="/usr/local/bin:$PATH";
 export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
 export PATH="$HOME/.cask/bin:$PATH"
-
-MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
-
+# Go
+export GOPATH=$HOME/Sites/go-projects
+export PATH=$PATH:$GOPATH/bin
+# Archflags
 export ARCHFLAGS="-arch x86_64"
+# Ruby
+export GEM_HOME="$HOME/.gem"
+export GEM_PATH="$HOME/.gem"
+MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
 alias copy_path="pwd | pbcopy"
 
@@ -68,8 +74,6 @@ then
 fi
 
 
-export GOPATH=$HOME/Sites/go-projects
-export PATH=$PATH:$GOPATH/bin
 
 # Add check to make sure file exists
 if [ -e "~/.iterm2_shell_integration.bash" ]

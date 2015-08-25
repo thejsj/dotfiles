@@ -13,6 +13,7 @@ let mapleader = ","
 nnoremap <Leader>o :CtrlP<CR>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>c :bd<CR>
+nnoremap <Leader>d :bd<CR>
 nnoremap <Leader>j :bp<CR>
 nnoremap <Leader>k :bn<CR>
 
