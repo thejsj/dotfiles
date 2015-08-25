@@ -23,6 +23,9 @@ nmap <Leader>P "+P
 vmap <Leader>p "+p
 vmap <Leader>P "+P
 
+" Automatically refresh any unchanged files
+set autoread
+
 " Set delay to 0 when pressing ESC:
 " http://www.johnhawthorn.com/2012/09/vi-escape-delays/
 set timeoutlen=1000 ttimeoutlen=0
