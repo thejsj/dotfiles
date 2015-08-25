@@ -15,7 +15,7 @@ alias copy_path="pwd | pbcopy"
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
-for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
+for file in ~/.{path,bash_prompt,exports,aliases,private-aliases,functions,extra}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;
@@ -58,23 +58,15 @@ complete -W "NSGlobalDomain" defaults;
 # Add `killall` tab completion for common apps
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
 
-# http://viget.com/extend/how-to-use-docker-on-os-x-the-missing-guide
-docker-ip() {
-  boot2docker ip 2> /dev/null
-}
-
-git-remove-all() {
-  echo "$1";
-  git filter-branch --force --index-filter \
-      "git rm --cached -r --ignore-unmatch $1" \
-      --prune-empty --tag-name-filter cat -- --all
-}
-
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
 
-source ~/.nvm/nvm.sh
+if [ -e "~/.nvm" ]
+then
+    source ~/.nvm/nvm.sh
+fi
+
 
 export GOPATH=$HOME/Sites/go-projects
 export PATH=$PATH:$GOPATH/bin
