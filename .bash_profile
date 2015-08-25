@@ -14,9 +14,8 @@ export ARCHFLAGS="-arch x86_64"
 # Ruby
 export GEM_HOME="$HOME/.gem"
 export GEM_PATH="$HOME/.gem"
-MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
-alias copy_path="pwd | pbcopy"
+MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
@@ -72,8 +71,6 @@ if [ -e "~/.nvm" ]
 then
     source ~/.nvm/nvm.sh
 fi
-
-
 
 # Add check to make sure file exists
 if [ -e "~/.iterm2_shell_integration.bash" ]
