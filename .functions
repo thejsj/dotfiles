@@ -245,6 +245,7 @@ function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
 
+# Get IP address for boot2docker
 # http://viget.com/extend/how-to-use-docker-on-os-x-the-missing-guide
 docker-ip() {
   boot2docker ip 2> /dev/null
@@ -257,8 +258,17 @@ git-remove-all() {
       --prune-empty --tag-name-filter cat -- --all
 }
 
+# Reload bash profile
 rload() {
   echo "Reloading .bash_profile";
   source ~/.bash_profile
+}
+
+# Grep over the runnable angular client directory
+gra() {
+  PPWD=$(pwd)
+  cd $HOME/runnable/runnable-angular
+  grep -inR "$1" --exclude-dir=build ./client/
+  cd $PPWD
 }
 
