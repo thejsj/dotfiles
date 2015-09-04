@@ -1,6 +1,6 @@
 # Jorge's Dotfiles
 
-### Setup
+## Setup
 
 1. Clone Repo Into ~/.../dotfiles and copy into ~
 
@@ -20,30 +20,34 @@ source ~/.osx
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 
-4. Install Homebrew Packages
+4. Install Homebrew Packages (Doesn't work)
 
 ```
 source ~/brew.sh
 ```
 
-5. Install Cask Packages
+5. Install Cask Packages (Doesn't work)
 
 ```
 brew bundle ~/Caskfile
 ```
 
-6. Install Sublime Settings
-```
-source ~/sublime
-```
+## Vim
 
-7. Install SPF13 for VIM
+### Currently Learning
 
-```
-curl https://j.mp/spf13-vim3 -L > spf13-vim.sh && sh spf13-vim.sh
-```
+[ ] Moving to the end of the bracket `%`
+[ ] Use <Leader><Leader>
 
-### Backup
+### Pain points
+
+[ ] Moving around
+ [ ] Using EasyMotion
+ [ ] Going to the previous point
+[ ] Pressing ESC Three times
+[ ] Escaping neocomplete
+
+## Backup
 
 If you ever need to backup your files, these are probably the things you need to backup.
 
@@ -53,6 +57,7 @@ If you ever need to backup your files, these are probably the things you need to
 4. ~/.ssh
 5. MySQL datbases
 6. Mongo Databases
+7. RethinkDB Databases
  
-### Credit
+## Credit
 Based on [mathiasbynens's dotfiles](https://github.com/mathiasbynens/dotfiles).

@@ -272,3 +272,6 @@ gra() {
   cd $PPWD
 }
 
+print_json() {
+ pbpaste | python -m json.tool
+}
