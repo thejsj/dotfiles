@@ -17,8 +17,9 @@ Bundle 'altercation/vim-colors-solarized'
 
 " Plugins
 Bundle 'bling/vim-airline'
-"Bundle 'scroolose/nerdcommenter'
+Bundle 'scroolose/nerdcommenter'
 Bundle 'suan/vim-instant-markdown'
+Bundle 'jiangmiao/auto-pairs'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'kien/ctrlp.vim'
@@ -55,9 +56,6 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\.so$\|\.dat$|\.DS_Store$'
   \ }
 
-" Needed for Solarized
-let g:solarized_termcolors=256
-
 " CtrlP Settings
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
@@ -72,7 +70,22 @@ let g:checksyntax#auto_mode = 0
 " airline config
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:airline_inactive_collapse=1
+let g:airline#extensions#bufferline#enabled = 0
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline#extensions#tabline#exclude_preview = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
+
+"function! airline#extensions#tabline#foo#format(bufnr, buffers)
+  "return fnamemodify(bufname(a:bufnr), ':t')
+"endfunction
+"let g:airline#extensions#tabline#formatter = 'foo'
+
+" Needed for Solarized
+let g:solarized_termcolors=256
+let g:solarized_termtrans=1
+let g:solarized_contrast="normal"
+let g:solarized_visibility="normal"
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -125,12 +138,14 @@ set nowritebackup
 set swapfile
 set dir=~/.vim/tmp
 
+" Syntax highlighting and colors
 syntax enable             " Syntax highligthing
 set t_Co=256
 set term=xterm-256color
 set background=dark
 colorscheme solarized
 
+" Mouse
 set mouse=a               " Automatically enable mouse usage
 set mousehide             " Hide the mouse cursor while typing
 
@@ -164,6 +179,9 @@ augroup resCur
     autocmd BufWinEnter * call ResCur()
 augroup END
 
+" Backspace
+set backspace=indent,eol,start  " Backspace for dummies
+
 set tabpagemax=15     " Only show tabs
 set showmode          " Display the current mode
 
@@ -180,11 +198,12 @@ set showcmd           " Show partial commands in the status line
 set laststatus=2
 
 " Broken down into easily includeable segments
-set statusline=%<%f\                     " Filename
-set statusline+=%w%h%m%r                 " Options
-set statusline+=\ [%{&ff}/%Y]            " Filetype
-set statusline+=\ [%{getcwd()}]          " Current dir
-set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
+set statusline+=%F
+"set statusline=%<%f\                     " Filename
+"set statusline+=%w%h%m%r                 " Options
+"set statusline+=\ [%{&ff}/%Y]            " Filetype
+""set statusline+=\ [%{getcwd()}]          " Current dir
+"set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
 
 set number           " Line numbers on
 set relativenumber   " Relative numbers
@@ -214,14 +233,22 @@ set colorcolumn=80
 " Automatically refresh any unchanged files
 set autoread
 
+set guifont=Source\ Code\ Pro\ for\ Powerline "make sure to escape the spaces in the name properly
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                            Plugin Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+
+" Broken down into easily includeable segments
+"set statusline=%f\                     " Filename
+"set statusline+=%w%h%m%r                 " Options
+"set statusline+=\ [%{&ff}/%Y]            " Filetype
+""set statusline+=\ [%{getcwd()}]          " Current dir
+"set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                            Key Bindings 
@@ -270,9 +297,19 @@ nnoremap <leader>src ;source ~/.vimrc<cr>
 nnoremap <leader>h ;tabnew<CR>:ConqueTerm bash<CR>
 nnoremap <leader>w ;tabclose<CR>
 
-" 
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
+
+"
 " Insert Mode
-" 
+"
 
 "Arrow Key Fix {
 " https://github.com/spf13/spf13-vim/issues/780

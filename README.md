@@ -23,16 +23,10 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 4. Install Homebrew Packages (Doesn't work)
 
 ```
-source ~/brew.sh
+brew bundle
 ```
 
-5. Install Cask Packages (Doesn't work)
-
-```
-brew bundle ~/Caskfile
-```
-
-6. Setup VIM 
+5. Setup VIM
 
 `source ~/setup_vim.sh`
 
@@ -62,6 +56,6 @@ If you ever need to backup your files, these are probably the things you need to
 5. MySQL datbases
 6. Mongo Databases
 7. RethinkDB Databases
- 
+
 ## Credit
 Based on [mathiasbynens's dotfiles](https://github.com/mathiasbynens/dotfiles).
