@@ -40,7 +40,7 @@ fi
 
 # Edit Files
 alias ebp="$EDITOR ~/.bash_profile"
-alias evrc="$EDITOR ~/.vimrc.local"
+alias evrc="$EDITOR ~/.vimrc"
 
 # Copy Path
 alias copy_path="pwd | pbcopy"

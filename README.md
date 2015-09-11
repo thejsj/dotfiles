@@ -2,7 +2,7 @@
 
 ## Setup
 
-1. Clone Repo Into ~/.../dotfiles and copy into ~
+1. Clone Repo Into ~/dotfiles and copy into ~
 
 ```
 git clone https://github.com/thejsj/dotfiles.git && cd dotfiles && cp * ../
@@ -31,6 +31,10 @@ source ~/brew.sh
 ```
 brew bundle ~/Caskfile
 ```
+
+6. Setup VIM 
+
+`source ~/setup_vim.sh`
 
 ## Vim
 

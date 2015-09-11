@@ -16,16 +16,19 @@ Plugin 'VundleVim/Vundle.vim'
 Bundle 'altercation/vim-colors-solarized'
 
 " Plugins
-Bundle 'scrooloose/nerdtree'
 Bundle 'bling/vim-airline'
-Bundle 'scroolose/nerdcommenter'
+"Bundle 'scroolose/nerdcommenter'
 Bundle 'suan/vim-instant-markdown'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'kien/ctrlp.vim'
+Bundle 'tacahiroy/ctrlp-funky'
 Bundle 'scrooloose/syntastic'
+Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'scrooloose/nerdtree'
+Bundle 'jistr/vim-nerdtree-tabs'
+Bundle 'bling/vim-bufferline'
 " I know I need to learn these...
-" Bundle 'jistr/vim-nerdtree-tabs'
 " Bundle 'tpope/vim-surround'
 " Bundle 'godlygeek/tabular'
 
@@ -69,8 +72,7 @@ let g:checksyntax#auto_mode = 0
 " airline config
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-
-
+let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -120,7 +122,8 @@ set nofoldenable
 " disable backups
 set nobackup
 set nowritebackup
-set noswapfile
+set swapfile
+set dir=~/.vim/tmp
 
 syntax enable             " Syntax highligthing
 set t_Co=256
@@ -160,9 +163,6 @@ augroup resCur
     autocmd!
     autocmd BufWinEnter * call ResCur()
 augroup END
-
-" Setup backup
-set backup
 
 set tabpagemax=15     " Only show tabs
 set showmode          " Display the current mode
@@ -236,39 +236,39 @@ let mapleader = ","
 noremap j gj
 noremap k gk
 
+" ; is better than :, and kj is better than ctrl-c
+nnoremap ; :
+nnoremap : ;
+
 " Find merge conflict markers
 map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
 
 " NERDTree
 map <C-e> <plug>NERDTreeTabsToggle<CR>
-map <leader>e :NERDTreeFind<CR>
+map <leader>e ;NERDTreeFind<CR>
 
+map <Leader>d ;bd<CR>
+map <Leader>w ;w<CR>
 " Previous buffer
-map <Tab>j :bp<CR>
-map <Leader>j :bp<CR>
+map <Tab>j ;bp<CR>
 " Next buffer
-map <Tab>k :bn<CR>
-map <Leader>k :bn<CR>
+map <Tab>k ;bn<CR>
 
-"* 
+"
 " Normal Mode
 "
 
 nmap <leader>nt :NERDTreeFind<CR>
 
-" ; is better than :, and kj is better than ctrl-c
-nnoremap ; :
-nnoremap : ;
-
 " escape search highliting by hitting return
-nnoremap <CR> :noh<CR><CR>
+nnoremap <CR> ;noh<CR><CR>
 
-nnoremap <leader>l :NERDTreeTabsToggle<CR>
-nnoremap <leader>k :CheckSyntax<CR>
-nnoremap <leader>ed :tabnew ~/.vimrc<cr>
-nnoremap <leader>src :source ~/.vimrc<cr>
-nnoremap <leader>h :tabnew<CR>:ConqueTerm bash<CR>
-nnoremap <leader>w :tabclose<CR>
+nnoremap <leader>l ;NERDTreeTabsToggle<CR>
+nnoremap <leader>k ;CheckSyntax<CR>
+nnoremap <leader>ed ;tabnew ~/.vimrc<cr>
+nnoremap <leader>src ;source ~/.vimrc<cr>
+nnoremap <leader>h ;tabnew<CR>:ConqueTerm bash<CR>
+nnoremap <leader>w ;tabclose<CR>
 
 " 
 " Insert Mode
@@ -281,7 +281,7 @@ if &term[:4] == "xterm" || &term[:5] == 'screen' || &term[:3] == 'rxvt'
 endif
 " }
 
-" Exit Insert mode easily
-inoremap kj <Esc>:w<CR>
-inoremap jk <Esc>:w<CR>
+" Exit Insert mod easily
+inoremap kj <Esc>;w<CR>
+inoremap jk <Esc>;w<CR>
 

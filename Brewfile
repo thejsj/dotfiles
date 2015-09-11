@@ -1,86 +1,52 @@
-# Install command-line tools using Homebrew
-# Usage: `brew bundle Brewfile`
+tap 'caskroom/cask'
+tap 'caskroom/versions'
+tap 'homebrew/boneyard'
+tap 'homebrew/bundle'
+tap 'homebrew/dupes'
+tap 'homebrew/php'
+tap 'homebrew/services'
+tap 'homebrew/versions'
+tap 'homebrew/x11'
 
-# Make sure we’re using the latest Homebrew
-update
+brew 'bash'
+brew 'bash-completion'
+brew 'sqlite'
+brew 'openssl'
+brew 'python'
+brew 'libmagic', args: ['with-python']
+brew 'cmake'
+brew 'mysql'
+brew 'postgresql'
+brew 'gcc'
+brew 'git'
+brew 'go'
+brew 'docker'
+brew 'boot2docker'
+brew 'imagemagick', args: ['with-webp']
+brew 'cask'
+brew 'coreutils'
+brew 'ffmpeg', args: ['with-fdk-aac', 'with-ffplay', 'with-freetype', 'with-openjpeg', 'with-theora', 'with-tools', 'with-libvpx']
+brew 'gnu-sed', args: ['with-default-names']
+brew 'irssi'
+brew 'mongodb'
+brew 'node'
+brew 'nvm'
+brew 'rbenv'
+brew 'redis'
+brew 'rethinkdb'
+brew 'vim', args: ['with-lua', 'override-system-vi']
+brew 'wget', args: ['with-iri']
+brew 'caskroom/cask/brew-cask'
 
-# Upgrade any already-installed formulae
-upgrade
-
-# Install GNU core utilities (those that come with OS X are outdated)
-# Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
-install coreutils
-#sudo ln -s /usr/local/bin/gsha256sum /usr/local/bin/sha256sum
-
-# Install some other useful utilities like `sponge`
-install moreutils
-# Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed
-install findutils
-# Install GNU `sed`, overwriting the built-in `sed`
-install gnu-sed --default-names
-# Install Bash 4
-# Note: don’t forget to add `/usr/local/bin/bash` to `/etc/shells` before running `chsh`.
-install bash
-install bash-completion
-
-# Install wget with IRI support
-install wget --enable-iri
-
-# Install RingoJS and Narwhal
-# Note that the order in which these are installed is important; see http://git.io/brew-narwhal-ringo.
-install ringojs
-install narwhal
-
-# Install more recent versions of some OS X tools
-install vim --override-system-vi --with-lua
-install homebrew/dupes/grep
-install homebrew/dupes/screen
-# install homebrew/php/php55 --with-gmp
-
-# Install some CTF tools; see https://github.com/ctfs/write-ups
-install bfg
-install binwalk
-install dex2jar
-install dns2tcp
-install fcrackzip
-install foremost
-install hashpump
-install hydra
-install john
-install knock
-install nmap
-install pngcheck
-install sqlmap
-install tcpflow
-install tcpreplay
-install tcptrace
-install ucspi-tcp # `tcpserver` et al.
-install xz
-
-# Install other useful binaries
-install ack
-#install exiv2
-install git
-install imagemagick --with-webp
-install lynx
-install node # This installs `npm` too using the recommended installation method
-install p7zip
-install pigz
-install pv
-install rename
-install rhino
-install tree
-install webkit2png
-install zopfli
-
-# install homebrew/versions/lua52
-
-# Jorge's Installs
-install docker
-install boot2docker
-install mysql
-install mongodb
-install cask
-
-# Remove outdated versions from the cellar
-cleanup
+cask '1password'
+cask 'dropbox'
+cask 'filezilla'
+cask 'firefox'
+cask 'google-chrome'
+cask 'imagealpha'
+cask 'imageoptim'
+cask 'iterm2'
+cask 'slack'
+cask 'slate'
+cask 'spotify'
+cask 'virtualbox'
