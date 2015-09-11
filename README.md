@@ -34,16 +34,15 @@ brew bundle
 
 ### Currently Learning
 
-[ ] Moving to the end of the bracket `%`
-[ ] Use <Leader><Leader>
+- [ ] Moving to the end of the bracket `%`
+- [ ] Use <Leader><Leader> for easy motion
 
 ### Pain points
 
-[ ] Moving around
- [ ] Using EasyMotion
- [ ] Going to the previous point
-[ ] Pressing ESC Three times
-[ ] Escaping neocomplete
+- [ ] Moving around
+ - [ ] Using EasyMotion
+ - [ ] Going to the previous point
+- [ ] Escaping neocomplete
 
 ## Backup
 
