@@ -39,7 +39,7 @@ Bundle 'tpope/vim-obsession'
 Bundle 'dhruvasagar/vim-prosession'
 
 " I know I need to learn these...
-" Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-surround'
 " Bundle 'godlygeek/tabular'
 
 " syntax files
