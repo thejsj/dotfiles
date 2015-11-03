@@ -16,21 +16,30 @@ Plugin 'VundleVim/Vundle.vim'
 Bundle 'altercation/vim-colors-solarized'
 
 " Plugins
+
+"
 Bundle 'bling/vim-airline'
 Bundle 'suan/vim-instant-markdown'
 Bundle 'jiangmiao/auto-pairs'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'airblade/vim-gitgutter'
-Bundle 'kien/ctrlp.vim'
-Bundle 'tacahiroy/ctrlp-funky'
 Bundle 'scrooloose/syntastic'
 Bundle 'nathanaelkane/vim-indent-guides'
+
+" Buffers/Files
+Bundle 'kien/ctrlp.vim'
+Bundle 'tacahiroy/ctrlp-funky'
 Bundle 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'bling/vim-bufferline'
 Bundle 'scroolose/nerdcommenter'
+
+" Seesions
+Bundle 'tpope/vim-obsession'
+Bundle 'dhruvasagar/vim-prosession'
+
 " I know I need to learn these...
-" Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-surround'
 " Bundle 'godlygeek/tabular'
 
 " Search
@@ -56,6 +65,7 @@ filetype plugin indent on    " required
 
 " checksyntax config
 let g:checksyntax#auto_mode = 0
+let g:syntastic_auto_loc_list = 0
 
 " airline config
 let g:airline_powerline_fonts = 1
@@ -106,6 +116,11 @@ let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 
 " vim-go
 let g:go_fmt_command = "goimports"
+
+" Indent Guides
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
+let g:indent_guides_enable_on_vim_startup = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                               Functions
@@ -216,7 +231,6 @@ set showmatch        " Show matching brackets/parenthesis
 set incsearch        " Find as you type search
 set hlsearch         " Highlight search terms
 set ignorecase       " Case insensitive search
-set smartcase        " Case insensitive when uc present
 set wildmenu         " Show list instead of just completing
 set wildmode=list:longest,full " Command <Tab> completion
 
@@ -293,13 +307,18 @@ map <Tab>k ;bn<CR>
 " escape search highliting by hitting return
 nnoremap <CR> ;noh<CR><CR>
 
+" There is probably a better way to do this
+map <leader>c iHELLO WORLD<Esc>;w<CR>
+
+map <leader>,<space> <plug>NERDCommenterComment<CR>
 nnoremap <leader>l ;NERDTreeTabsToggle<CR>
 nnoremap <leader>k ;CheckSyntax<CR>
-nnoremap <leader>ed ;tabnew ~/.vimrc<cr>
-nnoremap <leader>src ;source ~/.vimrc<cr>
+nnoremap <leader>ed :tabnew ~/.vimrc<cr>
+nnoremap <leader>src :source ~/.vimrc<cr>
 nnoremap <leader>h ;tabnew<CR>:ConqueTerm bash<CR>
 nnoremap <leader>w ;tabclose<CR>
 
+nmap <leader>f ;echo expand('%:p')<CR>
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
 nmap <leader>3 <Plug>AirlineSelectTab3

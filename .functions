@@ -272,6 +272,30 @@ gra() {
   cd $PPWD
 }
 
+# Grep over the runnable angular client directory
+grajs() {
+  PPWD=$(pwd)
+  cd $HOME/runnable/runnable-angular
+  grep -inR "$1" --exclude-dir=build --include \*.js ./client/
+  cd $PPWD
+}
+
+# Grep over the runnable angular client directory
+grajade() {
+  PPWD=$(pwd)
+  cd $HOME/runnable/runnable-angular
+  grep -inR "$1" --exclude-dir=build --include \*.jade ./client
+  cd $PPWD
+}
+
+# Grep over the runnable angular test directory
+grat() {
+  PPWD=$(pwd)
+  cd $HOME/runnable/runnable-angular
+  grep -inR "$1" --exclude-dir=coverage ./test/
+  cd $PPWD
+}
+
 print_json() {
  pbpaste | python -m json.tool
 }
