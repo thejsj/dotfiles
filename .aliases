@@ -22,6 +22,7 @@ alias hr="cd ~/Sites/2014/hack-reactor/"
 alias toy="cd ~/Sites/2014/hack-reactor/toy-problems/"
 alias cf="cd ~/Sites/2014/hack-reactor/code-friends/"
 alias re="cd ~/Documents/RethinkDB/"
+alias gg="cd ~/Sites/go-projects/"
 
 alias r="cd ~/runnable"
 

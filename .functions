@@ -275,3 +275,7 @@ gra() {
 print_json() {
  pbpaste | python -m json.tool
 }
+
+serve () {
+  python -m SimpleHTTPServer 8000
+}

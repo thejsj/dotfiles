@@ -14,6 +14,8 @@ export ARCHFLAGS="-arch x86_64"
 # Ruby
 export GEM_HOME="$HOME/.gem"
 export GEM_PATH="$HOME/.gem"
+# Java
+export JAVA_HOME=$(/usr/libexec/java_home)
 
 MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
