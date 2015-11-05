@@ -311,3 +311,6 @@ f() {
   find . -name "*$1*"
 }
 
+serve () {
+  python -m SimpleHTTPServer 8000
+}

@@ -19,7 +19,6 @@ Bundle 'altercation/vim-colors-solarized'
 
 "
 Bundle 'bling/vim-airline'
-Bundle 'scroolose/nerdcommenter'
 Bundle 'suan/vim-instant-markdown'
 Bundle 'jiangmiao/auto-pairs'
 Bundle 'Lokaltog/vim-easymotion'
@@ -33,6 +32,7 @@ Bundle 'tacahiroy/ctrlp-funky'
 Bundle 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'bling/vim-bufferline'
+Bundle 'scroolose/nerdcommenter'
 
 " Searching
 Bundle 'rking/ag.vim'
@@ -47,11 +47,16 @@ Bundle 'tpope/vim-surround'
 
 " Syntax Files
 Bundle 'jelera/vim-javascript-syntax'
+
+" syntax files
+" Bundle ujelera/vim-javascript-syntax'
+Plugin 'pangloss/vim-javascript'
 Bundle 'elzr/vim-json'
 Bundle 'tpope/vim-markdown'
 Bundle 'voithos/vim-python-syntax'
 Bundle 'nono/vim-handlebars'
 Bundle 'digitaltoad/vim-jade'
+Bundle 'fatih/vim-go'
 Bundle 'Valloric/YouCompleteMe'
 
 call vundle#end()            " required
@@ -112,6 +117,10 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_dont_split = 'nerdtree'
 " This doesn't work
 " let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+
+" vim-go
+let g:go_fmt_command = "goimports"
 
 " Indent Guides
 let g:indent_guides_start_level = 2
@@ -239,12 +248,12 @@ set list
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
 
 " Indentation settings
-set expandtab        " Tabs as spaces, not tabs
 set shiftwidth=2     " Indents of 2 spaces
 set tabstop=2        " An indentation every 2 columns
 set nojoinspaces     " Prevents inserting two spaces after punctuation on a join (J)
-autocmd FileType haskell,puppet,ruby,yml setlocal expandtab shiftwidth=2 softtabstop=2
-autocmd FileType c,go,php,ptyhon setlocal expandtab shiftwidth=4 softtabstop=4
+autocmd FileType haskell,puppet,ruby,yml,javascript setlocal expandtab shiftwidth=2 softtabstop=2
+autocmd FileType c,php,ptyhon setlocal expandtab shiftwidth=4 softtabstop=4
+autocmd FileType go setlocal shiftwidth=2
 
 " Set color column at 80
 highlight ColorColumn ctermbg=3
@@ -256,7 +265,7 @@ set autoread
 set guifont=Source\ Code\ Pro\ for\ Powerline "make sure to escape the spaces in the name properly
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                            Plugin Settings
+"                                Plugin Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "set statusline+=%#warningmsg#
@@ -274,13 +283,13 @@ set guifont=Source\ Code\ Pro\ for\ Powerline "make sure to escape the spaces in
 set runtimepath^=~/.vim/bundle/ag
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                            Key Bindings 
+"                                 Key Bindings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let mapleader = ","
 
-"* 
+"*
 " Global Mappings
-"
+"*
 
 " Wrapped lines goes down/up to next row, rather than next line in file.
 noremap j gj
@@ -333,6 +342,9 @@ nmap <leader>6 <Plug>AirlineSelectTab6
 nmap <leader>7 <Plug>AirlineSelectTab7
 nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
+
+" open ag.vim
+nnoremap <leader>a :Ag
 
 "
 " Insert Mode
