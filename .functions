@@ -299,3 +299,15 @@ grat() {
 print_json() {
  pbpaste | python -m json.tool
 }
+
+function pushit {
+  echo "$1"
+  open https://www.youtube.com/watch?v=BhsTmiK7Q2M; 
+  cd ~/runnable/devops-scripts/ansible;
+  ansible-playbook -i ./prod-hosts web.yml -e git_branch="$1";
+}
+
+f() {
+  find . -name "*$1*"
+}
+

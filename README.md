@@ -43,6 +43,9 @@ brew bundle
  - [ ] Using EasyMotion
  - [ ] Going to the previous point
 - [ ] Escaping neocomplete
+- [ ] Searching for keywords in project (ag?)
+- [ ] Using vim in the command line (zsh? tmux?)
+- [ ] Saving sessions
 
 ## Backup
 

@@ -34,7 +34,10 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'bling/vim-bufferline'
 
-" Seesions
+" Searching
+Bundle 'rking/ag.vim'
+
+" Sessions
 Bundle 'tpope/vim-obsession'
 Bundle 'dhruvasagar/vim-prosession'
 
@@ -42,7 +45,7 @@ Bundle 'dhruvasagar/vim-prosession'
 Bundle 'tpope/vim-surround'
 " Bundle 'godlygeek/tabular'
 
-" syntax files
+" Syntax Files
 Bundle 'jelera/vim-javascript-syntax'
 Bundle 'elzr/vim-json'
 Bundle 'tpope/vim-markdown'
@@ -107,11 +110,18 @@ let g:ctrlp_custom_ignore = {
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_dont_split = 'nerdtree'
+" This doesn't work
+" let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
 " Indent Guides
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 let g:indent_guides_enable_on_vim_startup = 1
+
+" ag.vim
+let g:ag_prg="ag --vimgrep"
+let g:ag_working_path_mode="r"
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                               Functions
@@ -260,6 +270,9 @@ set guifont=Source\ Code\ Pro\ for\ Powerline "make sure to escape the spaces in
 ""set statusline+=\ [%{getcwd()}]          " Current dir
 "set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
 
+" ag.vim
+set runtimepath^=~/.vim/bundle/ag
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                            Key Bindings 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -308,6 +321,7 @@ nnoremap <leader>ed :tabnew ~/.vimrc<cr>
 nnoremap <leader>src :source ~/.vimrc<cr>
 nnoremap <leader>h ;tabnew<CR>:ConqueTerm bash<CR>
 nnoremap <leader>w ;tabclose<CR>
+nnoremap <leader>a :Ag
 
 nmap <leader>f ;echo expand('%:p')<CR>
 nmap <leader>1 <Plug>AirlineSelectTab1
