@@ -74,7 +74,7 @@ let g:airline_inactive_collapse=1
 let g:airline#extensions#bufferline#enabled = 0
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tabline#exclude_preview = 1
-let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
 "function! airline#extensions#tabline#foo#format(bufnr, buffers)
   "return fnamemodify(bufname(a:bufnr), ':t')
@@ -112,7 +112,7 @@ let g:ctrlp_custom_ignore = {
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_dont_split = 'nerdtree'
-let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+" let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 
 " vim-go
 let g:go_fmt_command = "goimports"
@@ -218,11 +218,11 @@ set showcmd           " Show partial commands in the status line
 set laststatus=2
 
 " Broken down into easily includeable segments
-set statusline+=%F
+set statusline+=%f
 "set statusline=%<%f\                     " Filename
 "set statusline+=%w%h%m%r                 " Options
-"set statusline+=\ [%{&ff}/%Y]            " Filetype
-""set statusline+=\ [%{getcwd()}]          " Current dir
+set statusline+=\ [%{&ff}/%Y]            " Filetype
+set statusline+=\ [%{getcwd()}]          " Current dir
 "set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
 
 set number           " Line numbers on
@@ -306,9 +306,6 @@ map <Tab>k ;bn<CR>
 
 " escape search highliting by hitting return
 nnoremap <CR> ;noh<CR><CR>
-
-" There is probably a better way to do this
-map <leader>c iHELLO WORLD<Esc>;w<CR>
 
 map <leader>,<space> <plug>NERDCommenterComment<CR>
 nnoremap <leader>l ;NERDTreeTabsToggle<CR>
