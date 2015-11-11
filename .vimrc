@@ -131,6 +131,8 @@ let g:indent_guides_enable_on_vim_startup = 1
 let g:ag_prg="ag --vimgrep"
 let g:ag_working_path_mode="r"
 
+" NERDCommenter
+let NERDSpaceDelims=1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                               Functions
