@@ -77,7 +77,7 @@ let g:airline_inactive_collapse=1
 let g:airline#extensions#bufferline#enabled = 0
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tabline#exclude_preview = 1
-let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
 "function! airline#extensions#tabline#foo#format(bufnr, buffers)
   "return fnamemodify(bufname(a:bufnr), ':t')
@@ -117,7 +117,7 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_dont_split = 'nerdtree'
 " This doesn't work
 " let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+" let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 
 " vim-go
 let g:go_fmt_command = "goimports"

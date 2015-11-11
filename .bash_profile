@@ -4,6 +4,7 @@ export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="$HOME/bin:$PATH";
 # Hombrew
 export PATH="/usr/local/bin:$PATH";
+export PATH="/usr/local/sbin:$PATH";
 export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
 export PATH="$HOME/.cask/bin:$PATH"
 # Go
@@ -16,6 +17,7 @@ export GEM_HOME="$HOME/.gem"
 export GEM_PATH="$HOME/.gem"
 # Java
 export JAVA_HOME=$(/usr/libexec/java_home)
+export PATH=${JAVA_HOME}/bin:$PATH
 
 # History
 export HISTTIMEFORMAT="%d/%m/%y %T "
