@@ -115,6 +115,8 @@ let g:ctrlp_custom_ignore = {
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_dont_split = 'nerdtree'
+let g:ctrlp_max_files = 0
+let g:ctrlp_max_depth = 40
 " This doesn't work
 " let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 " let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
