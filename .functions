@@ -314,3 +314,7 @@ f() {
 serve () {
   python -m SimpleHTTPServer 8000
 }
+
+port () {
+  lsof -n -i4TCP:"$1" | grep LISTEN
+}
