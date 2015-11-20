@@ -120,6 +120,9 @@ let g:ctrlp_dont_split = 'nerdtree'
 let g:ctrlp_user_command = 'ag -a %s -l --nocolor -g ""'
 let g:ctrlp_user_command = 'ag -a %s -l --nocolor --hidden -g ""'
 
+let g:ctrlp_max_files = 0
+let g:ctrlp_max_depth = 40
+
 " vim-go
 let g:go_fmt_command = "goimports"
 
