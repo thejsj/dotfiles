@@ -36,6 +36,8 @@ Bundle 'scroolose/nerdcommenter'
 
 " Searching
 Bundle 'rking/ag.vim'
+Bundle 'shougo/unite.vim'
+Bundle 'thinca/vim-poslist'
 
 " Sessions
 Bundle 'tpope/vim-obsession'
@@ -115,9 +117,8 @@ let g:ctrlp_custom_ignore = {
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_dont_split = 'nerdtree'
-" This doesn't work
-" let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-" let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+let g:ctrlp_user_command = 'ag -a %s -l --nocolor -g ""'
+let g:ctrlp_user_command = 'ag -a %s -l --nocolor --hidden -g ""'
 
 " vim-go
 let g:go_fmt_command = "goimports"
@@ -128,7 +129,7 @@ let g:indent_guides_guide_size = 1
 let g:indent_guides_enable_on_vim_startup = 1
 
 " ag.vim
-let g:ag_prg="ag --vimgrep"
+let g:ag_prg="ag -a --vimgrep"
 let g:ag_working_path_mode="r"
 
 " NERDCommenter
@@ -291,7 +292,7 @@ set runtimepath^=~/.vim/bundle/ag
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                 Key Bindings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let mapleader = ","
+let mapleader = " "
 
 "*
 " Global Mappings
@@ -348,6 +349,9 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 
 " open ag.vim
 nnoremap <leader>a :Ag
+
+" Switch between the last two files
+nnoremap <leader><leader> <c-^>
 
 "
 " Insert Mode
