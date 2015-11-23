@@ -118,7 +118,6 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_dont_split = 'nerdtree'
 let g:ctrlp_user_command = 'ag -a %s -l --nocolor -g ""'
-let g:ctrlp_user_command = 'ag -a %s -l --nocolor --hidden -g ""'
 
 let g:ctrlp_max_files = 0
 let g:ctrlp_max_depth = 40
@@ -257,7 +256,7 @@ set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic white
 set shiftwidth=2     " Indents of 2 spaces
 set tabstop=2        " An indentation every 2 columns
 set nojoinspaces     " Prevents inserting two spaces after punctuation on a join (J)
-autocmd FileType haskell,puppet,ruby,yml,javascript setlocal expandtab shiftwidth=2 softtabstop=2
+autocmd FileType haskell,puppet,ruby,yml,javascript,jade setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd FileType c,php,ptyhon setlocal expandtab shiftwidth=4 softtabstop=4
 autocmd FileType go setlocal shiftwidth=2
 
@@ -295,7 +294,8 @@ set runtimepath^=~/.vim/bundle/ag
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                 Key Bindings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let mapleader = " "
+" let mapleader = " " " Maybe later
+let mapleader = ","
 
 "*
 " Global Mappings
