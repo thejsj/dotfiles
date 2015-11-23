@@ -1,5 +1,5 @@
 # Ignore All Files
-*
+/*
 
 !.aliases
 !.bash_profile
