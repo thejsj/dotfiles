@@ -117,7 +117,7 @@ let g:ctrlp_custom_ignore = {
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_dont_split = 'nerdtree'
-let g:ctrlp_user_command = 'ag %s -l --nocolor -U -g ""'
+let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
 let g:ctrlp_max_files = 0
 let g:ctrlp_max_depth = 40
@@ -131,7 +131,7 @@ let g:indent_guides_guide_size = 1
 let g:indent_guides_enable_on_vim_startup = 1
 
 " ag.vim
-let g:ag_prg="ag --vimgrep -U "
+let g:ag_prg="ag --vimgrep"
 let g:ag_working_path_mode="r"
 
 " NERDCommenter
