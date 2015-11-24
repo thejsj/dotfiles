@@ -1,7 +1,10 @@
+#!/bin/bash
+
+# Complete all the necessary steps to install VIM from scratch
 
 # Add dir for swapfiles
 mkdir -p ~/.vim/swap
-k
+
 # Intall Vundle
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
