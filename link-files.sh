@@ -1,10 +1,12 @@
 #!/bin/bash
 for file in ./.*
 do
-	if  [[ $file != ./.git* ]] && [[ -f $file || -d $file ]];
+	if  [[ $file != ./.git* ]] && [[ $FILE != *.  ]] && [[ -f $file || -d $file ]];
 	then
-		echo "File: $file"
-		rm ../$file 
-		ln -s $file ../$file
+		FILE_NAME=$(basename "$file")
+		CURRENT_DIR=$(pwd)
+		SOURCE_PATH="$CURRENT_DIR/$FILE_NAME"
+		TARGET_PATH="$CURRENT_DIR/../$FILE_NAME"
+		ln -s $SOURCE_PATH $TARGET_PATH
 	fi
 done
