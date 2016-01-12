@@ -32,9 +32,13 @@ brew bundle
 
 ## Vim
 
+
 ### Currently Learning
 
 - [ ] Moving to the end of the bracket `%`
+- [ ] Relative replacing `:.,.+10s/foo/bar/g`
+- [ ] `zt` to move current line to top of screen
+- [ ] `zz` to move current line to middle of screen
 - [ ] Use <Leader><Leader> for easy motion
 
 ### Pain points

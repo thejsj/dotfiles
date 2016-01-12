@@ -1,20 +1,27 @@
 # Add `~/bin` to the `$PATH`
 
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH" 
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="$HOME/bin:$PATH";
+
 # Hombrew
 export PATH="/usr/local/bin:$PATH";
 export PATH="/usr/local/sbin:$PATH";
 export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
+export DEVOPS_SCRIPTS_PATH=/Users/hiphipjorge/runnable/devops-scripts
 export PATH="$HOME/.cask/bin:$PATH"
+
 # Go
 export GOPATH=$HOME/Sites/go-projects
 export PATH=$PATH:$GOPATH/bin
+
 # Archflags
 export ARCHFLAGS="-arch x86_64"
+
 # Ruby
 export GEM_HOME="$HOME/.gem"
 export GEM_PATH="$HOME/.gem"
+
 # Java
 export JAVA_HOME=$(/usr/libexec/java_home)
 export PATH=${JAVA_HOME}/bin:$PATH
@@ -81,16 +88,26 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
 
-if [ -e "~/.nvm" ]
-then
-    source ~/.nvm/nvm.sh
-fi
+# Powerline
+#powerline-daemon -q
+#POWERLINE_BASH_CONTINUATION=1
+#POWERLINE_BASH_SELECT=1
+#. /Library/Python/2.7/site-packages/powerline/bindings/bash/powerline.sh
 
-# Add check to make sure file exists
-if [ -e "~/.iterm2_shell_integration.bash" ]
-then
-    source ~/.iterm2_shell_integration.bash
-fi
+# Call these guys... 
+source ~/.nvm/nvm.sh
+source ~/.iterm2_shell_integration.bash
+
+# if [ -e "~/.nvm" ]
+# then
+    # source ~/.nvm/nvm.sh
+# fi
+
+# # Add check to make sure file exists
+# if [ -e "~/.iterm2_shell_integration.bash" ]
+# then
+    # source ~/.iterm2_shell_integration.bash
+# fi
 
 # Powerline
 #powerline-daemon -q
@@ -98,3 +115,7 @@ fi
 #POWERLINE_BASH_SELECT=1
 #. /Library/Python/2.7/site-packages/powerline/bindings/bash/powerline.sh
 
+# TMUX
+# if command -v tmux>/dev/null; then
+  # [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
+# fi
