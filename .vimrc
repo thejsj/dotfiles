@@ -70,7 +70,6 @@ filetype plugin indent on    " required
 
 " checksyntax config
 let g:checksyntax#auto_mode = 0
-let g:syntastic_auto_loc_list = 0
 
 " airline config
 let g:airline_powerline_fonts = 1
@@ -93,10 +92,28 @@ let g:solarized_contrast="normal"
 let g:solarized_visibility="normal"
 
 " Syntastic
+let g:syntastic_auto_loc_list = 0
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+let g:syntastic_javascript_checkers=[]
+
+if filereadable('.jshintrc')
+  call add(g:syntastic_javascript_checkers, 'jshint')
+end
+
+if filereadable('.eslintrc')
+  call add(g:syntastic_javascript_checkers, 'eslint')
+  if filereadable('./node_modules/.bin/eslint')
+    let g:syntastic_javascript_eslint_exec='./node_modules/.bin/eslint'
+  end
+end
+
+if filereadable('.flowconfig')
+  call add(g:syntastic_javascript_checkers, 'flow')
+end
 
 if filereadable('./node_modules/standard/package.json')
   call add(g:syntastic_javascript_checkers, 'standard')
