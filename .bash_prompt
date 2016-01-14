@@ -59,6 +59,11 @@ prompt_git() {
 	fi;
 }
 
+prompt_time() {
+	local time=$(gdate -u '+%Y-%m-%dT%H:%M:%S.%3NZ')
+	echo -e "${time}";
+}
+
 if tput setaf 1 &> /dev/null; then
 	tput sgr0; # reset colors
 	bold=$(tput bold);
@@ -103,9 +108,13 @@ else
 	hostStyle="${yellow}";
 fi;
 
+
+
 # Set the terminal title to the current working directory.
 PS1="\[\033]0;\w\007\]";
-PS1+="\[${bold}\]\n"; # newline
+PS1+="\n"; # newline
+PS1+="\[$(prompt_time)\] "; # newline
+PS1+="\[${bold}\]";
 PS1+="\[${userStyle}\]\u"; # username
 PS1+="\[${white}\] at ";
 PS1+="\[${hostStyle}\]\h"; # host
