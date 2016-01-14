@@ -117,7 +117,8 @@ end
 
 if filereadable('./node_modules/standard/package.json')
   call add(g:syntastic_javascript_checkers, 'standard')
-  let g:syntastic_javascript_standard_exec='./node_modules/.bin/standard'
+	" Standard should be globally installed
+  let g:syntastic_javascript_standard_exec='standard'
 end
 
 " NERDTree
