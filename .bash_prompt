@@ -60,7 +60,7 @@ prompt_git() {
 }
 
 prompt_time() {
-	local time=$(gdate -u '+%Y-%m-%dT%H:%M:%S.%3NZ')
+	local time=$(gdate -u '+%b, %d %H:%M:%S')
 	echo -e "${time}";
 }
 
@@ -113,7 +113,7 @@ fi;
 # Set the terminal title to the current working directory.
 PS1="\[\033]0;\w\007\]";
 PS1+="\n"; # newline
-PS1+="\[$(prompt_time)\] "; # newline
+PS1+="\$(prompt_time) "; # newline
 PS1+="\[${bold}\]";
 PS1+="\[${userStyle}\]\u"; # username
 PS1+="\[${white}\] at ";

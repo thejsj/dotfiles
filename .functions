@@ -307,7 +307,7 @@ function pushit {
   ansible-playbook -i ./prod-hosts web.yml -e git_branch="$1";
 }
 
-f() {
+f () {
   find . -name "*$1*"
 }
 
@@ -317,4 +317,9 @@ serve () {
 
 port () {
   lsof -n -i4TCP:"$1" | grep LISTEN
+}
+
+utc () {
+	local time=$(gdate -u '+%Y-%m-%dT%H:%M:%S.%3NZ')
+	echo -e "${time}";
 }
