@@ -323,3 +323,7 @@ utc () {
 	local time=$(gdate -u '+%Y-%m-%dT%H:%M:%S.%3NZ')
 	echo -e "${time}";
 }
+
+unsetDockerEnvVariables () {
+	unset `env | grep DOCKER | cut -d'=' -f 1 | xargs`
+}

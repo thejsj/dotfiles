@@ -60,7 +60,7 @@ prompt_git() {
 }
 
 prompt_time() {
-	local time=$(gdate -u '+%b, %d %H:%M:%S')
+	local time=$(gdate -u '+%F %H:%M:%S')
 	echo -e "${time}";
 }
 
