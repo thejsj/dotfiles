@@ -327,3 +327,39 @@ utc () {
 unsetDockerEnvVariables () {
 	unset `env | grep DOCKER | cut -d'=' -f 1 | xargs`
 }
+
+# Add all hosts in ssh configs
+local names=$(cat ~/.ssh/config | grep '^Host\ [a-z\-]*$' | sed 's/Host\ //g')
+
+function echoAndEval () {
+	echo "ECHO AND EVAL"
+	echo $1;
+	eval $1;
+}
+
+for environment in $names
+do
+	# TODO:
+	# 1. Change `api.log` to real filename
+	# 2. Add ability to pass in variables `-n`, `file`
+	# Basic logs
+	eval "function ${environment}-logs() {\
+		echoAndEval \"ssh ${environment} tail -f /var/log/api.log | bunyan\";\
+	};"
+	# Warnings
+	eval "function ${environment}-logs-warn() {\
+		echoAndEval \"ssh ${environment} tail -f /var/log/api.log | bunyan -l warn\";\
+	};"
+	# Errors
+	eval "function ${environment}-logs-error() {\
+		echoAndEval \"ssh ${environment} tail -f /var/log/api.log | bunyan -l error\";\
+	};"
+	# Short
+	eval "function ${environment}-logs-short() {\
+		echoAndEval \"ssh ${environment} tail -f /var/log/api.log | bunyan -o short\";\
+	};"
+	# File (doesnt work)
+	# eval "function ${environment}-logs-file() {\
+		# echoAndEval \"ssh ${environment} tail -f /var/log/api.log | bunyan -c \";\
+	# };"
+done
