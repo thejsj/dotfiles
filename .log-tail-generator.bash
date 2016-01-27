@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Add all hosts in ssh configs
-local names=$(cat ~/.ssh/config | grep '^Host\ [a-z\-]*$' | sed 's/Host\ //g')
+names=$(cat ~/.ssh/config | grep '^Host\ [a-z\-]*$' | sed 's/Host\ //g')
 
 # Have one simple function for knowing if a variable is undefined
 # or equal to 0
