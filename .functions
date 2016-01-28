@@ -332,4 +332,4 @@ github-api-user () {
 	curl -s https://api.github.com/user/$1 | ppjson
 }
 
-source .log-tail-generator.bash
+source ~/.log-tail-generator.bash
