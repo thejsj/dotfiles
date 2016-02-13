@@ -333,3 +333,9 @@ github-api-user () {
 }
 
 source ~/.log-tail-generator.bash
+
+function flushall {
+  mongo --quiet --eval 'db.getMongo().getDBNames().forEach(function(i){db.getSiblingDB(i).dropDatabase()})'
+  redis-cli flushall
+  rabbitmqctl stop_app; rabbitmqctl reset; rabbitmqctl start_app
+}

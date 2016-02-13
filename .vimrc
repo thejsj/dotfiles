@@ -280,7 +280,7 @@ set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic white
 set shiftwidth=2     " Indents of 2 spaces
 set tabstop=2        " An indentation every 2 columns
 set nojoinspaces     " Prevents inserting two spaces after punctuation on a join (J)
-autocmd FileType haskell,puppet,ruby,yml,javascript,jade setlocal expandtab shiftwidth=2 softtabstop=2
+autocmd FileType haskell,puppet,ruby,yml,javascript,jade,html,hbs setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd FileType c,php,ptyhon setlocal expandtab shiftwidth=4 softtabstop=4
 autocmd FileType go setlocal shiftwidth=2
 
@@ -343,9 +343,13 @@ map <leader>e ;NERDTreeFind<CR>
 map <Leader>d ;bd<CR>
 map <Leader>w ;w<CR>
 " Previous buffer
-map <Tab>j ;bp<CR>
+map <Tab>j ;bp<CR>  " How I do it now
+map <Leader>j ;bp<CR> " How I whould be doing it
+map <Leader>h ;bp<CR>
 " Next buffer
 map <Tab>k ;bn<CR>
+map <Leader>k ;bn<CR>
+map <Leader>l ;bn<CR>
 
 "
 " Normal Mode
