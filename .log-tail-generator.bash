@@ -65,6 +65,10 @@ function logs() {
 	local grep=$1
 	shift
 	local g=$1
+	shift
+	local keys=$1
+	shift
+	local k=$1
 
 	# Set defaults (long parameter names overwrites single letter name)
 	if [[ $(only_short_param_defined $level $l) -ne 0 ]]; then
@@ -82,6 +86,9 @@ function logs() {
 	if [[ $(only_short_param_defined $grep $g) -ne 0 ]]; then
 		grep=$g
 	fi
+	if [[ $(only_short_param_defined $keys $k) -ne 0 ]]; then
+		keys=$k
+	fi
 	# Construct basic command
 	local cmd="ssh ${environment} tail -f /var/log/${log_file_name}.log";
 	# Append to basic commands
@@ -98,7 +105,10 @@ function logs() {
 	if [[ $(is_defined $file) -ne 0 ]]; then
 		cmd="$cmd -c \"this.module.indexOf('${file}') >= 0\""
 	fi;
-	if [[ $(is_defined $short) -ne 0 ]]; then
+	if [[ $(is_defined $keys) -ne 0 ]]; then
+		keys_separated_by_space="${keys/,/ }"
+		cmd="$cmd -o json --strict | json -ga $keys_separated_by_space"
+	elif [[ $(is_defined $short) -ne 0 ]]; then
 		cmd="$cmd -o short"
 	fi;
 	# Run
@@ -134,7 +144,9 @@ do
 			\${lines:-0} \
 			\${n:-0} \
 			\${grep:-0} \
-			\${g:-0}
+			\${g:-0} \
+			\${keys:-0} \
+			\${k:-0}
 	};"
 	# Download
 	eval "function ${environment}-logs-download() {\
