@@ -100,7 +100,7 @@ let g:syntastic_check_on_wq = 0
 
 let g:syntastic_javascript_checkers=[]
 
-if filereadable('.jshintrc')
+if filereadable('./.jshintrc')
   call add(g:syntastic_javascript_checkers, 'jshint')
 end
 
@@ -117,7 +117,6 @@ end
 
 if filereadable('./node_modules/standard/package.json')
   call add(g:syntastic_javascript_checkers, 'standard')
-	" Standard should be globally installed
   let g:syntastic_javascript_standard_exec='standard'
 end
 
