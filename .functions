@@ -332,6 +332,10 @@ github-api-user () {
 	curl -s https://api.github.com/user/$1 | ppjson
 }
 
+github-api-org () {
+	curl -s https://api.github.com/orgs/$1 | ppjson
+}
+
 source ~/.log-tail-generator.bash
 
 function flushall {

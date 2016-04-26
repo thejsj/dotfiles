@@ -119,3 +119,5 @@ source ~/.nvm/nvm.sh
 # if command -v tmux>/dev/null; then
   # [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
 # fi
+
+eval "$(rbenv init -)"

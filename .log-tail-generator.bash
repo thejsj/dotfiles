@@ -90,7 +90,7 @@ function logs() {
 		keys=$k
 	fi
 	# Construct basic command
-	local cmd="ssh ${environment} tail -f /var/log/${log_file_name}.log";
+	local cmd="ssh ${environment} tail -f /var/log/${log_file_name}-daemon.log";
 	# Append to basic commands
 	if [[ $(is_defined $lines) -ne 0 ]]; then
 		cmd="$cmd -n $lines"
@@ -98,7 +98,7 @@ function logs() {
 	if [[ $(is_defined $grep) -ne 0 ]]; then
 		cmd="$cmd  | grep '$grep'"
 	fi;
-	cmd="$cmd | bunyan";
+	cmd="$cmd | sed 's/.*\ {/{/' | bunyan";
 	if [[ $(is_defined $level) -ne 0 ]]; then
 		cmd="$cmd -l $level"
 	fi;
