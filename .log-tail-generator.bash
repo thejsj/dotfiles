@@ -89,8 +89,17 @@ function logs() {
 	if [[ $(only_short_param_defined $keys $k) -ne 0 ]]; then
 		keys=$k
 	fi
+
+	logpath() {
+		local app_name="$1"
+		local datetime=$(gdate -u +%Y/%m/%d/%H)
+		local app_log_dir="/var/log/runnable"
+		echo "${app_log_dir}/${datetime}/${app_name}.log"
+	}
+	log_file_name=$(logpath $log_file_name)
+
 	# Construct basic command
-	local cmd="ssh ${environment} tail -f /var/log/${log_file_name}-daemon.log";
+	local cmd="ssh ${environment} tail -f ${log_file_name}";
 	# Append to basic commands
 	if [[ $(is_defined $lines) -ne 0 ]]; then
 		cmd="$cmd -n $lines"
@@ -98,7 +107,7 @@ function logs() {
 	if [[ $(is_defined $grep) -ne 0 ]]; then
 		cmd="$cmd  | grep '$grep'"
 	fi;
-	cmd="$cmd | sed 's/.*\ {/{/' | bunyan";
+	cmd="$cmd | bunyan";
 	if [[ $(is_defined $level) -ne 0 ]]; then
 		cmd="$cmd -l $level"
 	fi;

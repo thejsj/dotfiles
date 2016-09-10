@@ -7,6 +7,7 @@ set nocompatible
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " vundle
+let $GIT_SSL_NO_VERIFY = 'true'
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -38,6 +39,7 @@ Bundle 'scroolose/nerdcommenter'
 Bundle 'rking/ag.vim'
 Bundle 'shougo/unite.vim'
 Bundle 'thinca/vim-poslist'
+Bundle 'tpope/vim-abolish'
 
 " Sessions
 Bundle 'tpope/vim-obsession'
@@ -45,7 +47,8 @@ Bundle 'dhruvasagar/vim-prosession'
 
 " I know I need to learn these...
 Bundle 'tpope/vim-surround'
-" Bundle 'godlygeek/tabular'
+Bundle 'tpope/vim-fugitive'
+Bundle 'godlygeek/tabular'
 
 " Syntax Files
 Bundle 'jelera/vim-javascript-syntax'
@@ -59,6 +62,11 @@ Bundle 'voithos/vim-python-syntax'
 Bundle 'nono/vim-handlebars'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'fatih/vim-go'
+Bundle 'leafgarland/typescript-vim'
+Bundle 'lambdatoast/elm.vim'
+
+Bundle 'Quramy/tsuquyomi'
+Bundle 'Shougo/vimproc.vim'
 Bundle 'Valloric/YouCompleteMe'
 
 call vundle#end()            " required
@@ -92,11 +100,11 @@ let g:solarized_contrast="normal"
 let g:solarized_visibility="normal"
 
 " Syntastic
+let g:syntastic_always_populate_loc_list = 0
 let g:syntastic_auto_loc_list = 0
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_typescript_tsc_fname = ''
 
 let g:syntastic_javascript_checkers=[]
 
@@ -160,6 +168,9 @@ let g:ag_working_path_mode="r"
 " NERDCommenter
 let NERDSpaceDelims=1
 
+" Typescript-vim
+let g:typescript_compiler_binary = 'tsc'
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                               Functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -182,6 +193,16 @@ function! ResCur()
 	return 1
     endif
 endfunction
+
+" http://stackoverflow.com/questions/17512794/toggle-error-location-panel-in-syntastic
+" function! ToggleErrors()
+    " let old_last_winnr = winnr('$')
+    " lclose
+    " if old_last_winnr == winnr('$')
+        " " Nothing was closed, open syntastic error location panel
+        " Errors
+    " endif
+" endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                 Settings
@@ -279,7 +300,10 @@ set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic white
 set shiftwidth=2     " Indents of 2 spaces
 set tabstop=2        " An indentation every 2 columns
 set nojoinspaces     " Prevents inserting two spaces after punctuation on a join (J)
-autocmd FileType haskell,puppet,ruby,yml,javascript,jade,html,hbs setlocal expandtab shiftwidth=2 softtabstop=2
+autocmd FileType haskell,puppet,ruby,yml,elm setlocal expandtab shiftwidth=2 softtabstop=2
+autocmd FileType javascript,css,scss,typescript,ts,jade,html,hbs,json setlocal expandtab shiftwidth=2 softtabstop=2
+autocmd FileType bash,shell  setlocal expandtab shiftwidth=2 softtabstop=2
+autocmd FileType typescript :set makeprg=tsc
 autocmd FileType c,php,ptyhon setlocal expandtab shiftwidth=4 softtabstop=4
 autocmd FileType go setlocal shiftwidth=2
 
@@ -300,9 +324,9 @@ set secure
 "                                Plugin Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
 " Broken down into easily includeable segments
 "set statusline=%f\                     " Filename

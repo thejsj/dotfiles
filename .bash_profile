@@ -13,10 +13,15 @@ export PATH="$HOME/.cask/bin:$PATH"
 
 # Go
 export GOPATH=$HOME/Sites/go-projects
+export GOROOT=/usr/local/opt/go/libexec
 export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin
 
 # Archflags
 export ARCHFLAGS="-arch x86_64"
+
+# Runnable
+export RUN_ROOT=~/runnable
 
 # Ruby
 export GEM_HOME="$HOME/.gem"
@@ -26,12 +31,18 @@ export GEM_PATH="$HOME/.gem"
 export JAVA_HOME=$(/usr/libexec/java_home)
 export PATH=${JAVA_HOME}/bin:$PATH
 
+# Mac CLI
+export PATH=$PATH:/usr/local/m-cli
+
 # History
 export HISTTIMEFORMAT="%d/%m/%y %T "
 export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
 export HISTSIZE=100000                   # big big history
 export HISTFILESIZE=100000               # big big history
 shopt -s histappend                      # append to history, don't overwrite it
+
+# Node Environment
+export NODE_ENV=development
 
 # Save and reload the history after each command finishes
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
@@ -41,7 +52,7 @@ MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
-for file in ~/.{path,bash_prompt,exports,aliases,private-aliases,functions,extra}; do
+for file in ~/.{path,bash_prompt,aliases,exports,private-aliases,functions,private-functions,extra}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;
