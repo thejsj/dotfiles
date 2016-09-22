@@ -302,7 +302,7 @@ set tabstop=2        " An indentation every 2 columns
 set nojoinspaces     " Prevents inserting two spaces after punctuation on a join (J)
 autocmd FileType haskell,puppet,ruby,yml,elm setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd FileType javascript,css,scss,typescript,ts,jade,html,hbs,json setlocal expandtab shiftwidth=2 softtabstop=2
-autocmd FileType bash,shell  setlocal expandtab shiftwidth=2 softtabstop=2
+autocmd FileType bash,shell,sh  setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd FileType typescript :set makeprg=tsc
 autocmd FileType c,php,ptyhon setlocal expandtab shiftwidth=4 softtabstop=4
 autocmd FileType go setlocal shiftwidth=2
