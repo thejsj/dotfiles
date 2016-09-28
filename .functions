@@ -369,9 +369,12 @@ function pull-remote-branch () {
 }
 
 function pbtidy () {
- pbpaste | python -m json.tool | pbcopy
+ pbpaste | jq '.' | pbcopy
 }
 
-function jsonecho () {
- pbpaste | python -m json.tool pygmentize -l javascript
+function pbecho() {
+ pbpaste | jq '.'
 }
+
+alias pbt="pbtidy"
+alias pbe="pbecho"
