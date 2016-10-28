@@ -8,6 +8,7 @@ export PATH="$HOME/bin:$PATH";
 export PATH="/usr/local/bin:$PATH";
 export PATH="/usr/local/sbin:$PATH";
 export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
+export PATH="./node_modules/.bin:$PATH"
 export DEVOPS_SCRIPTS_PATH=/Users/hiphipjorge/runnable/devops-scripts
 export PATH="$HOME/.cask/bin:$PATH"
 
@@ -132,3 +133,13 @@ source ~/.nvm/nvm.sh
 # fi
 
 eval "$(rbenv init -)"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f /Users/hiphipjorge/Desktop/google-cloud-sdk/path.bash.inc ]; then
+  source '/Users/hiphipjorge/Desktop/google-cloud-sdk/path.bash.inc'
+fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f /Users/hiphipjorge/Desktop/google-cloud-sdk/completion.bash.inc ]; then
+  source '/Users/hiphipjorge/Desktop/google-cloud-sdk/completion.bash.inc'
+fi
