@@ -376,5 +376,13 @@ function pbecho() {
  pbpaste | jq '.'
 }
 
+function timestamp_to_date ()  {
+  date -d @$1 -u +"%Y-%m-%dT%H:%M:%SZ"
+}
+
+function timestamp_to_local_date ()  {
+  date -d @$1 +"%Y-%m-%dT%H:%M:%SZ"
+}
+
 alias pbt="pbtidy"
 alias pbe="pbecho"

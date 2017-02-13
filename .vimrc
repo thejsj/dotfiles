@@ -300,6 +300,7 @@ set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic white
 set shiftwidth=2     " Indents of 2 spaces
 set tabstop=2        " An indentation every 2 columns
 set nojoinspaces     " Prevents inserting two spaces after punctuation on a join (J)
+set softtabstop=2 expandtab
 autocmd FileType haskell,puppet,ruby,yml,elm setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd FileType javascript,css,scss,typescript,ts,jade,html,hbs,json setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd FileType bash,shell,sh  setlocal expandtab shiftwidth=2 softtabstop=2
@@ -373,6 +374,7 @@ map <Leader>h ;bp<CR>
 map <Tab>k ;bn<CR>
 map <Leader>k ;bn<CR>
 map <Leader>l ;bn<CR>
+map <Leader>dw dw"0P<CR>
 
 "
 " Normal Mode
