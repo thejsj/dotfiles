@@ -65,7 +65,11 @@ prompt_time() {
 }
 
 prompt_kube_context() {
-	echo -e "$(kubectl config current-context)"
+  CONTEXT=$(kubectl config current-context 2>/dev/null)
+  if [[ "${CONTEXT}" == "" ]]; then
+    CONTEXT="---"
+  fi
+	echo -e "$CONTEXT"
 }
 
 if tput setaf 1 &> /dev/null; then

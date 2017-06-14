@@ -386,3 +386,10 @@ function timestamp_to_local_date ()  {
 
 alias pbt="pbtidy"
 alias pbe="pbecho"
+
+function aws_set_env () {
+  AWS_CURRENT_PROFILE_NAME=$1
+  AWS_ACCESS_KEY_ID=$(aws configure get aws_access_key_id --profile $AWS_CURRENT_PROFILE_NAME)
+  AWS_SECRET_ACCESS_KEY=$(aws configure get aws_secret_access_key --profile $AWS_CURRENT_PROFILE_NAME)
+  echo "Set AWS environment to $AWS_CURRENT_PROFILE_NAME with key id $AWS_ACCESS_KEY_ID"
+}
