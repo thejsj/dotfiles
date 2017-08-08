@@ -28,7 +28,17 @@ brew bundle
 
 5. Setup VIM
 
-`source ~/setup_vim.sh`
+```
+source ~/setup_vim.sh
+# Go in and Bundle Install
+# Try to install Powerline fonts
+cd ~/.vim/bundle/YouCompleteMe
+ ./install.py --clang-completer --gocode-completer
+``````
+
+6. Install Karabiner and map ESC and CAPS Lock
+
+7. Install Iterm Settings
 
 ## Vim
 
