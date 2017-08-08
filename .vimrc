@@ -19,7 +19,8 @@ Bundle 'altercation/vim-colors-solarized'
 " Plugins
 
 "
-Bundle 'bling/vim-airline'
+Bundle 'vim-airline/vim-airline'
+Bundle 'vim-airline/vim-airline-themes'
 Bundle 'suan/vim-instant-markdown'
 Bundle 'jiangmiao/auto-pairs'
 Bundle 'Lokaltog/vim-easymotion'
@@ -31,13 +32,12 @@ Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'kien/ctrlp.vim'
 Bundle 'tacahiroy/ctrlp-funky'
 Bundle 'scrooloose/nerdtree'
+Bundle 'git@github.com:scrooloose/nerdcommenter.git'
 Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'bling/vim-bufferline'
-Bundle 'scroolose/nerdcommenter'
 
 " Searching
 Bundle 'rking/ag.vim'
-Bundle 'shougo/unite.vim'
 Bundle 'thinca/vim-poslist'
 Bundle 'tpope/vim-abolish'
 
@@ -80,7 +80,8 @@ filetype plugin indent on    " required
 let g:checksyntax#auto_mode = 0
 
 " airline config
-let g:airline_powerline_fonts = 1
+let g:airline_theme='simple'
+" let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_inactive_collapse=1
 let g:airline#extensions#bufferline#enabled = 0
@@ -167,6 +168,7 @@ let g:ag_working_path_mode="r"
 
 " NERDCommenter
 let NERDSpaceDelims=1
+let g:NERDCustomDelimiters = { 'tf': { 'left': '#'} }
 
 " Typescript-vim
 let g:typescript_compiler_binary = 'tsc'
