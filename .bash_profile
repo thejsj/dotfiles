@@ -1,8 +1,8 @@
-# Add `~/bin` to the `$PATH`
-
+# Add `~/bin` to the `$PATH` 
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="$HOME/bin:$PATH";
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 
 # Hombrew
 export PATH="/usr/local/bin:$PATH";
@@ -14,8 +14,8 @@ export PATH="$HOME/.cask/bin:$PATH"
 
 # Go
 export GOPATH=$HOME/Sites/go-projects
+export GOPATH=$HOME/mulesoft
 export GOROOT=/usr/local/opt/go/libexec
-export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin
 
 # Archflags
@@ -24,12 +24,16 @@ export ARCHFLAGS="-arch x86_64"
 # Runnable
 export RUN_ROOT=~/runnable
 
+# Python
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/opt/python/libexec/bin/python
+export PATH=~/Library/Python/2.7/bin/:$PATH
+
 # Ruby
 export GEM_HOME="$HOME/.gem"
 export GEM_PATH="$HOME/.gem"
 
 # Java
-export JAVA_HOME=$(/usr/libexec/java_home)
+# export JAVA_HOME=$(/usr/libexec/java_home)
 export PATH=${JAVA_HOME}/bin:$PATH
 
 # Mac CLI
@@ -47,7 +51,6 @@ export NODE_ENV=development
 
 # Save and reload the history after each command finishes
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
-
 MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
 # Load the shell dotfiles, and then some:
@@ -73,6 +76,7 @@ shopt -s cdspell;
 for option in autocd globstar; do
 	shopt -s "$option" 2> /dev/null;
 done;
+
 
 # Add tab completion for many Bash commands
 if which brew > /dev/null && [ -f "$(brew --prefix)/etc/bash_completion" ]; then
@@ -100,20 +104,26 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
 
+
+
 # Powerline
 #powerline-daemon -q
 #POWERLINE_BASH_CONTINUATION=1
 #POWERLINE_BASH_SELECT=1
 #. /Library/Python/2.7/site-packages/powerline/bindings/bash/powerline.sh
 
-# Call these guys... 
-source ~/.nvm/nvm.sh
-# source ~/.iterm2_shell_integration.bash
+if [ -f "~/.nvm/nvm.sh" ]
+then
+  source ~/.iterm2_shell_integration.bash
+fi
 
-# if [ -e "~/.nvm" ]
-# then
-    # source ~/.nvm/nvm.sh
-# fi
+if [ -d "~/.nvm" ]
+then
+  if [ -f "~/.nvm/nvm.sh" ]
+  then
+    source ~/.nvm/nvm.sh
+  fi
+fi
 
 # # Add check to make sure file exists
 # if [ -e "~/.iterm2_shell_integration.bash" ]
@@ -139,3 +149,16 @@ if [ -f '/Users/hiphipjorge/Downloads/google-cloud-sdk/path.bash.inc' ]; then so
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/hiphipjorge/Downloads/google-cloud-sdk/completion.bash.inc' ]; then source '/Users/hiphipjorge/Downloads/google-cloud-sdk/completion.bash.inc'; fi
+
+# VIM
+# Create the temporary directory for VIM swap files
+if [ ! -d "~/.vim" ]; then
+  if [ ! -d "~/.vim/tmp" ]; then
+    mkdir -p ~/.vim/tmp
+  fi
+fi
+
+if [ -f "/usr/local/bin/virtualenvwrapper.sh" ]
+then
+  source /usr/local/bin/virtualenvwrapper.sh
+fi
