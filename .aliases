@@ -28,6 +28,7 @@ alias gg="cd ~/Sites/go-projects/"
 alias ggg="cd ~/Sites/go-projects/src/github.com/thejsj"
 
 alias r="cd ~/runnable"
+alias m="cd ~/mulesoft"
 
 # Git
 alias gl="git log --pretty=format:'%Cblue%h%Creset %Cgreen%ad%Creset | %s%C(yellow)%d%Creset [%an]' --graph --date=short --decorate"
@@ -171,5 +172,12 @@ alias reload="exec $SHELL -l"
 # Faster npm for Europeans
 command -v npm > /dev/null && alias npme="npm --registry http://registry.npmjs.eu/"
 
-alias sublime="/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl"
-alias subl="/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl"
+if [ -f "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" ]; then
+  alias sublime="/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl"
+  alias subl="/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl"
+fi
+
+if [ -f "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ]; then
+  alias sublime="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
+  alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
+fi
