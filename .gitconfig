@@ -111,7 +111,7 @@
   fsckobjects = true
 
 [push]
-	default = simple
+	default = current
   followTags = true
 
 [pull]
