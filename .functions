@@ -393,3 +393,16 @@ function aws_set_env () {
   AWS_SECRET_ACCESS_KEY=$(aws configure get aws_secret_access_key --profile $AWS_CURRENT_PROFILE_NAME)
   echo "Set AWS environment to $AWS_CURRENT_PROFILE_NAME with key id $AWS_ACCESS_KEY_ID"
 }
+
+function generate-public-key () {
+  ssh-keygen -y -f $1 > $1.pub
+}
+
+function uuid() {
+	if [[ "$1" == "hex" ]]; then
+    NEW_UUID=$(python -c 'import sys,uuid; sys.stdout.write(uuid.uuid4().hex)') 
+	else
+    NEW_UUID=$(python -c 'import sys,uuid; sys.stdout.write(str(uuid.uuid4()))') 
+	fi;
+  echo $NEW_UUID | pbcopy && pbpaste
+}

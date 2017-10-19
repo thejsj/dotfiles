@@ -15,6 +15,7 @@ export PATH="$HOME/.cask/bin:$PATH"
 # Go
 export GOPATH=$HOME/Sites/go-projects
 export GOPATH=$HOME/mulesoft
+export PATH=$PATH:$GOPATH/bin
 export GOROOT=/usr/local/opt/go/libexec
 export PATH=$PATH:$GOROOT/bin
 
@@ -143,6 +144,7 @@ fi
 # fi
 
 eval "$(rbenv init -)"
+eval "$(direnv hook bash)"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/hiphipjorge/Downloads/google-cloud-sdk/path.bash.inc' ]; then source '/Users/hiphipjorge/Downloads/google-cloud-sdk/path.bash.inc'; fi

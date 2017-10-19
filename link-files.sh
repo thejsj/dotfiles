@@ -3,7 +3,7 @@
 # Copy Dot Files that are not git files
 for file in $(find . -maxdepth 1)
 do
-	if  [[ $file != ./.git* ]] && [[ $file != *.  ]];
+	if  [[ $file != ./.git* ]] && [[ $file != *.  ]] || [[ $file = ./.gitconfig ]];
 	then
 		FILE_NAME=$(basename "$file")
 		CURRENT_DIR=$(pwd)

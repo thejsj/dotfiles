@@ -1,6 +1,6 @@
 [user]
 	name = thejsj
-	email = jorge.silva@thejsj.com
+  email = jorge.silva@mulesoft.com
 
 [alias]
 	l = log --pretty=oneline -n 20 --graph --abbrev-commit # View abbreviated SHA, description, and history graph of the latest 20 commits
