@@ -18,43 +18,48 @@ Bundle 'altercation/vim-colors-solarized'
 
 " Plugins
 
-"
+" Display
 Bundle 'vim-airline/vim-airline'
 Bundle 'vim-airline/vim-airline-themes'
 Bundle 'suan/vim-instant-markdown'
 Bundle 'jiangmiao/auto-pairs'
-Bundle 'Lokaltog/vim-easymotion'
 Bundle 'airblade/vim-gitgutter'
-Bundle 'scrooloose/syntastic'
 Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'Shougo/vimproc.vim'
 
 " Buffers/Files
+
+" Can't get this to work
+" Bundle 'Lokaltog/vim-easymotion'
+"" CTRL+P for for fuzzy finding files
 Bundle 'kien/ctrlp.vim'
+" CTRL+P but for functions
 Bundle 'tacahiroy/ctrlp-funky'
+" Show file tree
 Bundle 'scrooloose/nerdtree'
-Bundle 'git@github.com:scrooloose/nerdcommenter.git'
+" use :NERDTreeTabsToggle to open a tab with NerdTree
 Bundle 'jistr/vim-nerdtree-tabs'
+" <Leader>cc for commenting
+Bundle 'git@github.com:scrooloose/nerdcommenter.git'
 Bundle 'bling/vim-bufferline'
 
 " Searching
-Bundle 'rking/ag.vim'
-Bundle 'thinca/vim-poslist'
-Bundle 'tpope/vim-abolish'
+Bundle 'rking/ag.vim'       " Use :Ag in vim to find files
+Bundle 'thinca/vim-poslist' " More detailed :jumps list
+Bundle 'tpope/vim-abolish'  " Replace multiple variants of word with :%S
 
 " Sessions
-Bundle 'tpope/vim-obsession'
-Bundle 'dhruvasagar/vim-prosession'
+Bundle 'tpope/vim-obsession'        " Use :Obsses to make more better vim sessions
+Bundle 'dhruvasagar/vim-prosession' " Switch between sessions easily
 
 " I know I need to learn these...
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
 Bundle 'godlygeek/tabular'
 
-" Syntax Files
+" Syntax
+Bundle 'scrooloose/syntastic'
 Bundle 'jelera/vim-javascript-syntax'
-
-" syntax files
-" Bundle ujelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
 Bundle 'elzr/vim-json'
 Bundle 'tpope/vim-markdown'
@@ -65,8 +70,8 @@ Bundle 'fatih/vim-go'
 Bundle 'leafgarland/typescript-vim'
 Bundle 'lambdatoast/elm.vim'
 
+" Auto Completion
 Bundle 'Quramy/tsuquyomi'
-Bundle 'Shougo/vimproc.vim'
 Bundle 'Valloric/YouCompleteMe'
 
 call vundle#end()            " required
@@ -307,7 +312,7 @@ autocmd FileType haskell,puppet,ruby,yml,elm setlocal expandtab shiftwidth=2 sof
 autocmd FileType javascript,css,scss,typescript,ts,jade,html,hbs,json setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd FileType bash,shell,sh  setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd FileType typescript :set makeprg=tsc
-autocmd FileType c,php,ptyhon setlocal expandtab shiftwidth=4 softtabstop=4
+autocmd FileType c,php,ptyhon,groovy setlocal expandtab shiftwidth=4 softtabstop=4
 autocmd FileType go setlocal shiftwidth=2
 
 " Set color column at 80
@@ -378,6 +383,7 @@ map <Leader>k ;bn<CR>
 map <Leader>l ;bn<CR>
 map <Leader>dw dw"0P<CR>
 
+
 "
 " Normal Mode
 "
@@ -409,7 +415,8 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 nnoremap <leader>a :Ag
 
 " Switch between the last two files
-nnoremap <leader><leader> <c-^>
+nnoremap <leader>f <Plug>(easymotion-prefix)
+" nnoremap <leader><leader> <c-^>
 
 "
 " Insert Mode
@@ -425,4 +432,3 @@ endif
 " Exit Insert mod easily
 inoremap kj <Esc>;w<CR>
 inoremap jk <Esc>;w<CR>
-
