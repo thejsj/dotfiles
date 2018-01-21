@@ -1,6 +1,8 @@
 # Add `~/bin` to the `$PATH` 
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+# Necessary for YouCompleteMe
+# export PATH="/usr/local/opt/python/Frameworks/Python.framework/Versions/2.7/bin/:$PATH"
 export PATH="$HOME/bin:$PATH";
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 
@@ -60,7 +62,7 @@ MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
 for file in ~/.{path,bash_prompt,aliases,exports,private-aliases,functions,private-functions,extra}; do
-	[ -r "$file" ] && [ -f "$file" ] && source "$file";
+  [ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;
 
@@ -167,3 +169,7 @@ fi
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+if which direnv > /dev/null; then
+  eval "$(direnv hook bash)"
+fi
