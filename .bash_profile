@@ -19,6 +19,8 @@ export PATH=$PATH:$GOPATH/bin
 export GOROOT=/usr/local/opt/go/libexec
 export PATH=$PATH:$GOROOT/bin
 
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home/"
+
 # Archflags
 export ARCHFLAGS="-arch x86_64"
 
@@ -113,18 +115,15 @@ fi
 #POWERLINE_BASH_SELECT=1
 #. /Library/Python/2.7/site-packages/powerline/bindings/bash/powerline.sh
 
-if [ -f "~/.nvm/nvm.sh" ]
+if [ -f "~/.iterm2_shell_integration.bash" ]
 then
   source ~/.iterm2_shell_integration.bash
 fi
 
-if [ -d "~/.nvm" ]
-then
-  if [ -f "~/.nvm/nvm.sh" ]
-  then
-    source ~/.nvm/nvm.sh
-  fi
-fi
+# echo "Start nvm"
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # # Add check to make sure file exists
 # if [ -e "~/.iterm2_shell_integration.bash" ]
@@ -144,7 +143,7 @@ fi
 # fi
 
 eval "$(rbenv init -)"
-eval "$(direnv hook bash)"
+# eval "$(direnv hook bash)"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/hiphipjorge/Downloads/google-cloud-sdk/path.bash.inc' ]; then source '/Users/hiphipjorge/Downloads/google-cloud-sdk/path.bash.inc'; fi
@@ -164,3 +163,7 @@ if [ -f "/usr/local/bin/virtualenvwrapper.sh" ]
 then
   source /usr/local/bin/virtualenvwrapper.sh
 fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
