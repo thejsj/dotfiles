@@ -74,4 +74,5 @@ If you ever need to backup your files, these are probably the things you need to
 7. RethinkDB Databases
 
 ## Credit
+
 Based on [mathiasbynens's dotfiles](https://github.com/mathiasbynens/dotfiles).
