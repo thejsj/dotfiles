@@ -11,6 +11,7 @@ export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
 export PATH="./node_modules/.bin:$PATH"
 export DEVOPS_SCRIPTS_PATH=/Users/hiphipjorge/runnable/devops-scripts
 export PATH="$HOME/.cask/bin:$PATH"
+export GPG_TTY=$(tty)
 
 # Go
 export GOPATH=$HOME/Sites/go-projects

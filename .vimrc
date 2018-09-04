@@ -29,9 +29,7 @@ Bundle 'Shougo/vimproc.vim'
 
 " Buffers/Files
 
-" Can't get this to work
-" Bundle 'Lokaltog/vim-easymotion'
-"" CTRL+P for for fuzzy finding files
+" CTRL+P for for fuzzy finding files
 Bundle 'kien/ctrlp.vim'
 " CTRL+P but for functions
 Bundle 'tacahiroy/ctrlp-funky'
@@ -44,13 +42,18 @@ Bundle 'git@github.com:scrooloose/nerdcommenter.git'
 Bundle 'bling/vim-bufferline'
 
 " Searching
-Bundle 'rking/ag.vim'       " Use :Ag in vim to find files
-Bundle 'thinca/vim-poslist' " More detailed :jumps list
-Bundle 'tpope/vim-abolish'  " Replace multiple variants of word with :%S
+"" Use :Ag in vim to find files
+Bundle 'rking/ag.vim'
+" More detailed :jumps list
+Bundle 'thinca/vim-poslist'
+" Replace multiple variants of word with :%S
+Bundle 'tpope/vim-abolish'
 
 " Sessions
-Bundle 'tpope/vim-obsession'        " Use :Obsses to make more better vim sessions
-Bundle 'dhruvasagar/vim-prosession' " Switch between sessions easily
+"" Use :Obsses to make more better vim sessions
+Bundle 'tpope/vim-obsession'
+" Switch between sessions easily
+Bundle 'dhruvasagar/vim-prosession'
 
 " I know I need to learn these...
 Bundle 'tpope/vim-surround'
@@ -174,6 +177,7 @@ let g:ag_working_path_mode="r"
 " NERDCommenter
 let NERDSpaceDelims=1
 let g:NERDCustomDelimiters = { 'tf': { 'left': '#'} }
+let g:NERDCustomDelimiters = { 'purs': { 'left': '--'} }
 
 " Typescript-vim
 let g:typescript_compiler_binary = 'tsc'
@@ -309,11 +313,16 @@ set tabstop=2        " An indentation every 2 columns
 set nojoinspaces     " Prevents inserting two spaces after punctuation on a join (J)
 set softtabstop=2 expandtab
 autocmd FileType haskell,puppet,ruby,yml,elm setlocal expandtab shiftwidth=2 softtabstop=2
-autocmd FileType javascript,css,scss,typescript,ts,jade,html,hbs,json setlocal expandtab shiftwidth=2 softtabstop=2
+autocmd FileType javascript,groovy,Jenkinsfile,css,scss,typescript,ts,jade,html,hbs,json setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd FileType bash,shell,sh  setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd FileType typescript :set makeprg=tsc
 autocmd FileType c,php,ptyhon,groovy setlocal expandtab shiftwidth=4 softtabstop=4
 autocmd FileType go setlocal shiftwidth=2
+
+augroup filetypedetect
+    au BufRead,BufNewFile *.purs setfiletype haskell
+    au BufRead,BufNewFile Jenkinsfile setfiletype groovy
+augroup END
 
 " Set color column at 80
 highlight ColorColumn ctermbg=3

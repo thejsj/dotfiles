@@ -64,6 +64,22 @@ prompt_time() {
 	echo -e "${time}";
 }
 
+prompt_ssh_host_env() {
+  local ssh_host_in_env=$(echo -e "$SSH_HOST")
+  if [[ -z "$ssh_host_in_env" ]]; then
+    return
+  fi;
+  echo -e " $ssh_host_in_env"
+}
+prompt_anypoint_url_env() {
+  local anypoint_url_env=$(echo -e "$ANYPOINT_URL")
+  if [[ -z "$anypoint_url_env" ]]; then
+    return
+  fi;
+  anypoint_url_env=$(echo "$anypoint_url_env" | sed 's/https:\/\///' | cut -d. -f1)
+  echo -e " $anypoint_url_env"
+}
+
 prompt_kube_context() {
   CONTEXT=$(kubectl config current-context 2>/dev/null)
   if [[ "${CONTEXT}" == "" ]]; then
@@ -128,6 +144,8 @@ fi;
 PS1+="\[${green}\]\w"; # working directory
 PS1+="\[${orange}\]";
 PS1+=" \$(prompt_kube_context)"; # Current kube context
+PS1+="\[${blue}\]\$(prompt_ssh_host_env)";
+PS1+="\[${purple}\]\$(prompt_anypoint_url_env)";
 PS1+="\$(prompt_git \"${white} ${violet}\")"; # Git repository details
 PS1+="\n";
 PS1+="\[${white}\]\$ \[${reset}\]"; # `$` (and reset color)
