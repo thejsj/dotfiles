@@ -2,11 +2,7 @@ tap 'caskroom/cask'
 tap 'caskroom/versions'
 tap 'homebrew/boneyard'
 tap 'homebrew/bundle'
-tap 'homebrew/dupes'
-tap 'homebrew/php'
 tap 'homebrew/services'
-tap 'homebrew/versions'
-tap 'homebrew/x11'
 
 brew 'bash'
 brew 'bash-completion'
@@ -20,14 +16,9 @@ brew 'postgresql'
 brew 'gcc'
 brew 'git'
 brew 'go'
-brew 'docker'
-brew 'docker-machine'
-brew 'docker-machine-driver-xhyve'
-brew 'boot2docker'
 brew 'imagemagick', args: ['with-webp']
 brew 'cask'
 brew 'coreutils'
-brew 'ffmpeg', args: ['with-fdk-aac', 'with-ffplay', 'with-freetype', 'with-openjpeg', 'with-theora', 'with-tools', 'with-libvpx']
 brew 'gnu-sed', args: ['with-default-names']
 brew 'irssi'
 brew 'mongodb'
@@ -44,9 +35,20 @@ brew 'watch'
 brew 'terraform'
 brew 'ansible'
 brew 'the_silver_searcher'
+brew 'hub'
+brew 'ffmpeg', args: ['with-fdk-aac', 'with-ffplay', 'with-freetype', 'with-openjpeg', 'with-theora', 'with-tools', 'with-libvpx']
 
+# Apps not here
+# 1. 1Password (outdated version)
+# 2. Bear Notes
+# 3. Cointick
+
+cask 'appgate-sdp-client' # Login
+cask 'alfred' # Add licence and workflows
 cask 'dropbox'
-cask 'google-chrome'
-cask 'iterm2'
+cask 'iterm2' # Add profile
 cask 'slate'
-cask 'spotify'
+cask 'spotify' # Login
+cask 'slack' # Login
+cask 'whatsapp' # Login
+cask 'google-chrome'

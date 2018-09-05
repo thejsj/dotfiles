@@ -38,12 +38,10 @@ Bundle 'scrooloose/nerdtree'
 " use :NERDTreeTabsToggle to open a tab with NerdTree
 Bundle 'jistr/vim-nerdtree-tabs'
 " <Leader>cc for commenting
-Bundle 'git@github.com:scrooloose/nerdcommenter.git'
+Bundle 'scrooloose/nerdcommenter'
 Bundle 'bling/vim-bufferline'
 
 " Searching
-"" Use :Ag in vim to find files
-Bundle 'rking/ag.vim'
 " More detailed :jumps list
 Bundle 'thinca/vim-poslist'
 " Replace multiple variants of word with :%S
