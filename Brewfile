@@ -34,6 +34,7 @@ brew 'jq'
 brew 'watch'
 brew 'terraform'
 brew 'ansible'
+brew 'gnupg'
 brew 'the_silver_searcher'
 brew 'hub'
 brew 'ffmpeg', args: ['with-fdk-aac', 'with-ffplay', 'with-freetype', 'with-openjpeg', 'with-theora', 'with-tools', 'with-libvpx']
