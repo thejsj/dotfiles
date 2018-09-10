@@ -53,3 +53,6 @@ cask 'spotify' # Login
 cask 'slack' # Login
 cask 'whatsapp' # Login
 cask 'google-chrome'
+cask 'sublime-text'
+cask 'keybase'
+cask 'https://raw.githubusercontent.com/caskroom/homebrew-cask/fda3b24db9052dcbffa84e40138e355e88343dab/Casks/1password.rb'
