@@ -323,7 +323,7 @@ augroup filetypedetect
 augroup END
 
 " Set color column at 80
-highlight ColorColumn ctermbg=3
+highlight ColorColumn ctermbg=237
 set colorcolumn=80
 
 " Automatically refresh any unchanged files

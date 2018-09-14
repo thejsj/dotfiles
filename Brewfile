@@ -3,6 +3,7 @@ tap 'caskroom/versions'
 tap 'homebrew/boneyard'
 tap 'homebrew/bundle'
 tap 'homebrew/services'
+tap 'mulesoft-labs/tap'
 
 brew 'bash'
 brew 'bash-completion'
@@ -37,7 +38,11 @@ brew 'ansible'
 brew 'gnupg'
 brew 'the_silver_searcher'
 brew 'hub'
+brew 'packer'
 brew 'ffmpeg', args: ['with-fdk-aac', 'with-ffplay', 'with-freetype', 'with-openjpeg', 'with-theora', 'with-tools', 'with-libvpx']
+brew 'aws-keycloak'
+brew 'grep'
+brew 'tmux'
 
 # Apps not here
 # 1. 1Password (outdated version)

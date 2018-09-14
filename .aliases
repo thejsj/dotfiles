@@ -38,6 +38,7 @@ alias apm="cd ~/mulesoft/anypoint"
 alias aph="cd ~/mulesoft/anypoint/resources/helm"
 alias apk="cd ~/mulesoft/anypoint/resources/kubernetes"
 alias k="kubectl"
+alias grep="grep --color=auto"
 
 eval "$(hub alias -s)"
 

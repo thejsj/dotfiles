@@ -1,15 +1,13 @@
-# Add `~/bin` to the `$PATH` 
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+# Add `~/bin` to the `$PATH`
 export PATH="$HOME/bin:$PATH";
-export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 
 # Hombrew
 export PATH="/usr/local/bin:$PATH";
 export PATH="/usr/local/sbin:$PATH";
-export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
 export PATH="./node_modules/.bin:$PATH"
-export DEVOPS_SCRIPTS_PATH=/Users/hiphipjorge/runnable/devops-scripts
 export PATH="$HOME/.cask/bin:$PATH"
 export GPG_TTY=$(tty)
 
@@ -63,6 +61,7 @@ MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 for file in ~/.{path,bash_prompt,aliases,exports,private-aliases,functions,private-functions,extra}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
+
 unset file;
 
 # Case-insensitive globbing (used in pathname expansion)

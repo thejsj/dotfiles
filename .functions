@@ -468,7 +468,7 @@ function shost () {
     echo "No SSH_HOST set"
     return
   fi;
-  /usr/bin/ssh -t ec2-user@$SSH_HOST "tmux -CC"
+  /usr/bin/ssh -t ec2-user@$SSH_HOST "tmux -CC || echo 'No tmux'"
 }
 
 function set-galaga-envs ()
