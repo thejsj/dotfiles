@@ -21,11 +21,10 @@ Bundle 'altercation/vim-colors-solarized'
 " Display
 Bundle 'vim-airline/vim-airline'
 Bundle 'vim-airline/vim-airline-themes'
-Bundle 'suan/vim-instant-markdown'
-Bundle 'jiangmiao/auto-pairs'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'Shougo/vimproc.vim'
+" Bundle 'suan/vim-instant-markdown'
+" Bundle 'jiangmiao/auto-pairs'
+" Bundle 'airblade/vim-gitgutter'
+" Bundle 'nathanaelkane/vim-indent-guides'
 
 " Buffers/Files
 
@@ -34,7 +33,7 @@ Bundle 'Shougo/vimproc.vim'
 "" CTRL+P for for fuzzy finding files
 Bundle 'kien/ctrlp.vim'
 " CTRL+P but for functions
-Bundle 'tacahiroy/ctrlp-funky'
+" Bundle 'tacahiroy/ctrlp-funky'
 " Show file tree
 Bundle 'scrooloose/nerdtree'
 " use :NERDTreeTabsToggle to open a tab with NerdTree
@@ -44,13 +43,17 @@ Bundle 'git@github.com:scrooloose/nerdcommenter.git'
 Bundle 'bling/vim-bufferline'
 
 " Searching
-Bundle 'rking/ag.vim'       " Use :Ag in vim to find files
-Bundle 'thinca/vim-poslist' " More detailed :jumps list
-Bundle 'tpope/vim-abolish'  " Replace multiple variants of word with :%S
+" Use :Ag in vim to find files
+Bundle 'rking/ag.vim'
+" More detailed :jumps list
+Bundle 'thinca/vim-poslist'
+" Replace multiple variants of word with :%S
+Bundle 'tpope/vim-abolish'
 
 " Sessions
-Bundle 'tpope/vim-obsession'        " Use :Obsses to make more better vim sessions
-Bundle 'dhruvasagar/vim-prosession' " Switch between sessions easily
+"" Use :Obsses to make more better vim sessions
+Bundle 'tpope/vim-obsession'
+Bundle 'dhruvasagar/vim-prosession'
 
 " I know I need to learn these...
 Bundle 'tpope/vim-surround'
@@ -58,26 +61,29 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'godlygeek/tabular'
 
 " Syntax
-Bundle 'scrooloose/syntastic'
-Bundle 'jelera/vim-javascript-syntax'
-Plugin 'pangloss/vim-javascript'
+Plugin 'dense-analysis/ale'
 Bundle 'elzr/vim-json'
 Bundle 'tpope/vim-markdown'
-Bundle 'voithos/vim-python-syntax'
 Bundle 'nono/vim-handlebars'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'fatih/vim-go'
-Bundle 'leafgarland/typescript-vim'
-Bundle 'lambdatoast/elm.vim'
 
 " Auto Completion
-Bundle 'Quramy/tsuquyomi'
-Bundle 'Shougo/vimproc.vim'
-Bundle 'Shougo/neocomplete.vim'
-" Bundle 'Valloric/YouCompleteMe'
+Bundle 'Shougo/deoplete.nvim'
+Bundle 'roxma/nvim-yarp'
+Bundle 'roxma/vim-hug-neovim-rpc'
+" Bundle 'carlitux/deoplete-ternjs'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                Plugin Settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" ag.vim
+set runtimepath^=~/.vim/bundle/ag
+set runtimepath+=~/.vim/bundle/deoplete.nvim
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                            Plugin Variables
@@ -96,6 +102,8 @@ let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tabline#exclude_preview = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
+let g:gitgutter_max_signs=9999
+
 "function! airline#extensions#tabline#foo#format(bufnr, buffers)
   "return fnamemodify(bufname(a:bufnr), ':t')
 "endfunction
@@ -108,33 +116,33 @@ let g:solarized_contrast="normal"
 let g:solarized_visibility="normal"
 
 " Syntastic
-let g:syntastic_always_populate_loc_list = 0
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_typescript_tsc_fname = ''
+" let g:syntastic_always_populate_loc_list = 0
+" let g:syntastic_auto_loc_list = 0
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+" let g:syntastic_typescript_tsc_fname = ''
 
-let g:syntastic_javascript_checkers=[]
+" let g:syntastic_javascript_checkers=[]
 
-if filereadable('./.jshintrc')
-  call add(g:syntastic_javascript_checkers, 'jshint')
-end
+" if filereadable('./.jshintrc')
+  " call add(g:syntastic_javascript_checkers, 'jshint')
+" end
 
-if filereadable('.eslintrc')
-  call add(g:syntastic_javascript_checkers, 'eslint')
-  if filereadable('./node_modules/.bin/eslint')
-    let g:syntastic_javascript_eslint_exec='./node_modules/.bin/eslint'
-  end
-end
+" if filereadable('.eslintrc')
+  " call add(g:syntastic_javascript_checkers, 'eslint')
+  " if filereadable('./node_modules/.bin/eslint')
+    " let g:syntastic_javascript_eslint_exec='./node_modules/.bin/eslint'
+  " end
+" end
 
-if filereadable('.flowconfig')
-  call add(g:syntastic_javascript_checkers, 'flow')
-end
+" if filereadable('.flowconfig')
+  " call add(g:syntastic_javascript_checkers, 'flow')
+" end
 
-if filereadable('./node_modules/standard/package.json')
-  call add(g:syntastic_javascript_checkers, 'standard')
-  let g:syntastic_javascript_standard_exec='standard'
-end
+" if filereadable('./node_modules/standard/package.json')
+  " call add(g:syntastic_javascript_checkers, 'standard')
+  " let g:syntastic_javascript_standard_exec='standard'
+" end
 
 " NERDTree
 let NERDTreeShowBookmarks=1
@@ -180,6 +188,39 @@ let g:NERDCustomDelimiters = { 'tf': { 'left': '#'} }
 " Typescript-vim
 let g:typescript_compiler_binary = 'tsc'
 
+" Deoplete
+let g:deoplete#enable_at_startup = 1
+
+call deoplete#custom#option('sources', {
+\ '_': ['ale'],
+\})
+
+let g:ale_completion_enabled = 0
+set omnifunc=ale#completion#OmniFunc
+let g:ale_completion_tsserver_autoimport = 1
+let g:ale_sign_column_always = 1
+
+let g:ale_sign_error = ' •'
+let g:ale_sign_warning = ' •'
+
+" Set this variable to 1 to fix files when you save them.
+let g:ale_fix_on_save = 1
+
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'python': ['autopep8'],
+\}
+
+let g:ale_linters= {
+\   'python': ['flake8'],
+\}
+
+" Use tern_for_vim.
+let g:tern#command = ["tern"]
+let g:tern#arguments = ["--persistent"]
+
+let g:airline#extensions#ale#enabled = 1
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                               Functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -217,6 +258,9 @@ endfunction
 "                                 Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+set statusline+=%#warningmsg#
+set statusline+=%*
+
 " Non-foldenable (Obviously!)
 set nofoldenable
 
@@ -233,6 +277,14 @@ set term=xterm-256color
 set background=dark
 colorscheme solarized
 
+" Ale sign colors
+hi link ALEErrorSign    Error
+hi link ALEWarningSign Title
+hi SignColumn ctermbg=black
+
+" Set color column at 80
+set colorcolumn=80
+
 " Mouse
 set mouse=a               " Automatically enable mouse usage
 set mousehide             " Hide the mouse cursor while typing
@@ -247,9 +299,6 @@ if has('clipboard')
     endif
 endif
 
-" Always switch to current file directory when a new buffer is opened
-autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
-
 set autowrite                       " Automatically write file when leaving buffer
 set shortmess+=filmnrxoOtT          " Abbrev of messages (avoids 'hit enter')
 set viewoptions=folds,options,cursor,unix,slash " Better Unix / Window compatiblity
@@ -258,6 +307,22 @@ set history=1000                    " Store history (Default is 20)
 set spell                           " Spell checking on
 set hidden                          " Allow buffer switching without saving
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                Plugin Settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+" Broken down into easily includeable segments
+"set statusline=%f\                     " Filename
+"set statusline+=%w%h%m%r                 " Options
+"set statusline+=\ [%{&ff}/%Y]            " Filetype
+""set statusline+=\ [%{getcwd()}]          " Current dir
+"set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
+
 " Instead of reverting the cursor to the last position in the buffer, we
 " set it to the first line when editing a git commit message
 au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
@@ -265,6 +330,8 @@ au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
 augroup resCur
     autocmd!
     autocmd BufWinEnter * call ResCur()
+    " Always switch to current file directory when a new buffer is opened
+    autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
 augroup END
 
 " Backspace
@@ -310,16 +377,15 @@ set shiftwidth=2     " Indents of 2 spaces
 set tabstop=2        " An indentation every 2 columns
 set nojoinspaces     " Prevents inserting two spaces after punctuation on a join (J)
 set softtabstop=2 expandtab
-autocmd FileType haskell,puppet,ruby,yml,elm setlocal expandtab shiftwidth=2 softtabstop=2
-autocmd FileType javascript,css,scss,typescript,ts,jade,html,hbs,json setlocal expandtab shiftwidth=2 softtabstop=2
-autocmd FileType bash,shell,sh  setlocal expandtab shiftwidth=2 softtabstop=2
-autocmd FileType typescript :set makeprg=tsc
-autocmd FileType c,php,ptyhon,groovy setlocal expandtab shiftwidth=4 softtabstop=4
-autocmd FileType go setlocal shiftwidth=2
 
-" Set color column at 80
-highlight ColorColumn ctermbg=3
-set colorcolumn=80
+augroup FileTypes
+  autocmd FileType haskell,puppet,ruby,yml,elm setlocal expandtab shiftwidth=2 softtabstop=2
+  autocmd FileType javascript,css,scss,typescript,ts,jade,html,hbs,json setlocal expandtab shiftwidth=2 softtabstop=2
+  autocmd FileType bash,shell,sh  setlocal expandtab shiftwidth=2 softtabstop=2
+  autocmd FileType typescript :set makeprg=tsc
+  autocmd FileType c,php,ptyhon,groovy setlocal expandtab shiftwidth=4 softtabstop=4
+  autocmd FileType go setlocal shiftwidth=2
+augroup END
 
 " Automatically refresh any unchanged files
 set autoread
@@ -329,51 +395,6 @@ set guifont=Source\ Code\ Pro\ for\ Powerline "make sure to escape the spaces in
 " Allow different vimrc files
 set exrc
 set secure
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                                Plugin Settings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-" Broken down into easily includeable segments
-"set statusline=%f\                     " Filename
-"set statusline+=%w%h%m%r                 " Options
-"set statusline+=\ [%{&ff}/%Y]            " Filetype
-""set statusline+=\ [%{getcwd()}]          " Current dir
-"set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
-
-" ag.vim
-set runtimepath^=~/.vim/bundle/ag
-
-" NeoComplete
-let g:acp_enableAtStartup = 1
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-" Close popup by <Space>.
-inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                 Key Bindings
@@ -457,6 +478,9 @@ if &term[:4] == "xterm" || &term[:5] == 'screen' || &term[:3] == 'rxvt'
     inoremap <silent> <C-[>OC <RIGHT>
 endif
 " }
+
+"" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " Exit Insert mod easily
 inoremap kj <Esc>;w<CR>

@@ -1,27 +1,38 @@
-# Add `~/bin` to the `$PATH` 
+# Add `~/bin` to the `$PATH`
+# export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-# Necessary for YouCompleteMe
-# export PATH="/usr/local/opt/python/Frameworks/Python.framework/Versions/2.7/bin/:$PATH"
 export PATH="$HOME/bin:$PATH";
-export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 
 # Hombrew
 export PATH="/usr/local/bin:$PATH";
 export PATH="/usr/local/sbin:$PATH";
-export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
-export PATH="./node_modules/.bin:$PATH"
-export DEVOPS_SCRIPTS_PATH=/Users/hiphipjorge/runnable/devops-scripts
 export PATH="$HOME/.cask/bin:$PATH"
+export PATH="./node_modules/.bin:$PATH"
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+export PATH="$HOME/.gem/ruby/2.6.0/bin:$PATH"
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+export PATH="/usr/local/opt/gettext/bin:$PATH"
 
+# Python
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+fi
+
+# Java
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/"
 # Go
-export GOPATH=$HOME/Sites/go-projects
 export GOPATH=$HOME/mulesoft
-export PATH=$PATH:$GOPATH/bin
+export GOPATH=$HOME/Sites/go-projects
 export GOROOT=/usr/local/opt/go/libexec
-export PATH=$PATH:$GOROOT/bin
+export PATH="$GOPATH/bin:$PATH"
 
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home/"
+export KUBERNETS_NAMESPACE=default
+export KUBERNETES_NAMESPACE=default
+
+# export PATH=$PATH:$GOPATH/bin
+# export PATH=$PATH:$GOROOT/bin
+# export PATH=${JAVA_HOME}/bin:$PATH
 
 # Archflags
 export ARCHFLAGS="-arch x86_64"
@@ -30,19 +41,16 @@ export ARCHFLAGS="-arch x86_64"
 export RUN_ROOT=~/runnable
 
 # Python
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/opt/python/libexec/bin/python
-export PATH=~/Library/Python/2.7/bin/:$PATH
+# export VIRTUALENVWRAPPER_PYTHON=/usr/local/opt/python/libexec/bin/python
 
 # Ruby
 export GEM_HOME="$HOME/.gem"
 export GEM_PATH="$HOME/.gem"
 
 # Java
-# export JAVA_HOME=$(/usr/libexec/java_home)
-export PATH=${JAVA_HOME}/bin:$PATH
 
 # Mac CLI
-export PATH=$PATH:/usr/local/m-cli
+# export PATH=$PATH:/usr/local/m-cli
 
 # History
 export HISTTIMEFORMAT="%d/%m/%y %T "
@@ -173,3 +181,15 @@ export NVM_DIR="$HOME/.nvm"
 if which direnv > /dev/null; then
   eval "$(direnv hook bash)"
 fi
+
+# ENVS
+export BASILICA_PROD_DBHOST=104.154.64.115
+export BASILICA_PROD_DBPASSWORD=ntvxxhfiCJPC9r1g
+export BASILICA_PROD_REPLICA_DBHOST=35.226.237.208
+export BASILICA_PROD_REPLICA_DBPASSWORD=ntvxxhfiCJPC9r1g
+export BASILICA_STAGE_DBHOST=35.192.118.236
+export BASILICA_STAGE_DBPASSWORD=nc56b1hbFuNen7kx
+export CP_DBHOST=35.239.37.65
+export CP_DBPASSWORD=wF6dtmmMO6ILmwBv
+
+export PATH="$HOME/.poetry/bin:$PATH"

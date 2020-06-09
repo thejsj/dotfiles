@@ -409,42 +409,82 @@ function uuid() {
 
 function generate-key-fingerprint () {
   openssl rsa -in $1 -pubout -outform DER | openssl md5 -c
+
+}
+
+function kstg {
+  kubectl --context gke_basilica-211201_us-central1-c_leadgenie $@
+}
+
+function kprod {
+  kubectl --context gke_basilica-211201_us-central1-c_leadgenie-prod $@
+}
+
+function kba {
+  kubectl --context gke_basilica-211201_us-central1-c_basilica $@
 }
 
 function klogs () {
-  POD_NAME=$(kgetbyname $1 $2)
+  POD_NAME=$(kgetbyname $1)
   echo "Pod Name: $POD_NAME"
-  kubectl -n $1 logs -f --tail=20 $POD_NAME
+  kubectl -n $KUBERNETES_NAMESPACE logs -f --tail=20 $POD_NAME -c app
+}
+
+function kexec () {
+  POD_NAME=$(kgetbyname $1)
+  echo "Pod Name: $POD_NAME"
+  kubectl -n $KUBERNETES_NAMESPACE exec -it $POD_NAME -c app -- bash
 }
 
 function kdescribe () {
-  POD_NAME=$(kgetbyname $1 $2)
+  POD_NAME=$(kgetbyname $1)
   echo "Pod Name: $POD_NAME"
-  kubectl -n $1 describe pod $POD_NAME
+  kubectl -n $KUBERNETES_NAMESPACE describe pod $POD_NAME
 }
 
 function kget () {
   # TODO: Multiple pods
   # TODO: Better namespace support NAMESPACE variable
-  POD_NAME=$(kgetbyname $1 $2)
+  POD_NAME=$(kgetbyname $1)
   echo "Pod Name: $POD_NAME"
-  kubectl -n $1 get pod $POD_NAME -o yaml
+  kubectl -n $KUBERNETES_NAMESPACE get pod $POD_NAME -o yaml
 }
 
 function kgrep () {
-  kubectl -n $1 get pods | grep $2
+  kubectl -n $KUBERNETES_NAMESPACE get pods | grep $1
 }
 
 function kdeletepods () {
- kgetbyname  $1 $2 | xargs kubectl -n $1 delete pod
+ kgetbyname $1 | xargs kubectl -n $KUBERNETES_NAMESPACE delete pod
 }
 
 function kgetbyname () {
-  kubectl -n $1 get pods -o jsonpath="{.items[*].metadata.name}" |tr -s '[[:space:]]' '\n' | grep $2
+  if [ -z "$KUBERNETES_NAMESPACE" ]
+  then
+    echo "No KUBERNETES_NAMESPACE specific"
+    return 1
+  fi
+  kubectl -n $KUBERNETES_NAMESPACE get pods -o jsonpath="{.items[*].metadata.name}" |tr -s '[[:space:]]' '\n' | grep $1
 }
 
 function verify_yaml_file () {
   COMMAND="require 'yaml';puts YAML.load_file('./$1')"
   echo $COMMAND
   ruby -e "$COMMAND"
+}
+
+function kstgwww {
+  kstg exec -it $(kstg get pods | grep www | grep Running | head -n 1 | awk '{print $1}') -- bash
+}
+
+function kprodwww {
+  kprod exec -it $(kprod get pods | grep www  | grep Running | head -n 1 | awk '{print $1}') -- bash
+}
+
+function kstgapp {
+  kstg exec -it $(kstg get pods | grep scraper-app | grep Running | head -n 1 | awk '{print $1}') -- bash
+}
+
+function kprodapp {
+  kprod exec -it $(kprod get pods | grep scraper-app | grep Running | head -n 1 | awk '{print $1}') -- bash
 }
