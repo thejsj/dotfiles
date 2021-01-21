@@ -42,9 +42,12 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'bling/vim-bufferline'
 
 " Searching
-Bundle 'rking/ag.vim'       " Use :Ag in vim to find files
-Bundle 'thinca/vim-poslist' " More detailed :jumps list
-Bundle 'tpope/vim-abolish'  " Replace multiple variants of word with :%S
+" Use :Ag in vim to find files
+Bundle 'rking/ag.vim'
+" More detailed :jumps list
+Bundle 'thinca/vim-poslist'
+" Replace multiple variants of word with :%S
+Bundle 'tpope/vim-abolish'
 
 " Sessions
 "" Use :Obsses to make more better vim sessions
