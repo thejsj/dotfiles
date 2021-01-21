@@ -3,6 +3,8 @@
 # export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 
 export PATH="/Users/hiphipjorge/personal/wc/webrtc-lib/depot_tools:$PATH"
+# Add `~/bin` to the `$PATH` 
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="$HOME/bin:$PATH";
 
 export ANDROID_HOME=$HOME/Library/Android/sdk
@@ -10,16 +12,20 @@ export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 
 # Hombrew
 export PATH="/usr/local/bin:$PATH";
 export PATH="/usr/local/sbin:$PATH";
-export PATH="$HOME/.cask/bin:$PATH"
+export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
 export PATH="./node_modules/.bin:$PATH"
-export PATH="/usr/local/opt/ruby/bin:$PATH"
-export PATH="$HOME/.gem/ruby/2.6.0/bin:$PATH"
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
-export PATH="/usr/local/opt/gettext/bin:$PATH"
+export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
+export PATH="./node_modules/.bin:$PATH"
+export PATH="$HOME/.cask/bin:$PATH"
+
+export GPG_TTY=$(tty)
 
 HOMEBREW_NO_INSTALL_CLEANUP=1
 HOMEBREW_AUTO_UPDATE_SECS="86400"
@@ -81,6 +87,7 @@ MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 for file in ~/.{path,bash_prompt,aliases,exports,private-aliases,functions,private-functions,extra}; do
   [ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
+
 unset file;
 
 # Case-insensitive globbing (used in pathname expansion)

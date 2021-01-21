@@ -487,3 +487,75 @@ function kstgapp {
 function kprodapp {
   kprod exec -it $(kprod get pods | grep scraper-app | grep Running | head -n 1 | awk '{print $1}') -- bash
 }
+
+function m () {
+  if [[ -n "$1" ]]; then
+    cd "$HOME/mulesoft/$1"
+  else
+    cd "$HOME/mulesoft"
+  fi;
+}
+
+_m_autocompletion() {
+    local directories cur
+    directories=$(ls --color=never ~/mulesoft)
+
+    cur="${COMP_WORDS[COMP_CWORD]}"
+
+    COMPREPLY=( $(compgen -W "$directories" -- ${cur}) )
+    return 0
+}
+
+complete -F _m_autocompletion m
+
+function shost () {
+  if [[ -z "$SSH_HOST" ]]; then
+    echo "No SSH_HOST set"
+    return
+  fi;
+  /usr/bin/ssh -t ec2-user@$SSH_HOST "tmux -CC || echo 'No tmux'"
+}
+
+function set-galaga-envs ()
+{
+  if [[ -n "$1" ]]; then
+    export ANYPOINT_URL=$1
+  fi;
+  export ANYPOINT_USERNAME=username
+  export ANYPOINT_PASSWORD=Password1
+  export NODE_ENV=onprem
+  export NODE_TLS_REJECT_UNAUTHORIZED=0
+  export ENV_FILTER_TAG=prodeu
+  export IMPORT_CERT=1
+  export RUNTIME_IMAGE=devdocker.mulesoft.com:18078/base/mule-ee-standalone:3.9.0-latest
+  export EXCHANGE1_PATH=/exchange1
+  export SMTP_HOST=34.211.44.71
+  export SMTP_PORT=5465
+  export SMTP_HTTP_URL=http://34.211.44.71:3000
+}
+
+function set-aws-envs ()
+{
+  ENV=${1:ro-build}
+  export $(aws-keycloak -p $ENV -- env | grep AWS_)
+}
+
+alias sge="set-galaga-envs"
+alias sae="set-aws-envs"
+
+function run-testing-suite ()
+{
+  [ -z "$ANYPOINT_URL" ] && echo "ANYPOINT_URL not set" && exit 1;
+  [ -z "$ANYPOINT_USERNAME" ] && echo "ANYPOINT_URL not set" && exit 1;
+  echo "Running tests for $ANYPOINT_URL"
+  (cd ~/mulesoft/galaga && ./test.js)
+  sudo java -jar ./scripts/import-cert.jar "$ANYPOINT_URL" changeit
+  (cd ~/mulesoft/automation-exchange-api && npm test)
+  noti "Tests Done"
+}
+
+function export-ssh-host () {
+  export SSH_HOST=$1
+}
+
+alias esh="export-ssh-host"

@@ -29,9 +29,7 @@ Bundle 'vim-airline/vim-airline-themes'
 
 " Buffers/Files
 
-" Can't get this to work
-" Bundle 'Lokaltog/vim-easymotion'
-"" CTRL+P for for fuzzy finding files
+" CTRL+P for for fuzzy finding files
 Bundle 'kien/ctrlp.vim'
 " CTRL+P but for functions
 " Bundle 'tacahiroy/ctrlp-funky'
@@ -40,16 +38,13 @@ Bundle 'scrooloose/nerdtree'
 " use :NERDTreeTabsToggle to open a tab with NerdTree
 Bundle 'jistr/vim-nerdtree-tabs'
 " <Leader>cc for commenting
-Bundle 'git@github.com:scrooloose/nerdcommenter.git'
+Bundle 'scrooloose/nerdcommenter'
 Bundle 'bling/vim-bufferline'
 
 " Searching
-" Use :Ag in vim to find files
-Bundle 'rking/ag.vim'
-" More detailed :jumps list
-Bundle 'thinca/vim-poslist'
-" Replace multiple variants of word with :%S
-Bundle 'tpope/vim-abolish'
+Bundle 'rking/ag.vim'       " Use :Ag in vim to find files
+Bundle 'thinca/vim-poslist' " More detailed :jumps list
+Bundle 'tpope/vim-abolish'  " Replace multiple variants of word with :%S
 
 " Sessions
 "" Use :Obsses to make more better vim sessions
@@ -185,6 +180,7 @@ let g:ag_working_path_mode="r"
 " NERDCommenter
 let NERDSpaceDelims=1
 let g:NERDCustomDelimiters = { 'tf': { 'left': '#'} }
+let g:NERDCustomDelimiters = { 'purs': { 'left': '--'} }
 
 " Typescript-vim
 let g:typescript_compiler_binary = 'tsc'
@@ -388,6 +384,14 @@ augroup FileTypes
   autocmd FileType typescript :set makeprg=tsc
   autocmd FileType c,php,ptyhon,groovy setlocal expandtab shiftwidth=4 softtabstop=4
   autocmd FileType go setlocal shiftwidth=2
+augroup END
+
+" Set color column at 80
+highlight ColorColumn ctermbg=237
+set colorcolumn=80
+augroup filetypedetect
+    au BufRead,BufNewFile *.purs setfiletype haskell
+    au BufRead,BufNewFile Jenkinsfile setfiletype groovy
 augroup END
 
 " Automatically refresh any unchanged files
