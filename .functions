@@ -241,7 +241,6 @@ git-remove-all() {
 # Reload bash profile
 rload() {
   echo "Reloading .bash_profile";
-  cat ~/.ssh/config_* > ~/.ssh/config
   source ~/.bash_profile
 }
 
@@ -400,9 +399,9 @@ function generate-public-key () {
 
 function uuid() {
 	if [[ "$1" == "hex" ]]; then
-    NEW_UUID=$(python -c 'import sys,uuid; sys.stdout.write(uuid.uuid4().hex)') 
+    NEW_UUID=$(python -c 'import sys,uuid; sys.stdout.write(uuid.uuid4().hex)')
 	else
-    NEW_UUID=$(python -c 'import sys,uuid; sys.stdout.write(str(uuid.uuid4()))') 
+    NEW_UUID=$(python -c 'import sys,uuid; sys.stdout.write(str(uuid.uuid4()))')
 	fi;
   echo $NEW_UUID | pbcopy && pbpaste
 }

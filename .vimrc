@@ -15,6 +15,7 @@ Plugin 'VundleVim/Vundle.vim'
 
 " color schemes (why do I need anything else?)
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'arzg/vim-colors-xcode'
 
 " Plugins
 
@@ -204,11 +205,12 @@ let g:ale_sign_error = ' •'
 let g:ale_sign_warning = ' •'
 
 " Set this variable to 1 to fix files when you save them.
-let g:ale_fix_on_save = 1
+let g:ale_fix_on_save = 0
 
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'python': ['autopep8'],
+\   'javascript': ['prettier', 'eslint'],
 \}
 
 let g:ale_linters= {
@@ -275,7 +277,8 @@ syntax enable             " Syntax highligthing
 set t_Co=256
 set term=xterm-256color
 set background=dark
-colorscheme solarized
+" colorscheme solarized
+colorscheme xcodedarkhc
 
 " Ale sign colors
 hi link ALEErrorSign    Error

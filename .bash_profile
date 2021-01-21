@@ -1,7 +1,15 @@
 # Add `~/bin` to the `$PATH`
 # export PATH="/usr/local/opt/python/libexec/bin:$PATH"
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+# export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+
+export PATH="/Users/hiphipjorge/personal/wc/webrtc-lib/depot_tools:$PATH"
 export PATH="$HOME/bin:$PATH";
+
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # Hombrew
 export PATH="/usr/local/bin:$PATH";
@@ -13,11 +21,14 @@ export PATH="$HOME/.gem/ruby/2.6.0/bin:$PATH"
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 export PATH="/usr/local/opt/gettext/bin:$PATH"
 
+HOMEBREW_NO_INSTALL_CLEANUP=1
+HOMEBREW_AUTO_UPDATE_SECS="86400"
+
 # Python
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-  eval "$(pyenv virtualenv-init -)"
-fi
+# if command -v pyenv 1>/dev/null 2>&1; then
+  # eval "$(pyenv init -)"
+  # eval "$(pyenv virtualenv-init -)"
+# fi
 
 # Java
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/"
@@ -37,15 +48,13 @@ export KUBERNETES_NAMESPACE=default
 # Archflags
 export ARCHFLAGS="-arch x86_64"
 
-# Runnable
-export RUN_ROOT=~/runnable
-
 # Python
 # export VIRTUALENVWRAPPER_PYTHON=/usr/local/opt/python/libexec/bin/python
 
 # Ruby
 export GEM_HOME="$HOME/.gem"
 export GEM_PATH="$HOME/.gem"
+export PATH=$GEM_HOME/bin:$PATH
 
 # Java
 
@@ -169,10 +178,10 @@ if [ ! -d "~/.vim" ]; then
   fi
 fi
 
-if [ -f "/usr/local/bin/virtualenvwrapper.sh" ]
-then
-  source /usr/local/bin/virtualenvwrapper.sh
-fi
+# if [ -f "/usr/local/bin/virtualenvwrapper.sh" ]
+# then
+  # source /usr/local/bin/virtualenvwrapper.sh
+# fi
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
