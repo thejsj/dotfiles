@@ -1,5 +1,9 @@
 {
-  "Set Local Environment Vars" : true,
+  "Ansi 5 Color" : {
+    "Green Component" : 0,
+    "Red Component" : 0.73333334922790527,
+    "Blue Component" : 0.73333334922790527
+  },
   "Working Directory" : "\/Users\/hiphipjorge",
   "Prompt Before Closing 2" : 2,
   "Selected Text Color" : {
@@ -56,10 +60,6 @@
         "class" : "iTermStatusBarGitComponent",
         "configuration" : {
           "knobs" : {
-            "base: compression resistance" : 1,
-            "iTermStatusBarGitComponentPollingIntervalKey" : 2,
-            "base: priority" : 5,
-            "minwidth" : 0,
             "shared text color" : {
               "Red Component" : 0.90000000000000002,
               "Color Space" : "sRGB",
@@ -67,6 +67,10 @@
               "Alpha Component" : 1,
               "Green Component" : 0.63
             },
+            "iTermStatusBarGitComponentPollingIntervalKey" : 2,
+            "base: compression resistance" : 1,
+            "base: priority" : 5,
+            "minwidth" : 0,
             "maxwidth" : 1.7976931348623157e+308
           },
           "layout advanced configuration dictionary value" : {
@@ -80,9 +84,6 @@
         "configuration" : {
           "knobs" : {
             "path" : "path",
-            "base: compression resistance" : 1,
-            "base: priority" : 5,
-            "minwidth" : 0,
             "shared text color" : {
               "Red Component" : 0.90000000000000002,
               "Color Space" : "sRGB",
@@ -90,6 +91,9 @@
               "Alpha Component" : 1,
               "Green Component" : 0.86142857142857143
             },
+            "base: compression resistance" : 1,
+            "base: priority" : 5,
+            "minwidth" : 0,
             "maxwidth" : 1.7976931348623157e+308
           },
           "layout advanced configuration dictionary value" : {
@@ -102,8 +106,9 @@
         "class" : "iTermStatusBarJobComponent",
         "configuration" : {
           "knobs" : {
-            "base: compression resistance" : 1,
+            "minwidth" : 0,
             "base: priority" : 5,
+            "base: compression resistance" : 1,
             "shared text color" : {
               "Red Component" : 0.7071428571428573,
               "Color Space" : "sRGB",
@@ -111,7 +116,6 @@
               "Alpha Component" : 1,
               "Green Component" : 0.90000000000000002
             },
-            "minwidth" : 0,
             "maxwidth" : 1.7976931348623157e+308
           },
           "layout advanced configuration dictionary value" : {
@@ -541,8 +545,8 @@
   "Automatically Log" : false,
   "Smart Cursor Color" : true,
   "Semantic History" : {
-    "action" : "best editor",
     "text" : "",
+    "action" : "best editor",
     "editor" : "com.sublimetext.3"
   },
   "Ambiguous Double Width" : false,
@@ -554,7 +558,7 @@
   },
   "Cursor Type" : 2,
   "Blur" : false,
-  "Normal Font" : "FiraMonoForPowerline-Regular 13",
+  "Normal Font" : "SourceCodePro-Regular 11",
   "Vertical Spacing" : 1,
   "Disable Printing" : false,
   "Ansi 7 Color" : {
@@ -586,7 +590,7 @@
     "Blue Component" : 0
   },
   "Screen" : -1,
-  "Non Ascii Font" : "FiraMonoForPowerline-Regular 12",
+  "Non Ascii Font" : "SourceCodePro-Regular 11",
   "Ansi 13 Color" : {
     "Green Component" : 0.3333333432674408,
     "Red Component" : 1,
@@ -594,11 +598,7 @@
   },
   "Columns" : 80,
   "Visual Bell" : true,
+  "ASCII Ligatures" : true,
   "Custom Directory" : "Recycle",
-  "Ansi 5 Color" : {
-    "Green Component" : 0,
-    "Red Component" : 0.73333334922790527,
-    "Blue Component" : 0.73333334922790527
-  },
-  "ASCII Ligatures" : true
+  "Set Local Environment Vars" : true
 }

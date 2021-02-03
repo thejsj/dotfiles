@@ -559,3 +559,21 @@ function export-ssh-host () {
 }
 
 alias esh="export-ssh-host"
+
+function print-execution-time () {
+  end=`date +%s.%N`
+  dt=$(echo "$end - $1" | bc)
+  dd=$(echo "$dt/86400" | bc)
+  dt2=$(echo "$dt-86400*$dd" | bc)
+  dh=$(echo "$dt2/3600" | bc)
+  dt3=$(echo "$dt2-3600*$dh" | bc)
+  dm=$(echo "$dt3/60" | bc)
+  ds=$(echo "$dt3-60*$dm" | bc)
+  LC_NUMERIC=C printf "%s: %02.4f seconds\n" "$2" $ds
+}
+
+function pr {
+  BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+  git push -u origin "$BRANCH"
+  open "https://github.com/figma/figma/compare/${BRANCH}"
+}

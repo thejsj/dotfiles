@@ -15,6 +15,7 @@ alias ss="cd ~/Sites/2017/"
 alias sss="cd ~/Sites/2016/"
 alias ssss="cd ~/Sites/2015/"
 alias sssss="cd ~/Sites/2014/"
+alias ff="cd ~/figma/figma"
 
 alias g="git"
 alias hh="history"
