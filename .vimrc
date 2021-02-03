@@ -451,16 +451,16 @@ map <Leader>dw dw"0P<CR>
 " escape search highliting by hitting return
 nnoremap <CR> ;noh<CR><CR>
 
-map <leader>,<space> <plug>NERDCommenterComment<CR>
+nnoremap <leader><space> <plug>NERDCommenterComment<CR>
 nnoremap <leader>l ;NERDTreeTabsToggle<CR>
 nnoremap <leader>k ;CheckSyntax<CR>
 nnoremap <leader>ed :tabnew ~/.vimrc<cr>
 nnoremap <leader>src :source ~/.vimrc<cr>
 nnoremap <leader>h ;tabnew<CR>:ConqueTerm bash<CR>
 nnoremap <leader>w ;tabclose<CR>
-nnoremap <leader>a :Ag
+nnoremap <leader>a :Agr
 
-nmap <leader>f ;echo expand('%:p')<CR>
+nnoremap <leader>ff :echo expand('%:p')<CR>
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
 nmap <leader>3 <Plug>AirlineSelectTab3
