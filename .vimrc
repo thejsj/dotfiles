@@ -210,6 +210,7 @@ let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'python': ['autopep8'],
 \   'javascript': ['prettier', 'eslint'],
+\   'typescript': ['prettier', 'eslint'],
 \}
 
 let g:ale_linters= {
@@ -315,7 +316,7 @@ set hidden                          " Allow buffer switching without saving
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 " Broken down into easily includeable segments

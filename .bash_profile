@@ -16,6 +16,8 @@ export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 
+export RIPGREP_CONFIG_PATH=~/.ripgreprc
+
 # Hombrew
 export PATH="/usr/local/bin:$PATH";
 export PATH="/usr/local/sbin:$PATH";

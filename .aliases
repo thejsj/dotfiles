@@ -34,6 +34,8 @@ alias gg="cd ~/Sites/go-projects/"
 alias gj="cd $GOPATH/src/github.com/thejsj"
 alias gm="cd $GOPATH/src/github.com/mulesoft"
 alias ggg="cd ~/Sites/go-projects/src/github.com/thejsj"
+alias fdb="PGPASSWORD=development psql -t -U development -w -h 0.0.0.0 figma_development"
+alias ber="bundle exec ruby"
 
 alias k="kubectl"
 alias grep="grep --color=auto"

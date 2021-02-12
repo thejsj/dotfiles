@@ -1,0 +1,4 @@
+--colors=match:fg:white
+--colors=path:fg:green
+--colors=line:fg:yellow
+--no-stats
