@@ -1,13 +1,14 @@
 # Add `~/bin` to the `$PATH`
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-
-start=`date '+%s.%N'`
+start=`gdate '+%s.%N'`
 
 export PATH="/Users/hiphipjorge/personal/wc/webrtc-lib/depot_tools:$PATH"
+
+export KUBECONFIG=~/figma/figma-kuberentes-talk/tf/kubeconfig_jorge-eks-5q2DmkjB
 
 export PATH="$HOME/bin:$PATH";
 export PATH="$HOME/.poetry/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="/Applications/ARM/bin/:$PATH"
 
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
@@ -22,7 +23,6 @@ export RIPGREP_CONFIG_PATH=~/.ripgreprc
 export PATH="/usr/local/bin:$PATH";
 export PATH="/usr/local/sbin:$PATH";
 export PATH="./node_modules/.bin:$PATH"
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
 export PATH="./node_modules/.bin:$PATH"
@@ -31,8 +31,9 @@ export PATH="$HOME/.cask/bin:$PATH"
 export GPG_TTY=$(tty)
 export GPGKEY=8C7B9EAD5C000D383B63B3D17271AEB952836D33
 
-HOMEBREW_NO_INSTALL_CLEANUP=1
-HOMEBREW_AUTO_UPDATE_SECS="86400"
+export HOMEBREW_AUTO_UPDATE_SECS="86400"
+export HOMEBREW_NO_INSTALL_CLEANUP=1
+export HOMEBREW_NO_AUTO_UPDATE=1
 
 # Java
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/"
@@ -57,6 +58,7 @@ export ARCHFLAGS="-arch x86_64"
 export GEM_HOME="$HOME/.gem"
 export GEM_PATH="$HOME/.gem"
 export PATH=$GEM_HOME/bin:$PATH
+export RUBYOPT='-W0' # for running ./figma IRB
 
 # Java
 

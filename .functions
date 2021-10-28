@@ -376,11 +376,11 @@ function pbecho() {
 }
 
 function timestamp_to_date ()  {
-  date -d @$1 -u +"%Y-%m-%dT%H:%M:%SZ"
+  gdate -d @$1 -u +"%Y-%m-%dT%H:%M:%SZ"
 }
 
 function timestamp_to_local_date ()  {
-  date -d @$1 +"%Y-%m-%dT%H:%M:%SZ"
+  gdate -d @$1 +"%Y-%m-%dT%H:%M:%SZ"
 }
 
 alias pbt="pbtidy"
@@ -561,7 +561,7 @@ function export-ssh-host () {
 alias esh="export-ssh-host"
 
 function print-execution-time () {
-  end=`date +%s.%N`
+  end=`gdate +%s.%N`
   dt=$(echo "$end - $1" | bc)
   dd=$(echo "$dt/86400" | bc)
   dt2=$(echo "$dt-86400*$dd" | bc)
@@ -576,4 +576,29 @@ function pr {
   BRANCH="$(git rev-parse --abbrev-ref HEAD)"
   git push -u origin "$BRANCH"
   open "https://github.com/figma/figma/compare/${BRANCH}"
+}
+
+function kpp {
+  PID=$(lsof -i :$1 -sTCP:LISTEN |awk 'NR > 1 {print $2}')
+  if [ -z "$PID" ]
+  then
+    echo "No process running on port $1"
+  else
+    echo "Killing process at port $1 / $PID"
+    kill -9 $PID
+  fi
+  echo "Killed."
+}
+
+function kfigma {
+  kpp 80
+  kpp 1337 # Sinatra
+  kpp 1338 # Upnode
+  kpp 1339 # Dashboard
+  kpp 4001 # Pixie
+  kpp 8001 # File Proxy
+  kpp 8126
+  kpp 8127 # Multiplayer
+  kpp 9274 # Harmonizer
+  # kpp 9092 # Docker
 }

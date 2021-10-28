@@ -16,6 +16,9 @@ alias sss="cd ~/Sites/2016/"
 alias ssss="cd ~/Sites/2015/"
 alias sssss="cd ~/Sites/2014/"
 alias ff="cd ~/figma/figma"
+alias fw="cd ~/figma/figma/web"
+alias fs="cd ~/figma/figma/sinatra"
+alias mm="cd ~/figma/figma/maker-week-jsilva"
 
 alias g="git"
 alias hh="history"
@@ -36,6 +39,8 @@ alias gm="cd $GOPATH/src/github.com/mulesoft"
 alias ggg="cd ~/Sites/go-projects/src/github.com/thejsj"
 alias fdb="PGPASSWORD=development psql -t -U development -w -h 0.0.0.0 figma_development"
 alias ber="bundle exec ruby"
+alias Ag="rg"
+alias ag="rg"
 
 alias k="kubectl"
 alias grep="grep --color=auto"
@@ -193,3 +198,5 @@ if [ -f "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ]; then
   alias sublime="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
   alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 fi
+
+alias rgt="rg -g '!*test*'"

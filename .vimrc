@@ -49,6 +49,9 @@ Bundle 'thinca/vim-poslist'
 " Replace multiple variants of word with :%S
 Bundle 'tpope/vim-abolish'
 
+" Typescript
+Bundle 'Quramy/tsuquyomi'
+
 " Sessions
 "" Use :Obsses to make more better vim sessions
 Bundle 'tpope/vim-obsession'
@@ -57,6 +60,7 @@ Bundle 'dhruvasagar/vim-prosession'
 " I know I need to learn these...
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-rhubarb'
 Bundle 'godlygeek/tabular'
 
 " Syntax
@@ -72,6 +76,8 @@ Bundle 'Shougo/deoplete.nvim'
 Bundle 'roxma/nvim-yarp'
 Bundle 'roxma/vim-hug-neovim-rpc'
 " Bundle 'carlitux/deoplete-ternjs'
+"
+Bundle 'vim-test/vim-test'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -115,8 +121,8 @@ let g:solarized_contrast="normal"
 let g:solarized_visibility="normal"
 
 " Syntastic
-" let g:syntastic_always_populate_loc_list = 0
-" let g:syntastic_auto_loc_list = 0
+let g:syntastic_always_populate_loc_list = 0
+let g:syntastic_auto_loc_list = 0
 " let g:syntastic_check_on_open = 1
 " let g:syntastic_check_on_wq = 0
 " let g:syntastic_typescript_tsc_fname = ''
@@ -163,7 +169,10 @@ let g:ctrlp_custom_ignore = {
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_dont_split = 'nerdtree'
-let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+set grepprg=rg\ --color=never
+let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+let g:ctrlp_use_caching = 0
 
 let g:ctrlp_max_files = 0
 let g:ctrlp_max_depth = 40
@@ -177,7 +186,7 @@ let g:indent_guides_guide_size = 1
 let g:indent_guides_enable_on_vim_startup = 1
 
 " ag.vim
-let g:ag_prg="ag --vimgrep"
+let g:ag_prg="rg --vimgrep"
 let g:ag_working_path_mode="r"
 
 " NERDCommenter
@@ -199,6 +208,10 @@ let g:ale_completion_enabled = 0
 set omnifunc=ale#completion#OmniFunc
 let g:ale_completion_tsserver_autoimport = 1
 let g:ale_sign_column_always = 1
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 0
+let g:ale_open_list = 0
+let g:ale_keep_list_window_open = 0
 
 let g:ale_sign_error = ' •'
 let g:ale_sign_warning = ' •'
@@ -208,7 +221,7 @@ let g:ale_fix_on_save = 0
 
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'python': ['autopep8'],
+\   'python': ['black'],
 \   'javascript': ['prettier', 'eslint'],
 \   'typescript': ['prettier', 'eslint'],
 \}
@@ -222,6 +235,8 @@ let g:tern#command = ["tern"]
 let g:tern#arguments = ["--persistent"]
 
 let g:airline#extensions#ale#enabled = 1
+
+" let g:github_enterprise_urls = ['https://example.com']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                               Functions
@@ -280,6 +295,8 @@ set background=dark
 " colorscheme solarized
 colorscheme xcodedarkhc
 
+let g:tsuquyomi_disable_quickfix = 1
+
 " Ale sign colors
 hi link ALEErrorSign    Error
 hi link ALEWarningSign Title
@@ -314,6 +331,38 @@ set hidden                          " Allow buffer switching without saving
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                Plugin Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+function FindSessionDirectory() abort
+  if len(argv()) > 0
+    return fnamemodify(argv()[0], ':p:h')
+  endif
+  return getcwd()
+endfunction!
+let g:session_default_directory = FindSessionDirectory()
+
+function EditFileFromSessionDefaultDirectory(filename, ...) abort
+  exe 'cd ' . g:session_default_directory
+  execute "edit " a:filename
+endfunction!
+
+let g:test#strategy = "vimterminal"
+
+function! RubyTransform(cmd) abort
+  let command = substitute(a:cmd, '/\w*::', '/', 'g')
+  if g:test#strategy == "basic"
+    return substitute(command, '#', '\\\#', "g")
+  elseif g:test#strategy == "vimterminal"
+    return command
+  endif
+  return command
+endfunction
+
+let test#project_root = g:session_default_directory
+let test#ruby#bundle_exec = 1
+let test#ruby#minitest#executable = 'RACK_ENV=test bundle exec ruby'
+
+let g:test#custom_transformations = {'RubyTransform': function('RubyTransform')}
+let g:test#transformation = 'RubyTransform'
 
 set statusline+=%#warningmsg#
 " set statusline+=%{SyntasticStatuslineFlag()}
@@ -380,6 +429,7 @@ set shiftwidth=2     " Indents of 2 spaces
 set tabstop=2        " An indentation every 2 columns
 set nojoinspaces     " Prevents inserting two spaces after punctuation on a join (J)
 set softtabstop=2 expandtab
+set autoindent
 
 augroup FileTypes
   autocmd FileType haskell,puppet,ruby,yml,elm setlocal expandtab shiftwidth=2 softtabstop=2
@@ -429,11 +479,13 @@ nnoremap : ;
 map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
 
 " NERDTree
-map <C-e> <plug>NERDTreeTabsToggle<CR>
-map <leader>e ;NERDTreeFind<CR>
+map <leader>e <plug>NERDTreeTabsToggle<CR>
+map <leader>f <plug>NERDTreeFind<CR>
+map <leader>w <plug>NERDTreeFind<CR>
 
 map <Leader>d ;bd<CR>
 map <Leader>w ;w<CR>
+
 " Previous buffer
 map <Tab>j ;bp<CR>  " How I do it now
 map <Leader>j ;bp<CR> " How I whould be doing it
@@ -460,6 +512,7 @@ nnoremap <leader>src :source ~/.vimrc<cr>
 nnoremap <leader>h ;tabnew<CR>:ConqueTerm bash<CR>
 nnoremap <leader>w ;tabclose<CR>
 nnoremap <leader>a :Agr
+nnoremap <leader>t :TsuDefinition<cr>
 
 nnoremap <leader>ff :echo expand('%:p')<CR>
 nmap <leader>1 <Plug>AirlineSelectTab1
@@ -471,6 +524,9 @@ nmap <leader>6 <Plug>AirlineSelectTab6
 nmap <leader>7 <Plug>AirlineSelectTab7
 nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
+
+set noautochdir
+set browsedir=current
 
 " open ag.vim
 nnoremap <leader>a :Ag
@@ -496,3 +552,5 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " Exit Insert mod easily
 inoremap kj <Esc>;w<CR>
 inoremap jk <Esc>;w<CR>
+
+command! -nargs=1 E :call EditFileFromSessionDefaultDirectory(<f-args>)
