@@ -30,7 +30,8 @@ Bundle 'vim-airline/vim-airline-themes'
 " Buffers/Files
 
 " CTRL+P for for fuzzy finding files
-Bundle 'kien/ctrlp.vim'
+" Bundle 'kien/ctrlp.vim'
+Bundle 'junegunn/fzf'
 " CTRL+P but for functions
 " Bundle 'tacahiroy/ctrlp-funky'
 " Show file tree
@@ -161,21 +162,21 @@ let g:nerdtree_tabs_open_on_gui_startup=0
 
 " CtrlP
 " Ignore some folders and files for CtrlP indexing
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.yardoc\|node_modules\|dist\|log\|tmp$|coverage\',
-  \ 'file': '\.so$\|\.dat$|\.DS_Store$'
-  \ }
+" let g:ctrlp_custom_ignore = {
+  " \ 'dir':  '\.git$\|\.yardoc\|node_modules\|dist\|log\|tmp$|coverage\',
+  " \ 'file': '\.so$\|\.dat$|\.DS_Store$'
+  " \ }
 
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_dont_split = 'nerdtree'
+" let g:ctrlp_map = '<c-p>'
+" let g:ctrlp_cmd = 'CtrlP'
+" let g:ctrlp_dont_split = 'nerdtree'
 
-set grepprg=rg\ --color=never
-let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
-let g:ctrlp_use_caching = 0
+" set grepprg=rg\ --color=never
+" let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+" let g:ctrlp_use_caching = 0
 
-let g:ctrlp_max_files = 0
-let g:ctrlp_max_depth = 40
+" let g:ctrlp_max_files = 0
+" let g:ctrlp_max_depth = 40
 
 " vim-go
 let g:go_fmt_command = "goimports"
@@ -332,6 +333,22 @@ set hidden                          " Allow buffer switching without saving
 "                                Plugin Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Never open files in the NERDTree buffer
+" autocmd FileType nerdtree let t:nerdtree_winnr = bufwinnr('%')
+" autocmd BufWinEnter * call PreventBuffersInNERDTree()
+
+" function! PreventBuffersInNERDTree()
+  " if bufname('#') =~ 'NERD_tree' && bufname('%') !~ 'NERD_tree'
+    " \ && exists('t:nerdtree_winnr') && bufwinnr('%') == t:nerdtree_winnr
+    " \ && &buftype == '' && !exists('g:launching_fzf')
+    " let bufnum = bufnr('%')
+    " close
+    " exe 'b ' . bufnum
+    " NERDTree
+  " endif
+  " if exists('g:launching_fzf') | unlet g:launching_fzf | endif
+" endfunction
+
 function FindSessionDirectory() abort
   if len(argv()) > 0
     return fnamemodify(argv()[0], ':p:h')
@@ -345,15 +362,23 @@ function EditFileFromSessionDefaultDirectory(filename, ...) abort
   execute "edit " a:filename
 endfunction!
 
+function! CustomFZF()
+  call fzf#run({ 'dir': '' . g:session_default_directory, 'sink': 'e', 'window': {'width': 0.9, 'height': 0.6}})
+endfunction!
+command! -nargs=1 E :call CustomFZF(<f-args>)
+
+nnoremap <silent> <C-p> :call CustomFZF()<CR>
+
 let g:test#strategy = "vimterminal"
 
 function! RubyTransform(cmd) abort
   let command = substitute(a:cmd, '/\w*::', '/', 'g')
-  if g:test#strategy == "basic"
-    return substitute(command, '#', '\\\#', "g")
-  elseif g:test#strategy == "vimterminal"
-    return command
-  endif
+  " if g:test#strategy == "basic"
+    " return substitute(command, '#', '\\\#', "g")
+  " elseif g:test#strategy == "vimterminal"
+    " return substitute(command, '#', '\\\#', "g")
+    " " return command
+  " endif
   return command
 endfunction
 

@@ -590,7 +590,7 @@ function kpp {
   echo "Killed."
 }
 
-function kfigma {
+function killfigma {
   kpp 80
   kpp 1337 # Sinatra
   kpp 1338 # Upnode
@@ -600,5 +600,6 @@ function kfigma {
   kpp 8126
   kpp 8127 # Multiplayer
   kpp 9274 # Harmonizer
+  kill $(ps -ax | grep "./changestream" |  awk '{print $1}') # Changestream
   # kpp 9092 # Docker
 }
