@@ -76,7 +76,7 @@ Bundle 'fatih/vim-go'
 Bundle 'Shougo/deoplete.nvim'
 Bundle 'roxma/nvim-yarp'
 Bundle 'roxma/vim-hug-neovim-rpc'
-" Bundle 'carlitux/deoplete-ternjs'
+Bundle 'carlitux/deoplete-ternjs'
 "
 Bundle 'vim-test/vim-test'
 
@@ -207,7 +207,7 @@ call deoplete#custom#option('sources', {
 
 let g:ale_completion_enabled = 0
 set omnifunc=ale#completion#OmniFunc
-let g:ale_completion_tsserver_autoimport = 1
+let g:ale_completion_autoimport = 1
 let g:ale_sign_column_always = 1
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 0
@@ -220,15 +220,22 @@ let g:ale_sign_warning = ' •'
 " Set this variable to 1 to fix files when you save them.
 let g:ale_fix_on_save = 0
 
+let g:ale_ruby_rubocop_executable = 'bundle'
+let g:ale_ruby_sorbet_executable = 'bundle'
+let g:ale_ruby_srb_executable = 'bundle'
+
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'python': ['black'],
 \   'javascript': ['prettier', 'eslint'],
 \   'typescript': ['prettier', 'eslint'],
+\   'ruby': ['prettier'],
 \}
 
-let g:ale_linters= {
+let g:ale_linters = {
+\   'javascript': ['eslint'],
 \   'python': ['flake8'],
+\   'ruby': ['srb', 'rubocop'],
 \}
 
 " Use tern_for_vim.
@@ -236,6 +243,8 @@ let g:tern#command = ["tern"]
 let g:tern#arguments = ["--persistent"]
 
 let g:airline#extensions#ale#enabled = 1
+
+let g:surround_116 = "{% trans \"\r\" %}"
 
 " let g:github_enterprise_urls = ['https://example.com']
 
@@ -260,6 +269,162 @@ function! ResCur()
 	normal! g`"
 	return 1
     endif
+endfunction
+
+function! EchoAndCopyPath()
+  let l:full_path = expand('%:p')
+  let l:path = substitute(l:full_path, g:session_default_directory,"", "")
+  if l:path[0] == "/"
+    let l:path = l:path[1:]
+  endif
+  echo l:path
+  let @+ = l:path
+endfunction
+
+function! EchoAndCopyFilename()
+  let l:path = expand('%')
+  if l:path[0] == "/"
+    let l:path = l:path[1:]
+  endif
+  echo l:path
+  let @+ = l:path
+endfunction
+
+" https://github.com/tpope/vim-abolish/blob/master/plugin/abolish.vim#L120-L127
+function! s:snakecase(word)
+  let word = substitute(a:word,'::','/','g')
+  let word = substitute(word,'\(\u\+\)\(\u\l\)','\1_\2','g')
+  let word = substitute(word,'\(\l\|\d\)\(\u\)','\1_\2','g')
+  let word = substitute(word,'[.-]','_','g')
+  let word = substitute(word,' ','_','g') " Added by thejsj
+  let word = tolower(word)
+  return word
+endfunction
+
+function FindFigmaPath(path)
+  let l:parts = split(a:path, "/")
+  let l:index = len(l:parts) - 1
+
+  while (l:index > 0)
+    if l:parts[l:index] == "figma"
+      return '/' . join(l:parts[:l:index], "/")
+    endif
+    let l:index = l:index - 1
+  endwhile
+
+  return ''
+endfunction
+
+function! GetDictionaryPath()
+  if !exists("g:translation_dictionary")
+    echoerr "No translation dictionary set."
+    return ''
+  end
+
+  let l:figma_path = FindFigmaPath(expand("%:p"))
+  return l:figma_path . "/config/dict/en/web/dictionaries/" . g:translation_dictionary . ".json"
+endfunction
+
+
+function! OpenDictonary()
+  let l:dictionary_path = GetDictionaryPath()
+  if l:dictionary_path == ""
+    echoerr "No translation dictionary set."
+    return ''
+  endif
+  execute "edit " . l:dictionary_path
+endfunction
+
+function! TranslationString(use_react_component)
+  let l:dictionary_path = GetDictionaryPath()
+  if l:dictionary_path == ""
+    echoerr "No translation dictionary set."
+    return ''
+  endif
+
+  if filereadable(expand(glob(l:dictionary_path)))
+    let l:dictionary_str = readfile(expand(glob(l:dictionary_path)))
+    let l:dictionary = json_decode(join(l:dictionary_str, "\n"))
+  else
+    let l:dictionary = {}
+  endif
+
+  let l:text = getreg("")
+  let l:quotes = ['"', "'", '`', "`"]
+  if index(quotes, text[0]) != -1
+    let l:text = l:text[1:]
+  end
+  if index(l:quotes, l:text[-1]) != -1
+    let l:text = l:text[:-2]
+  end
+  let l:key = substitute(l:text, '\n$', '', '')
+  let l:key = s:snakecase(l:key)
+  let l:key = substitute(l:key, '[^A-z]', '', 'g')
+
+  let l:translation_namespace = expand("%:r:h")
+
+  if strlen(l:key) > 35
+    " Remove last one
+    let l:key = l:key[:40]
+    let l:key = join(split(l:key, '_')[0:-2], '_')
+  endif
+  if exists("g:translation_namespace")
+    let l:translation_namespace = g:translation_namespace
+  endif
+  let l:composite_key = l:translation_namespace . "." . l:key
+
+  " Add entry to dictionary
+  let l:dictionary[l:composite_key] = { 'string': l:text, 'context': '', }
+  let l:dictionary_write_str = json_encode(l:dictionary)
+  if filereadable(expand(glob(l:dictionary_path)))
+    call writefile(split(l:dictionary_write_str, "\n", 1), expand(glob(l:dictionary_path)), "s")
+  else
+    call writefile(split(l:dictionary_write_str, "\n", 1), l:dictionary_path)
+  endif
+
+  let l:figma_l10n_directory = split(system("ls ~/.vscode/extensions | grep 'figma-l10n'"), "\n")[0]
+
+  " This code must be executed in the figjam-l10n directory because it
+  " requires the 'json-stable-stringify' package.
+  " This code does not use newlines. For that reason, every statement needs
+  " to have a `;' at the end.
+  " This code uses variable substitution at the bottom for a path. That path
+  " must be absolute.
+  let text =<< trim END
+cd ~/.vscode/extensions/$PLUGIN_DIRECTORY_NAME && node -e "const stringify = require('json-stable-stringify');
+const fs = require('fs');
+const dictionaryJsonStringify = (json) => {
+  return stringify(json, {
+    space: 2,
+    cmp: function (a, b) {
+      if (a.key === 'context') {
+        return 1;
+      } else if (b.key === 'context') {
+        return -1;
+      }
+      return a.key < b.key ? -1 : 1;
+    },
+  });
+};
+const dictionaryFilePath = '$DICTIONARY_FILE_PATH_REPLACE';
+const json = JSON.parse(fs.readFileSync(dictionaryFilePath).toString());
+fs.writeFileSync(dictionaryFilePath, dictionaryJsonStringify(json));"
+END
+
+  let text = join(text, " ")
+  let text = substitute(text, "$DICTIONARY_FILE_PATH_REPLACE", l:dictionary_path, "")
+  let text = substitute(text, "$PLUGIN_DIRECTORY_NAME", l:figma_l10n_directory, "")
+
+  call system(text)
+
+  if a:use_react_component == 1
+    call setreg("t", "<Tx id=\"" . l:composite_key .  "\"/>")
+  else
+    call setreg("t", "t(\"" . l:composite_key .  "\")")
+  endif
+  " Go back one space and set the contents of the register t
+  execute 'normal! h"tp'
+  return ''
 endfunction
 
 " http://stackoverflow.com/questions/17512794/toggle-error-location-panel-in-syntastic
@@ -302,6 +467,7 @@ let g:tsuquyomi_disable_quickfix = 1
 hi link ALEErrorSign    Error
 hi link ALEWarningSign Title
 hi SignColumn ctermbg=black
+hi SpellBad cterm=underline
 
 " Set color column at 80
 set colorcolumn=80
@@ -326,6 +492,7 @@ set viewoptions=folds,options,cursor,unix,slash " Better Unix / Window compatibl
 set virtualedit=onemore             " Allow for cursor beyond last characther
 set history=1000                    " Store history (Default is 20)
 set spell                           " Spell checking on
+set spell spelllang=en_us
 set hidden                          " Allow buffer switching without saving
 
 
@@ -359,6 +526,11 @@ let g:session_default_directory = FindSessionDirectory()
 
 function EditFileFromSessionDefaultDirectory(filename, ...) abort
   exe 'cd ' . g:session_default_directory
+
+  if a:filename[0:1] == "js"
+    let a:filename = "web/" . a:filename
+  endif
+
   execute "edit " a:filename
 endfunction!
 
@@ -539,7 +711,15 @@ nnoremap <leader>w ;tabclose<CR>
 nnoremap <leader>a :Agr
 nnoremap <leader>t :TsuDefinition<cr>
 
-nnoremap <leader>ff :echo expand('%:p')<CR>
+nnoremap <leader>ff :call EchoAndCopyPath()<CR>
+xnoremap <leader>tt d:call TranslationString(1)<CR>
+xnoremap <leader>tf d:call TranslationString(0)<CR>
+" xnoremap <leader>t d " <CR>:echo echo getreg("")<CR>
+nnoremap <leader>fa :call EchoAndCopyFilename()<CR>
+
+" Copies current file path to the clipboard
+" nmap <silent> <leader>fa :let @+ = expand("%")<CR>
+
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
 nmap <leader>3 <Plug>AirlineSelectTab3

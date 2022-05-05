@@ -199,4 +199,4 @@ if [ -f "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ]; then
   alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 fi
 
-alias rgt="rg -g '!*test*'"
+alias rgt="rg -g '!*test*' -g '!*\.rbi*'"

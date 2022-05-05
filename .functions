@@ -597,9 +597,14 @@ function killfigma {
   kpp 1339 # Dashboard
   kpp 4001 # Pixie
   kpp 8001 # File Proxy
-  kpp 8126
+  kpp 8126 # Datadog??
+  kpp 8923 # File Diff
+  kpp 4444 # LiveGraph
   kpp 8127 # Multiplayer
   kpp 9274 # Harmonizer
+  kpp 9419 # Multiplayer Proxy
   kill $(ps -ax | grep "./changestream" |  awk '{print $1}') # Changestream
   # kpp 9092 # Docker
 }
+
+alias s='(cd ~/figma/figma/sinatra && bundle exec srb tc --ignore "/db/migrate")'

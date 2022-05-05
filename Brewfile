@@ -28,7 +28,7 @@ brew 'nvm'
 brew 'rbenv'
 brew 'redis'
 brew 'rethinkdb'
-brew 'vim', args: ['with-lua', 'override-system-vi']
+brew 'vim', args: ['with-lua', 'override-system-vi', 'with-python']
 brew 'wget', args: ['with-iri']
 brew 'kubectl'
 brew 'jq'

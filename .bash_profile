@@ -22,7 +22,6 @@ export RIPGREP_CONFIG_PATH=~/.ripgreprc
 # Hombrew
 export PATH="/usr/local/bin:$PATH";
 export PATH="/usr/local/sbin:$PATH";
-export PATH="./node_modules/.bin:$PATH"
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
 export PATH="./node_modules/.bin:$PATH"
@@ -135,3 +134,14 @@ export NVM_DIR="$HOME/.nvm"
 
 print-execution-time $start 'Bash profile loaded in'
 source "$HOME/.cargo/env"
+
+# FIGMA
+export PATH="$HOME/.rbenv/shims:$PATH"
+eval "$(rbenv init -)"
+export RACK_ENV=development
+export PATH="/usr/local/opt/python@2.X.X/libexec/bin:$PATH"
+export GOPATH="$HOME/go"
+export PATH="$GOPATH/bin:$PATH"
+export AWS_CONFIG_FILE="$HOME/figma/figma/config/aws/sso_config"
+
+export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig:/usr/local/opt/openssl@3/lib/pkgconfig:$PKG_CONFIG_PATH"
