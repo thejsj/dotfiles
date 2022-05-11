@@ -74,10 +74,10 @@ Bundle 'fatih/vim-go'
 Bundle 'tikhomirov/vim-glsl'
 
 " Auto Completion
-Bundle 'Shougo/deoplete.nvim'
+" Bundle 'Shougo/deoplete.nvim'
 Bundle 'roxma/nvim-yarp'
 Bundle 'roxma/vim-hug-neovim-rpc'
-Bundle 'carlitux/deoplete-ternjs'
+" Bundle 'carlitux/deoplete-ternjs'
 "
 Bundle 'vim-test/vim-test'
 
@@ -90,7 +90,7 @@ filetype plugin indent on    " required
 
 " ag.vim
 set runtimepath^=~/.vim/bundle/ag
-set runtimepath+=~/.vim/bundle/deoplete.nvim
+" set runtimepath+=~/.vim/bundle/deoplete.nvim
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                            Plugin Variables
@@ -200,9 +200,9 @@ let g:NERDCustomDelimiters = { 'purs': { 'left': '--'} }
 let g:typescript_compiler_binary = 'tsc'
 
 " Deoplete
-let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_at_startup = 1
 
-call deoplete#custom#option('sources', {
+" call deoplete#custom#option('sources', {
 \ '_': ['ale'],
 \})
 
@@ -302,7 +302,7 @@ function! s:snakecase(word)
   return word
 endfunction
 
-function FindFigmaPath(path)
+function! FindFigmaPath(path)
   let l:parts = split(a:path, "/")
   let l:index = len(l:parts) - 1
 
@@ -517,7 +517,7 @@ set hidden                          " Allow buffer switching without saving
   " if exists('g:launching_fzf') | unlet g:launching_fzf | endif
 " endfunction
 
-function FindSessionDirectory() abort
+function! FindSessionDirectory() abort
   if len(argv()) > 0
     return fnamemodify(argv()[0], ':p:h')
   endif
@@ -525,7 +525,7 @@ function FindSessionDirectory() abort
 endfunction!
 let g:session_default_directory = FindSessionDirectory()
 
-function EditFileFromSessionDefaultDirectory(filename, ...) abort
+function! EditFileFromSessionDefaultDirectory(filename, ...) abort
   exe 'cd ' . g:session_default_directory
 
   if a:filename[0:1] == "js"

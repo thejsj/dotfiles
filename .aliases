@@ -45,7 +45,7 @@ alias ag="rg"
 alias k="kubectl"
 alias grep="grep --color=auto"
 
-eval "$(hub alias -s)"
+# eval "$(hub alias -s)"
 
 # Git
 alias gl="git log --pretty=format:'%Cblue%h%Creset %Cgreen%ad%Creset | %s%C(yellow)%d%Creset [%an]' --graph --date=short --decorate"

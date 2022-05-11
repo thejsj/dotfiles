@@ -1,9 +1,5 @@
-tap 'caskroom/cask'
-tap 'caskroom/versions'
-tap 'homebrew/boneyard'
 tap 'homebrew/bundle'
 tap 'homebrew/services'
-tap 'mulesoft-labs/tap'
 
 brew 'bash'
 brew 'bash-completion'
@@ -16,12 +12,12 @@ brew 'git'
 brew 'go'
 brew 'cask'
 brew 'coreutils'
-brew 'gnu-sed', args: ['with-default-names']
+brew 'gnu-sed'
 brew 'node'
 brew 'nvm'
 brew 'rbenv'
 brew 'redis'
-brew 'vim', args: ['with-lua', 'override-system-vi', 'with-python']
+brew 'vim'
 brew 'wget', args: ['with-iri']
 brew 'kubectl'
 brew 'jq'

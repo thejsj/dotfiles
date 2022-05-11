@@ -240,8 +240,16 @@ git-remove-all() {
 
 # Reload bash profile
 rload() {
-  echo "Reloading .bash_profile";
-  source ~/.bash_profile
+  if [[ $SHELL == *'zsh'* ]] then
+    echo "Reloading .zprofile";
+    source ~/.zprofile
+  fi
+
+
+  if [[ $SHELL == *'bash'* ]] then
+    echo "Reloading .bash_profile";
+    source ~/.bash_profile
+  fi
 }
 
 # Grep over the runnable angular client directory
@@ -308,9 +316,9 @@ unsetDockerEnvVariables () {
 	unset `env | grep DOCKER | cut -d'=' -f 1 | xargs`
 }
 
-if [ -a ~/.log-tail-generator.bash ]; then
-	source ~/.log-tail-generator.bash
-fi;
+# if [ -a ~/.log-tail-generator.bash ]; then
+	# source ~/.log-tail-generator.bash
+# fi;
 
 function flushall {
   mongo --quiet --eval 'db.getMongo().getDBNames().forEach(function(i){db.getSiblingDB(i).dropDatabase()})'
@@ -506,7 +514,7 @@ _m_autocompletion() {
     return 0
 }
 
-complete -F _m_autocompletion m
+# complete -F _m_autocompletion m
 
 function shost () {
   if [[ -z "$SSH_HOST" ]]; then

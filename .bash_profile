@@ -40,8 +40,9 @@ export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Hom
 # Go
 export GOPATH=$HOME/mulesoft
 export GOPATH=$HOME/Sites/go-projects
-export GOROOT=/usr/local/opt/go/libexec
+export GOROOT=/opt/homebrew/Cellar/go@1.17/1.17.9/libexec/
 export PATH="$GOPATH/bin:$PATH"
+export PATH="/opt/homebrew/opt/go@1.17/bin:$PATH"
 
 export KUBERNETS_NAMESPACE=default
 export KUBERNETES_NAMESPACE=default
@@ -70,7 +71,6 @@ export HISTTIMEFORMAT="%d/%m/%y %T "
 export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
 export HISTSIZE=100000                   # big big history
 export HISTFILESIZE=100000               # big big history
-shopt -s histappend                      # append to history, don't overwrite it
 
 # Node Environment
 export NODE_ENV=development
@@ -83,44 +83,47 @@ MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
 
-for file in ~/.{path,bash_prompt,aliases,exports,private-aliases,functions,private-functions,extra}; do
+if [[ $SHELL == *'bash'* ]] then
+  source ~/.bash_prompt
+
+  # Case-insensitive globbing (used in pathname expansion)
+  shopt -s nocaseglob;
+
+  # Append to the Bash history file, rather than overwriting it
+  shopt -s histappend;
+
+  # Autocorrect typos in path names when using `cd`
+  shopt -s cdspell;
+
+  # Enable some Bash 4 features when possible:
+  # * `autocd`, e.g. `**/qux` will enter `./foo/bar/baz/qux`
+  # * Recursive globbing, e.g. `echo **/*.txt`
+  for option in autocd globstar; do
+    shopt -s "$option" 2> /dev/null;
+  done;
+
+  # Add tab completion for many Bash commands
+  [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+
+  if type _git &> /dev/null && [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
+    complete -o default -o nospace -F _git g;
+  fi;
+
+  # Add tab completion for `defaults read|write NSGlobalDomain`
+  # You could just use `-g` instead, but I like being explicit
+  complete -W "NSGlobalDomain" defaults;
+
+  # Add `killall` tab completion for common apps
+  complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
+fi
+
+unset file;
+
+for file in ~/.{path,aliases,exports,private-aliases,functions,private-functions,extra}; do
   [ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 
 unset file;
-
-# Case-insensitive globbing (used in pathname expansion)
-shopt -s nocaseglob;
-
-# Append to the Bash history file, rather than overwriting it
-shopt -s histappend;
-
-# Autocorrect typos in path names when using `cd`
-shopt -s cdspell;
-
-# Enable some Bash 4 features when possible:
-# * `autocd`, e.g. `**/qux` will enter `./foo/bar/baz/qux`
-# * Recursive globbing, e.g. `echo **/*.txt`
-for option in autocd globstar; do
-	shopt -s "$option" 2> /dev/null;
-done;
-
-# Add tab completion for many Bash commands
-[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
-
-# if type _git &> /dev/null && [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
-	# complete -o default -o nospace -F _git g;
-# fi;
-
-# Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
-# [ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2 | tr ' ' '\n')" scp sftp ssh;
-
-# Add tab completion for `defaults read|write NSGlobalDomain`
-# You could just use `-g` instead, but I like being explicit
-complete -W "NSGlobalDomain" defaults;
-
-# Add `killall` tab completion for common apps
-complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
 
 if [ -f "~/.iterm2_shell_integration.bash" ]
 then
@@ -150,3 +153,6 @@ export PATH="$GOPATH/bin:$PATH"
 export AWS_CONFIG_FILE="$HOME/figma/figma/config/aws/sso_config"
 
 export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig:/usr/local/opt/openssl@3/lib/pkgconfig:$PKG_CONFIG_PATH"
+
+print-execution-time $start 'Bash profile loaded in'
+source "$HOME/.cargo/env"
