@@ -18,6 +18,7 @@ alias sssss="cd ~/Sites/2014/"
 alias ff="cd ~/figma/figma"
 alias fw="cd ~/figma/figma/web"
 alias fs="cd ~/figma/figma/sinatra"
+alias fp="cd ~/figma/figma/permissions"
 alias mm="cd ~/figma/figma/maker-week-jsilva"
 
 alias g="git"

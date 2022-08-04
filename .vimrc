@@ -74,10 +74,12 @@ Bundle 'fatih/vim-go'
 Bundle 'tikhomirov/vim-glsl'
 
 " Auto Completion
-" Bundle 'Shougo/deoplete.nvim'
-Bundle 'roxma/nvim-yarp'
+Bundle 'Shougo/deoplete.nvim'
+" 2 Dependencies needed by deoplete
+Bundle 'roxma/nvim-yarp' 
 Bundle 'roxma/vim-hug-neovim-rpc'
-" Bundle 'carlitux/deoplete-ternjs'
+
+Bundle 'carlitux/deoplete-ternjs'
 "
 Bundle 'vim-test/vim-test'
 
@@ -90,7 +92,7 @@ filetype plugin indent on    " required
 
 " ag.vim
 set runtimepath^=~/.vim/bundle/ag
-" set runtimepath+=~/.vim/bundle/deoplete.nvim
+set runtimepath+=~/.vim/bundle/deoplete.nvim
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                            Plugin Variables
@@ -200,9 +202,9 @@ let g:NERDCustomDelimiters = { 'purs': { 'left': '--'} }
 let g:typescript_compiler_binary = 'tsc'
 
 " Deoplete
-" let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_at_startup = 1
 
-" call deoplete#custom#option('sources', {
+call deoplete#custom#option('sources', {
 \ '_': ['ale'],
 \})
 
@@ -441,6 +443,8 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                 Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set re=0 " https://jameschambers.co.uk/vim-typescript-slow
 
 set statusline+=%#warningmsg#
 set statusline+=%*

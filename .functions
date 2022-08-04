@@ -616,3 +616,17 @@ function killfigma {
 }
 
 alias s='(cd ~/figma/figma/sinatra && bundle exec srb tc --ignore "/db/migrate")'
+
+function gh-tests-done {
+  count="1"
+  while [[ $count != "0" ]]; do
+    count=$(gh pr status --json state,headRefName,statusCheckRollup | jq '.currentBranch.statusCheckRollup[] | select(.state == "PENDING").context' | wc -l | awk '{print $1}')
+    echo "Tests Left: $count"
+    sleep 2
+  done
+  echo "DONE";
+  (exec "$@");
+  echo "DONE Executing Command";
+}
+
+hgrep () { fc -Dlim "*$@*" 1 }

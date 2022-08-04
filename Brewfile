@@ -25,6 +25,9 @@ brew 'gnupg'
 brew 'the_silver_searcher'
 brew 'hub'
 brew 'grep'
+brew 'fd'
+brew 'diff-so-fancy'
+brew 'difftastic'
 
 # Apps not here
 # 1. 1Password (outdated version)

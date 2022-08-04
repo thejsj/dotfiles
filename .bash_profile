@@ -40,9 +40,9 @@ export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Hom
 # Go
 export GOPATH=$HOME/mulesoft
 export GOPATH=$HOME/Sites/go-projects
-export GOROOT=/opt/homebrew/Cellar/go@1.17/1.17.9/libexec/
+export GOROOT=/opt/homebrew/Cellar/go/1.18.3/libexec
 export PATH="$GOPATH/bin:$PATH"
-export PATH="/opt/homebrew/opt/go@1.17/bin:$PATH"
+export PATH="/opt/homebrew/opt/go@1.18/bin/go:$PATH"
 
 export KUBERNETS_NAMESPACE=default
 export KUBERNETES_NAMESPACE=default
