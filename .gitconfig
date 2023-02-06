@@ -1,7 +1,7 @@
 [user]
 	name = thejsj
 	email = jsilva@figma.com
-	signingkey = 8C7B9EAD5C000D383B63B3D17271AEB952836D33
+	signingkey = AEC3733DB9BCE2081AD6C640169928FCA7628B77
 
 [alias]
 	l = log --pretty=oneline -n 20 --graph --abbrev-commit # View abbreviated SHA, description, and history graph of the latest 20 commits
