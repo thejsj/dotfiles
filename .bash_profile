@@ -22,6 +22,7 @@ export RIPGREP_CONFIG_PATH=~/.ripgreprc
 # Hombrew
 export PATH="/usr/local/bin:$PATH";
 export PATH="/usr/local/sbin:$PATH";
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
 export PATH="./node_modules/.bin:$PATH"
@@ -128,12 +129,16 @@ fi
 
 eval "$(rbenv init -)"
 
+print-execution-time $start 'Bash profile loaded in'
+source "$HOME/.cargo/env"
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-print-execution-time $start 'Bash profile loaded in'
-source "$HOME/.cargo/env"
+if which direnv > /dev/null; then
+  eval "$(direnv hook bash)"
+fi
 
 # FIGMA
 export PATH="$HOME/.rbenv/shims:$PATH"

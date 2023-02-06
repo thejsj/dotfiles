@@ -71,6 +71,7 @@ Bundle 'tpope/vim-markdown'
 Bundle 'nono/vim-handlebars'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'fatih/vim-go'
+Bundle 'tikhomirov/vim-glsl'
 
 " Auto Completion
 Bundle 'Shougo/deoplete.nvim'
@@ -635,6 +636,7 @@ augroup FileTypes
   autocmd FileType typescript :set makeprg=tsc
   autocmd FileType c,php,ptyhon,groovy setlocal expandtab shiftwidth=4 softtabstop=4
   autocmd FileType go setlocal shiftwidth=2
+  autocmd! BufNewFile,BufRead *.vs,*.fs set ft=glsl
 augroup END
 
 " Set color column at 80
