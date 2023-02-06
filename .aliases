@@ -19,7 +19,11 @@ alias ff="cd ~/figma/figma"
 alias fw="cd ~/figma/figma/web"
 alias fs="cd ~/figma/figma/sinatra"
 alias fp="cd ~/figma/figma/permissions"
+alias fl="cd ~/figma/figma/livegraph"
+alias fm="cd ~/figma/figma/mobile-common/Figma/js/"
 alias mm="cd ~/figma/figma/maker-week-jsilva"
+
+alias python="python3"
 
 alias g="git"
 alias hh="history"
@@ -42,6 +46,9 @@ alias fdb="PGPASSWORD=development psql -t -U development -w -h 0.0.0.0 figma_dev
 alias ber="bundle exec ruby"
 alias Ag="rg"
 alias ag="rg"
+
+alias vim="nvim"
+alias vi="nvim"
 
 alias k="kubectl"
 alias grep="grep --color=auto"

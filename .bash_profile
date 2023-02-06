@@ -16,10 +16,17 @@ export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+export PATH="/opt/homebrew/opt/python3/libexec:$PATH"
+export PATH="/opt/homebrew/opt/python/libexec:$PATH"
+export PATH="/opt/homebrew/opt/python@3.10/bin:$PATH"
 
 export RIPGREP_CONFIG_PATH=~/.ripgreprc
+# export FZF_DEFAULT_COMMAND='rg --files --follow --ignore-vcs -g \"!{node_modules/*,.git/*}\"'
+export FZF_DEFAULT_COMMAND='rg --files --follow --ignore-vcs'
 
 # Hombrew
+export PATH="/opt/homebrew/bin:$PATH"
+export PATH="/opt/homebrew/sbin:$PATH"
 export PATH="/usr/local/bin:$PATH";
 export PATH="/usr/local/sbin:$PATH";
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
@@ -38,11 +45,12 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 # Java
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/"
 # Go
-export GOPATH=$HOME/mulesoft
-export GOPATH=$HOME/Sites/go-projects
-export GOROOT=/opt/homebrew/Cellar/go/1.18.3/libexec
-export PATH="$GOPATH/bin:$PATH"
-export PATH="/opt/homebrew/opt/go@1.18/bin/go:$PATH"
+# export GOPATH=$HOME/mulesoft
+# export GOPATH=$HOME/Sites/go-projects
+# export GOROOT=/opt/homebrew/Cellar/go@1.18/1.18.9/
+# export GOROOT=/opt/homebrew/Cellar/go/1.19.4/libexec
+# export PATH="/opt/homebrew/opt/go@1.18/bin/go:$PATH"
+# export PATH="$GOPATH/bin:$PATH"
 
 export KUBERNETS_NAMESPACE=default
 export KUBERNETES_NAMESPACE=default
@@ -151,7 +159,6 @@ export PATH="/usr/local/opt/python@2.X.X/libexec/bin:$PATH"
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
 export AWS_CONFIG_FILE="$HOME/figma/figma/config/aws/sso_config"
-
 export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig:/usr/local/opt/openssl@3/lib/pkgconfig:$PKG_CONFIG_PATH"
 
 print-execution-time $start 'Bash profile loaded in'

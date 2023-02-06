@@ -593,7 +593,7 @@ function kpp {
     echo "No process running on port $1"
   else
     echo "Killing process at port $1 / $PID"
-    kill -9 $PID
+    echo $PID | xargs kill -9
   fi
   echo "Killed."
 }
@@ -603,6 +603,7 @@ function killfigma {
   kpp 1337 # Sinatra
   kpp 1338 # Upnode
   kpp 1339 # Dashboard
+  kpp 1341 # Viewer
   kpp 4001 # Pixie
   kpp 8001 # File Proxy
   kpp 8126 # Datadog??
@@ -611,6 +612,8 @@ function killfigma {
   kpp 8127 # Multiplayer
   kpp 9274 # Harmonizer
   kpp 9419 # Multiplayer Proxy
+  kpp 17347 # antiabuse
+  kpp 50151 # DB Proxy
   kill $(ps -ax | grep "./changestream" |  awk '{print $1}') # Changestream
   # kpp 9092 # Docker
 }
@@ -630,3 +633,18 @@ function gh-tests-done {
 }
 
 hgrep () { fc -Dlim "*$@*" 1 }
+
+function figdev {
+  (cd ~/figma/figma; killfigma; ./figdev server --automatic-rebuilds)
+}
+
+function t2s {
+  echo $1 | opencc -c /Users/jsilva/figma/ito-teochew-dictionary/scripts/t2s.json
+}
+
+function s2t {
+  echo $1 | opencc
+}
+
+alias tt='RACK_ENV=test bundle exec ruby $1'
+ttt() { RACK_ENV=test bundle exec ruby "$1" --name="$2"}

@@ -76,7 +76,7 @@ Bundle 'tikhomirov/vim-glsl'
 " Auto Completion
 Bundle 'Shougo/deoplete.nvim'
 " 2 Dependencies needed by deoplete
-Bundle 'roxma/nvim-yarp' 
+Bundle 'roxma/nvim-yarp'
 Bundle 'roxma/vim-hug-neovim-rpc'
 
 Bundle 'carlitux/deoplete-ternjs'
@@ -237,6 +237,7 @@ let g:ale_fixers = {
 
 let g:ale_linters = {
 \   'javascript': ['eslint'],
+\   'typescript': ['eslint'],
 \   'python': ['flake8'],
 \   'ruby': ['srb', 'rubocop'],
 \}
@@ -743,7 +744,7 @@ set browsedir=current
 nnoremap <leader>a :Ag
 
 " Switch between the last two files
-nnoremap <leader>f <Plug>(easymotion-prefix)
+" nnoremap <leader>f <Plug>(easymotion-prefix)
 " nnoremap <leader><leader> <c-^>
 
 "

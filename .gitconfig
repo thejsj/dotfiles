@@ -65,6 +65,7 @@
 	# More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
 	trustctime = false
 	pager = diff-so-fancy | less --tabs=1,5 -R
+	editor = nvim
 
 [color]
 	# Use colors in Git commands that are capable of colored output when
@@ -153,3 +154,7 @@
 	program = gpg
 [fetch]
 	fsckobjects = false
+[merge "ours"]
+	driver = true
+[init]
+	defaultBranch = main
