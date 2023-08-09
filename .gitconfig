@@ -1,7 +1,7 @@
 [user]
 	name = thejsj
 	email = jsilva@figma.com
-	signingkey = AEC3733DB9BCE2081AD6C640169928FCA7628B77
+	signingkey = 169928FCA7628B77
 
 [alias]
 	l = log --pretty=oneline -n 20 --graph --abbrev-commit # View abbreviated SHA, description, and history graph of the latest 20 commits
@@ -20,8 +20,7 @@
 	branches = branch -a
 	remotes = remote -v
 	amend = commit --amend --reuse-message=HEAD # Amend the currently staged files to the latest commit
-	# Credit an author on the latest commit
-	credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
+
 	# Interactive rebase with the given number of latest commits
 	reb = "!r() { git rebase -i HEAD~$1; }; r"
 	# Find branches containing commit
@@ -35,8 +34,7 @@
 	# Remove branches that have already been merged with master
 	# a.k.a. ‘delete merged’
 	dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
-	# List contributors with number of commits
-	contributors = shortlog --summary --numbered
+
 	# Merge GitHub pull request on top of the `master` branch
 	mpr = "!f() { \
 		if [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ]; then \
@@ -48,6 +46,33 @@
 			git commit --amend -m \"$(git log -1 --pretty=%B)\n\nCloses #$1.\"; \
 		fi \
 	}; f"
+
+  current-branch = "!git rev-parse --abbrev-ref HEAD"
+
+  # Merge the master branch into the current branch after rebase the master branch
+  # Arugments:
+  # - $1: the current branch
+  mm = "!f() {\
+    git checkout master && \
+    git pull --rebase origin master; \
+    git checkout $1; \
+    git merge --no-ff master; \
+  }; f"
+
+  # Squash a branch into a single commit by merging it into a new branch
+  # Arugments:
+  # - $1: source commit
+  # - $2: target commit
+  squash-merges-into-one-commit = "!f() {\
+    git checkout $1; \
+    git checkout -b squash-$1; \
+    GIT_MERGE_AUTOEDIT=no git merge --squash $2; \
+    git commit --no-edit --no-verify; \
+  }; f"
+
+  fdiff = diff --name-only
+  difff = diff --name-only
+
 	lg = log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   prune = fetch --prune
   undo = reset --soft HEAD^

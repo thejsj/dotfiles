@@ -1,4 +1,5 @@
 # Add `~/bin` to the `$PATH`
+
 start=`gdate '+%s.%N'`
 
 export PATH="/Users/hiphipjorge/personal/wc/webrtc-lib/depot_tools:$PATH"
