@@ -125,3 +125,5 @@ endfunction!
 function! CustomFZF()
   call fzf#run({ 'dir': '' . g:session_default_directory, 'sink': 'e', 'window': {'width': 0.9, 'height': 0.6}})
 endfunction!
+
+command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor

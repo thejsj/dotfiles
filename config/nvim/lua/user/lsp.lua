@@ -57,18 +57,20 @@ require("lspconfig").lua_ls.setup {
     }
   }
 }
-require("lspconfig").ruby_ls.setup({
-  on_attach = function(client, buffer)
-    setup_diagnostics(client, buffer)
-  end,
-})
+-- require("lspconfig").ruby_ls.setup({
+  -- on_attach = function(client, buffer)
+    -- -- setup_diagnostics(client, buffer)
+  -- end,
+-- })
 require("lspconfig").sorbet.setup {
 	root_dir = function()
 		local cwd = vim.fn.getcwd()
 
 		if string.find(cwd, "figma/figma") then
-			return vim.fn.getcwd() .. "/sinatra"
+      print("SORBET 1")
+			return "/Users/jsilva/figma/figma/sinatra"
 		else
+      print("SORBET 2")
 			return cwd
 		end
 	end
