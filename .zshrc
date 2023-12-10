@@ -3,6 +3,8 @@
   # source ~/.zprompt
 # fi
 # https://www.soberkoder.com/better-zsh-history/
+echo "ZSHRC";
+
 export HISTFILE=~/.zsh_history
 export HISTFILESIZE=1000000000
 export HISTSIZE=1000000000
@@ -179,3 +181,17 @@ add-zsh-hook precmd set-prompt
 export PKG_CONFIG_PATH="/opt/homebrew/opt/zlib/lib/pkgconfig:/usr/local/opt/zlib/lib/pkgconfig:$PKG_CONFIG_PATH"
 export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig:/usr/local/opt/openssl@3/lib/pkgconfig:$PKG_CONFIG_PATH"
 export AWS_CONFIG_FILE="$HOME/figma/figma/config/aws/sso_config"
+
+alias python=/usr/local/bin/python2
+alias python='python2'
+
+# https://superuser.com/questions/523564/emacs-keybindings-in-zsh-not-working-ctrl-a-ctrl-e
+bindkey -e
+
+# https://superuser.com/questions/585003/searching-through-history-with-up-and-down-arrow-in-zsh
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search # Up
+bindkey "^[[B" down-line-or-beginning-search # Down

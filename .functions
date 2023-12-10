@@ -648,3 +648,19 @@ function s2t {
 
 alias tt='RACK_ENV=test bundle exec ruby $1'
 ttt() { RACK_ENV=test bundle exec ruby "$1" --name="$2"}
+
+json-beautify-inplace () {
+  temp=$(mktemp)
+  printf 'input = %s\n' "$1"
+  printf 'temp  = %s\n' "$temp"
+  cp -- "$1" "$temp"
+  jq . "$temp" > "$1"
+}
+
+json-uglify-inplace () {
+  temp=$(mktemp)
+  printf 'input = %s\n' "$1"
+  printf 'temp  = %s\n' "$temp"
+  cp -- "$1" "$temp"
+  jq -r tostring "$temp" > "$1"
+}

@@ -1,8 +1,9 @@
 # Add `~/bin` to the `$PATH`
-
 start=`gdate '+%s.%N'`
 
-export PATH="/Users/hiphipjorge/personal/wc/webrtc-lib/depot_tools:$PATH"
+# export PATH="/Users/hiphipjorge/personal/wc/webrtc-lib/depot_tools:$PATH"
+export PATH="/Users/hiphipjorge/personal/depot_tools:$PATH"
+export PATH="/Users/hiphipjorge/personal/gn/out/gn:$PATH"
 
 export KUBECONFIG=~/figma/figma-kuberentes-talk/tf/kubeconfig_jorge-eks-5q2DmkjB
 
@@ -20,6 +21,7 @@ export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 export PATH="/opt/homebrew/opt/python3/libexec:$PATH"
 export PATH="/opt/homebrew/opt/python/libexec:$PATH"
 export PATH="/opt/homebrew/opt/python@3.10/bin:$PATH"
+export PATH="/usr/local/opt/postgresql@15/bin:$PATH"
 
 export RIPGREP_CONFIG_PATH=~/.ripgreprc
 # export FZF_DEFAULT_COMMAND='rg --files --follow --ignore-vcs -g \"!{node_modules/*,.git/*}\"'
@@ -35,6 +37,9 @@ export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
 export PATH="./node_modules/.bin:$PATH"
 export PATH="$HOME/.cask/bin:$PATH"
+
+
+export PATH="/Users/hiphipjorge/personal/gn/out/gn:$PATH"
 
 export GPG_TTY=$(tty)
 export GPGKEY=8C7B9EAD5C000D383B63B3D17271AEB952836D33
@@ -69,6 +74,8 @@ export GEM_HOME="$HOME/.gem"
 export GEM_PATH="$HOME/.gem"
 export PATH=$GEM_HOME/bin:$PATH
 export RUBYOPT='-W0' # for running ./figma IRB
+
+export PATH="/Users/hiphipjorge/personal/gn/out/gn:$PATH"
 
 # Java
 
