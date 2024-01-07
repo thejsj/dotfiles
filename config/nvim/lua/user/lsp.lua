@@ -67,10 +67,8 @@ require("lspconfig").sorbet.setup {
 		local cwd = vim.fn.getcwd()
 
 		if string.find(cwd, "figma/figma") then
-      print("SORBET 1")
 			return "/Users/jsilva/figma/figma/sinatra"
 		else
-      print("SORBET 2")
 			return cwd
 		end
 	end

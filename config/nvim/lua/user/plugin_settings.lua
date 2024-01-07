@@ -24,3 +24,8 @@ vim.g.nerdtree_tabs_open_on_gui_startup=0
 
 vim.g.NERDSpaceDelims=1
 
+-- Copilot
+
+vim.g.copilot_no_tab_map = true
+vim.g.copilot_assume_mapped = true
+vim.g.copilot_tab_fallback = ""
