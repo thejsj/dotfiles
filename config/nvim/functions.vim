@@ -122,6 +122,7 @@ function! EditFileFromSessionDefaultDirectory(filename, ...) abort
   execute "edit " a:filename
 endfunction!
 
+
 function! CustomFZF()
   call fzf#run({ 'dir': '' . g:session_default_directory, 'sink': 'e', 'window': {'width': 0.9, 'height': 0.6}})
 endfunction!

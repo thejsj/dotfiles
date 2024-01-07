@@ -13,7 +13,8 @@ set.re = 0 -- https://jameschambers.co.uk/vim-typescript-slow
 set.backup = false
 set.writebackup = false
 set.swapfile = true
-set.dir = "/Users/jsilva/.vim/tmp"
+
+set.dir = vim.fn.expand('$HOME/.vim/tmp')
 set.autoread = true    -- Automatically refresh any unchanged files
 set.autowrite = true   -- Automatically write file when leaving buffer
 set.hidden = true      -- Allow buffer switching without saving

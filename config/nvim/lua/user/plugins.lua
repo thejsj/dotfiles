@@ -14,6 +14,7 @@ Plug 'tpope/vim-rhubarb'       -- Github stuff (supports GBrowse)
 Plug 'tpope/vim-surround'      -- Surround things with quotes or brackets more easily
 Plug 'vim-airline/vim-airline' -- Tabs at the top
 Plug 'godlygeek/tabular'       -- Easy alignment
+Plug 'github/copilot.vim'          -- Github Copilot
 
 -- Cmp
 Plug 'neovim/nvim-lspconfig'
