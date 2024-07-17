@@ -664,3 +664,23 @@ json-uglify-inplace () {
   cp -- "$1" "$temp"
   jq -r tostring "$temp" > "$1"
 }
+
+function rt {
+  if [ -z "$2" ]; then
+    IS_ROLLOUT_TEST=true ./devbox test $1
+  else
+    IS_ROLLOUT_TEST=true ./devbox test $1 --name=$2
+  fi
+}
+
+function t {
+  if [ -z "$2" ]; then
+    ./devbox test $1
+  else
+    ./devbox test $1 --name=$2
+  fi
+}
+
+function rgmerge {
+  rg '<<<<<<< HEAD'
+}

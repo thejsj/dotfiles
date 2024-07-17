@@ -60,6 +60,11 @@ augroup resCur
     autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
 augroup END
 
+" Important!!
+if has('termguicolors')
+  set termguicolors
+endif
+
 "
 " Statusline
 "
@@ -143,8 +148,6 @@ command! -nargs=1 E :call EditFileFromSessionDefaultDirectory(<f-args>)
 
 lua require('user.plugins')
 
-colorscheme xcodedarkhc
-
 "
 " FZF
 "
@@ -165,10 +168,13 @@ lua require('user.plugin_settings')
 map <leader>e <plug>NERDTreeTabsToggle<CR>
 map <leader>f <plug>NERDTreeFind<CR>
 map <leader>w <plug>NERDTreeFind<CR>
+nnoremap <leader>m @@<CR>
+nnoremap <leader>q @@<CR>
 
 "
 " Figma Translation String
 "
+nnoremap <leader>d :lua vim.diagnostic.open_float()<CR>
 nnoremap <leader>ff :call EchoAndCopyPath()<CR>
 xnoremap <leader>tt d:call TranslationString(1)<CR>
 xnoremap <leader>tf d:call TranslationString(0)<CR>

@@ -19,7 +19,6 @@ vim.g.NERDTreeShowHidden=1
 vim.g.NERDTreeKeepTreeInNewTab=1
 vim.g.nerdtree_tabs_open_on_gui_startup=0
 
-
 -- NerdCommenter
 
 vim.g.NERDSpaceDelims=1
@@ -29,3 +28,6 @@ vim.g.NERDSpaceDelims=1
 vim.g.copilot_no_tab_map = true
 vim.g.copilot_assume_mapped = true
 vim.g.copilot_tab_fallback = ""
+
+-- Theme
+vim.cmd[[colorscheme xcodedarkhc]]

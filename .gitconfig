@@ -20,6 +20,14 @@
 	branches = branch -a
 	remotes = remote -v
 	amend = commit --amend --reuse-message=HEAD # Amend the currently staged files to the latest commit
+  copu = "!f() { git commit -m \"$@\" && git push origin; }; f"
+  pu = "!f() { git push origin; }; f"
+  test = "!f() { echo "$@"; }; f"
+  acopu = "!f() { git add -A && git commit -m "$@" && git push origin; }; f"
+
+  blow = "!f() { git reset --hard; }; f"
+  ne = "!f() { git commit --no-edit; }; f"
+  oops = "!f() { git commit --amend --no-edit; }; f"
 
 	# Interactive rebase with the given number of latest commits
 	reb = "!r() { git rebase -i HEAD~$1; }; r"
@@ -52,11 +60,27 @@
   # Merge the master branch into the current branch after rebase the master branch
   # Arugments:
   # - $1: the current branch
-  mm = "!f() {\
+  mema = "!f() {\
+    current_branch=$(git rev-parse --abbrev-ref HEAD); \
     git checkout master && \
+    git pull --rebase origin master && \
+    git checkout $current_branch && \
+    git merge master --ff --no-edit; \
+  }; f"
+
+  pull-coworker-branch = "!f() {\
+    git remote set-branches --add origin $1; \
+    git fetch origin kat/cheryl-change-branch $1; \
+    git switch $1;\
+  }; f"
+
+  puma = "!f() {\
     git pull --rebase origin master; \
-    git checkout $1; \
-    git merge --no-ff master; \
+  }; f"
+
+  pucu = "!f() {\
+    current_branch=$(git rev-parse --abbrev-ref HEAD); \
+    git pull --rebase origin $current_branch; \
   }; f"
 
   # Squash a branch into a single commit by merging it into a new branch
@@ -68,6 +92,12 @@
     git checkout -b squash-$1; \
     GIT_MERGE_AUTOEDIT=no git merge --squash $2; \
     git commit --no-edit --no-verify; \
+  }; f"
+
+  pull-figmate-branch = "!f() {\
+     git remote set-branches --add origin $1;\
+     git fetch origin $1;\
+     git switch $1;\
   }; f"
 
   fdiff = diff --name-only
@@ -171,15 +201,24 @@
 
 [format]
 	pretty = format:%n%C(auto)%h %d%Creset %s%n%Cgreen%ad%Creset %aN <%aE>
+
 [diff "sopsdiffer"]
 	textconv = sops -d
+
 [commit]
 	gpgsign = true
+
 [gpg]
 	program = gpg
+
 [fetch]
 	fsckobjects = false
+
 [merge "ours"]
 	driver = true
+
 [init]
 	defaultBranch = main
+
+[rerere]
+	enabled = true

@@ -34,7 +34,6 @@ cmp.setup({
       end
     end, { "i", "s" }),
 
-    ['<Esc>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping.confirm({ select = false }),
     }),
   sources = cmp.config.sources({

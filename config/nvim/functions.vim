@@ -127,4 +127,19 @@ function! CustomFZF()
   call fzf#run({ 'dir': '' . g:session_default_directory, 'sink': 'e', 'window': {'width': 0.9, 'height': 0.6}})
 endfunction!
 
+
+function! DeleteLinesWithStrings()
+  " Save current cursor position
+  let l:save_cursor = getpos(".")
+
+  " Delete lines containing "puts " and "pp "
+  g/puts /d
+  g/pp /d
+
+  " Restore cursor position
+  call setpos('.', l:save_cursor)
+endfunction
+
+command! DeleteRubyPrintLines call DeleteLinesWithStrings()
+
 command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor

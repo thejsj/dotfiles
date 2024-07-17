@@ -19,7 +19,8 @@ set.autoread = true    -- Automatically refresh any unchanged files
 set.autowrite = true   -- Automatically write file when leaving buffer
 set.hidden = true      -- Allow buffer switching without saving
 set.autochdir = false -- Set working directory to the current file
-set.browsedir = "current"
+-- Disbled in new neovim version?
+-- set.browsedir = "current"
 
 -- Code Display
 -- syntax enable             " Syntax highligthing

@@ -19,6 +19,7 @@ alias ff="cd ~/figma/figma"
 alias fw="cd ~/figma/figma/web"
 alias fs="cd ~/figma/figma/sinatra"
 alias fp="cd ~/figma/figma/permissions"
+alias ffi="cd ~/figma/figma/permissions"
 alias fl="cd ~/figma/figma/livegraph"
 alias fm="cd ~/figma/figma/mobile-common/Figma/js/"
 alias mm="cd ~/figma/figma/maker-week-jsilva"
@@ -207,4 +208,8 @@ if [ -f "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ]; then
   alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 fi
 
+
 alias rgt="rg -g '!*test*' -g '!*\.rbi*'"
+
+alias rubodiff="bundle exec rake rubocop:diff"
+alias ruboall="bundle exec rake rubocop:all"

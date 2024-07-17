@@ -7,8 +7,8 @@ Plug 'scrooloose/nerdtree'     -- Show directory structure
 Plug 'jistr/vim-nerdtree-tabs' -- use :NERDTreeTabsToggle to open a tab with NerdTree
 Plug 'scrooloose/nerdcommenter'-- Easier comments
 Plug 'junegunn/fzf'            -- Fuzzy file finder
-Plug 'arzg/vim-colors-xcode'   -- Theme
 Plug 'tpope/vim-abolish'       -- Replace multiple variants of word with :%S
+Plug 'arzg/vim-colors-xcode'
 Plug 'tpope/vim-fugitive'      -- Git stuff
 Plug 'tpope/vim-rhubarb'       -- Github stuff (supports GBrowse)
 Plug 'tpope/vim-surround'      -- Surround things with quotes or brackets more easily
@@ -31,5 +31,8 @@ Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'vim-airline/vim-airline-themes'
+
+-- zig
+Plug 'ziglang/zig.vim'
 
 vim.call('plug#end')
