@@ -180,6 +180,9 @@ xnoremap <leader>tt d:call TranslationString(1)<CR>
 xnoremap <leader>tf d:call TranslationString(0)<CR>
 " xnoremap <leader>t d " <CR>:echo echo getreg("")<CR>
 nnoremap <leader>fa :call EchoAndCopyFilename()<CR>
+nnoremap <silent> gD :lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> gd :lua vim.lsp.buf.definition()<CR>
+nnoremap <leader>d :lua vim.diagnostic.open_float()<CR>
 
 lua require("mason").setup()
 lua require("user.cmp")
