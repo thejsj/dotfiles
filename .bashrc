@@ -10,3 +10,10 @@ source "$HOME/.cargo/env"
 
 # Enables autocompletion of options for bashfuscator
 eval "$(/usr/local/bin/register-python-argcomplete bashfuscator)"
+
+[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
+eval "$(atuin init bash)"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/hiphipjorge/.cache/lm-studio/bin"
+. "$HOME/.cargo/env"

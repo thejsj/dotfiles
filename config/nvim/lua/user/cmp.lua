@@ -16,21 +16,40 @@ cmp.setup({
   window = {},
   mapping = cmp.mapping.preset.insert({
     ["<Tab>"] = cmp.mapping(function(fallback)
-      local copilot_keys = vim.fn['copilot#Accept']()
-      if copilot_keys ~= '' and type(copilot_keys) == 'string' then
-        vim.api.nvim_feedkeys(copilot_keys, 'i', true)
-      elseif cmp.visible() then
+      if vim.b._copilot_suggestion ~= nil then
+        vim.fn.feedkeys(vim.fn['copilot#Accept'](), '')
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
+
+    ["<S-Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
         cmp.select_next_item()
       elseif has_words_before() then
         cmp.complete()
+        if cmp.visible() then
+            cmp.select_next_item()
+        end
+      elseif vim.b._copilot_suggestion ~= nil then
+        vim.fn.feedkeys(vim.api.nvim_replace_termcodes(vim.fn['copilot#Accept'](), true, true, true), '')
       else
         fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
       end
     end, { "i", "s" }),
 
-    ["<S-Tab>"] = cmp.mapping(function()
+    ["<Alt-Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
-        cmp.select_prev_item()
+        cmp.select_next_item()
+      elseif has_words_before() then
+        cmp.complete()
+        if cmp.visible() then
+            cmp.select_next_item()
+        end
+      elseif vim.b._copilot_suggestion ~= nil then
+        vim.fn.feedkeys(vim.api.nvim_replace_termcodes(vim.fn['copilot#Accept'](), true, true, true), '')
+      else
+        fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
       end
     end, { "i", "s" }),
 
@@ -70,3 +89,46 @@ cmp.setup.filetype('gitcommit', {
     -- { name = 'cmdline' }
   -- })
 -- })
+--
+function CleanupJsDebug()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+  local new_lines = {}
+  local modified = false
+
+  for _, line in ipairs(lines) do
+    -- Skip lines containing console.log
+    if not line:match("console%.log") then
+      -- Skip lines containing debugger
+      if not line:match("debugger") then
+        -- Replace it.only and describe.only
+        local new_line = line
+        if line:match("it%.only%(") or line:match("describe%.only%(") then
+          new_line = line:gsub("it%.only%(", "it%(")
+          new_line = new_line:gsub("describe%.only%(", "describe%(")
+          modified = true
+        end
+        table.insert(new_lines, new_line)
+      else
+        modified = true
+      end
+    else
+      modified = true
+    end
+  end
+
+  -- Update buffer with the cleaned lines
+  vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, new_lines)
+
+  -- Show a message to the user about what was done
+  if modified then
+    print("Removed debug code and fixed test functions")
+  else
+    print("No changes needed - no debug code found")
+  end
+end
+
+-- Command to run the cleanup function
+vim.api.nvim_create_user_command("CleanupJsDebug", CleanupJsDebug, {
+  desc = "Remove console.log, debugger statements, and fix test functions"
+})

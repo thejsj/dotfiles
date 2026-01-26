@@ -9,7 +9,6 @@ export KUBECONFIG=~/figma/figma-kuberentes-talk/tf/kubeconfig_jorge-eks-5q2DmkjB
 
 export PATH="$HOME/bin:$PATH";
 export PATH="$HOME/.poetry/bin:$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="/Applications/ARM/bin/:$PATH"
 
 export ANDROID_HOME=$HOME/Library/Android/sdk
@@ -21,6 +20,7 @@ export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 export PATH="/opt/homebrew/opt/python3/libexec:$PATH"
 export PATH="/opt/homebrew/opt/python/libexec:$PATH"
 export PATH="/opt/homebrew/opt/python@3.10/bin:$PATH"
+export PATH="/usr/local/opt/openjdk/bin:$PATH"
 export PATH="/usr/local/opt/postgresql@15/bin:$PATH"
 
 export RIPGREP_CONFIG_PATH=~/.ripgreprc
@@ -48,7 +48,7 @@ export HOMEBREW_NO_INSTALL_CLEANUP=1
 export HOMEBREW_NO_AUTO_UPDATE=1
 
 # Java
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/"
+# export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/"
 # Go
 # export GOPATH=$HOME/mulesoft
 # export GOPATH=$HOME/Sites/go-projects
@@ -148,7 +148,6 @@ fi
 eval "$(rbenv init -)"
 
 print-execution-time $start 'Bash profile loaded in'
-source "$HOME/.cargo/env"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -170,3 +169,9 @@ export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig:/usr/local/opt
 
 print-execution-time $start 'Bash profile loaded in'
 source "$HOME/.cargo/env"
+
+. "$HOME/.atuin/bin/env"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/hiphipjorge/.cache/lm-studio/bin"
+. "$HOME/.cargo/env"

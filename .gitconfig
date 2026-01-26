@@ -1,34 +1,48 @@
 [user]
 	name = thejsj
-	email = jsilva@figma.com
-	signingkey = 169928FCA7628B77
+	email = jorge.silva@thejsj.com
 
 [alias]
-	l = log --pretty=oneline -n 20 --graph --abbrev-commit # View abbreviated SHA, description, and history graph of the latest 20 commits
-	s = status
-	ss = status -s # View the current working tree status using the short format
-	dd = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat" # Show the diff between the latest commit and the current state
-	# `git di $number` shows the diff between the state `$number` revisions ago and the current state
-	ddd = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
-	# Pull in remote changes for the current repository and all its submodules
-	p = !"git pull; git submodule foreach git pull origin master"
+	d = diff
+	s = status -s # View the current working tree status using the short format
+	ss = status
 	c = commit
-	a = add
-	ca = !git add -A && git commit -av # Commit all changes
-	go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f" # Switch to a branch, creating it if necessary
+	ch = checkout
+	; a = add
+	l = log --pretty=oneline -n 20 --graph --abbrev-commit # View abbreviated SHA, description, and history graph of the latest 20 commits
+	ll = log
+	pl = !"git pull; git submodule foreach git pull origin master"
+	ph = push
+	pho = push origin
+
+  a = "!f() { git add -A; git status; }; f"
+
+  p = "!f() { git push origin; }; f"
+  c = "!f() { git commit -m \"$*\"; }; f"
+  ac = "!f() { git add -A; git status; git commit -m \"$*\"; }; f"
+  cp = "!f() { git commit -m \"$*\"; git push origin; }; f"
+  acp = "!f() { git status; git add -A; git commit -m \"$*\"; git push origin; }; f"
+
+  cn = "!f() { git commit -m \"$*\" --no-verify; }; f"
+  acn = "!f() { git add -A; git status; git commit -m \"$*\" --no-verify; }; f"
+  cnp = "!f() { git commit -m \"$*\" --no-verify; git push origin; }; f"
+  acnp = "!f() { git status; git add -A; git commit -m \"$*\" --no-verify; git push origin; }; f"
+
+  wip = "!f() { git status; git add -A; git commit -m \"WIP\" --no-verify; }; f"
+
 	tags = tag -l # Show verbose output about tags, branches or remotes
 	branches = branch -a
 	remotes = remote -v
 	amend = commit --amend --reuse-message=HEAD # Amend the currently staged files to the latest commit
-  copu = "!f() { git commit -m \"$@\" && git push origin; }; f"
-  pu = "!f() { git push origin; }; f"
-  test = "!f() { echo "$@"; }; f"
-  acopu = "!f() { git add -A && git commit -m "$@" && git push origin; }; f"
 
-  blow = "!f() { git reset --hard; }; f"
-  ne = "!f() { git commit --no-edit; }; f"
-  oops = "!f() { git commit --amend --no-edit; }; f"
-
+	dd = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat" # Show the diff between the latest commit and the current state
+	# `git di $number` shows the diff between the state `$number` revisions ago and the current state
+	ddd = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
+	# Pull in remote changes for the current repository and all its submodules
+	ca = !git add -A && git commit -av # Commit all changes
+	go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f" # Switch to a branch, creating it if necessary
+	# Credit an author on the latest commit
+	credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
 	# Interactive rebase with the given number of latest commits
 	reb = "!r() { git rebase -i HEAD~$1; }; r"
 	# Find branches containing commit
@@ -42,7 +56,10 @@
 	# Remove branches that have already been merged with master
 	# a.k.a. ‘delete merged’
 	dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
-
+  # Delete all remote branches
+  delete-all-remote-branches = "!git pull origin > /dev/null; git branch -r --merged | grep origin | grep -v '>' | grep -v master | xargs -L1 | awk '{split($0,a,\"/\"); print a[2]}' | xargs git push origin --delete"
+	# List contributors with number of commits
+	contributors = shortlog --summary --numbered
 	# Merge GitHub pull request on top of the `master` branch
 	mpr = "!f() { \
 		if [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ]; then \
@@ -54,59 +71,17 @@
 			git commit --amend -m \"$(git log -1 --pretty=%B)\n\nCloses #$1.\"; \
 		fi \
 	}; f"
-
-  current-branch = "!git rev-parse --abbrev-ref HEAD"
-
-  # Merge the master branch into the current branch after rebase the master branch
-  # Arugments:
-  # - $1: the current branch
-  mema = "!f() {\
-    current_branch=$(git rev-parse --abbrev-ref HEAD); \
-    git checkout master && \
-    git pull --rebase origin master && \
-    git checkout $current_branch && \
-    git merge master --ff --no-edit; \
-  }; f"
-
-  pull-coworker-branch = "!f() {\
-    git remote set-branches --add origin $1; \
-    git fetch origin kat/cheryl-change-branch $1; \
-    git switch $1;\
-  }; f"
-
-  puma = "!f() {\
-    git pull --rebase origin master; \
-  }; f"
-
-  pucu = "!f() {\
-    current_branch=$(git rev-parse --abbrev-ref HEAD); \
-    git pull --rebase origin $current_branch; \
-  }; f"
-
-  # Squash a branch into a single commit by merging it into a new branch
-  # Arugments:
-  # - $1: source commit
-  # - $2: target commit
-  squash-merges-into-one-commit = "!f() {\
-    git checkout $1; \
-    git checkout -b squash-$1; \
-    GIT_MERGE_AUTOEDIT=no git merge --squash $2; \
-    git commit --no-edit --no-verify; \
-  }; f"
-
-  pull-figmate-branch = "!f() {\
-     git remote set-branches --add origin $1;\
-     git fetch origin $1;\
-     git switch $1;\
-  }; f"
-
-  fdiff = diff --name-only
-  difff = diff --name-only
-
 	lg = log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   prune = fetch --prune
   undo = reset --soft HEAD^
   stash-all = stash save --include-untracked
+  ; seset = '!f() {
+    ; git stash save "Auto-stash before reset" && git reset --hard "$@";
+  ; }; f'
+
+[apply]
+	# Detect whitespace errors when applying a patch
+	whitespace = fix
 
 [core]
 	# Use custom `.gitignore` and `.gitattributes`
@@ -146,6 +121,7 @@
 [diff]
 	# Detect copies as well as renames
 	renames = copies
+	; relative = true
 
 [help]
 	# Automatically correct and execute mistyped commands
@@ -155,7 +131,6 @@
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
   conflictstyle = diff3
-  ff = only
 
 [status]
   showUntrackedFiles = all
@@ -167,8 +142,8 @@
 	default = current
   followTags = true
 
-[pull]
-	default = current
+; [pull]
+	; default = current
 
 # URL shorthands
 
@@ -201,24 +176,10 @@
 
 [format]
 	pretty = format:%n%C(auto)%h %d%Creset %s%n%Cgreen%ad%Creset %aN <%aE>
-
-[diff "sopsdiffer"]
-	textconv = sops -d
-
-[commit]
-	gpgsign = true
-
-[gpg]
-	program = gpg
-
-[fetch]
-	fsckobjects = false
-
-[merge "ours"]
-	driver = true
-
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
 [init]
 	defaultBranch = main
-
-[rerere]
-	enabled = true

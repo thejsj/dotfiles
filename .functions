@@ -665,22 +665,93 @@ json-uglify-inplace () {
   jq -r tostring "$temp" > "$1"
 }
 
-function rt {
-  if [ -z "$2" ]; then
-    IS_ROLLOUT_TEST=true ./devbox test $1
-  else
-    IS_ROLLOUT_TEST=true ./devbox test $1 --name=$2
-  fi
-}
-
-function t {
-  if [ -z "$2" ]; then
-    ./devbox test $1
-  else
-    ./devbox test $1 --name=$2
-  fi
-}
-
 function rgmerge {
   rg '<<<<<<< HEAD'
+}
+
+function claudemd {
+  cat $1 | claude "${@:2}"
+}
+
+function ddclaude {
+    cd ~/personal/ddd-2/
+
+    # Pull and rebase from origin main
+    echo "Pulling latest changes from origin main..."
+    git pull --rebase origin main
+
+    if [ $? -ne 0 ]; then
+        echo "Error: Failed to pull and rebase from origin main"
+        return 1
+    fi
+
+    # Create timestamp in human-readable format
+    timestamp=$(date +"%Y-%m-%d_%H-%M-%S")
+    temp_worktree_name="ddd_worktree_${timestamp}"
+
+    # Create git worktree with temporary name
+    echo "Creating git worktree: ${temp_worktree_name}"
+    git worktree add -b "${temp_worktree_name}" "../${temp_worktree_name}"
+
+    cd "../${temp_worktree_name}"
+
+    if [ $? -ne 0 ]; then
+        echo "Error: Failed to create git worktree"
+        return 1
+    fi
+
+    echo "Successfully created worktree at ../${temp_worktree_name}"
+
+    # Launch claude-docker with all passed arguments
+    claude "$@"
+
+    # After claude has made changes, generate semantic name based on git diff
+    echo "Generating semantic name based on changes made..."
+
+    # Get the diff of changes made
+    git_diff=$(git diff HEAD~1 2>/dev/null || git diff --staged 2>/dev/null || git diff 2>/dev/null)
+
+    if [[ -n "$git_diff" ]]; then
+        # Ask Claude to generate a semantic name based on the actual changes
+        semantic_name=$(claude -p "Based on the following git diff, generate a short, semantic git branch name that describes what was changed (lowercase, hyphens instead of spaces, no special characters, max 50 chars). Only output the branch name, nothing else.
+
+Git diff:
+$git_diff" 2>/dev/null | tr -d '\n' | tr -d '\r')
+
+        # Validate the semantic name (basic checks)
+        if [[ -n "$semantic_name" && "$semantic_name" =~ ^[a-z0-9-]+$ && ${#semantic_name} -le 50 ]]; then
+            echo "Generated semantic name: ${semantic_name}"
+
+            # Rename the branch
+            echo "Renaming branch to: ${semantic_name}"
+            git branch -m "${semantic_name}"
+
+            # Rename the worktree directory
+            echo "Renaming worktree directory to: ${semantic_name}"
+            cd ..
+            mv "${temp_worktree_name}" "${semantic_name}"
+            cd "${semantic_name}"
+
+            # Update git worktree path
+            git worktree repair
+
+            echo "Successfully renamed to: ${semantic_name}"
+            echo "To switch to the worktree directory, run: cd ../${semantic_name}"
+        else
+            echo "Warning: Could not generate valid semantic name, keeping timestamp-based name"
+            echo "To switch to the worktree directory, run: cd ../${temp_worktree_name}"
+        fi
+    else
+        echo "No changes detected, keeping timestamp-based name"
+        echo "To switch to the worktree directory, run: cd ../${temp_worktree_name}"
+    fi
+}
+
+function wt {
+  git worktree add -b $1 ~/personal/$1
+  cd ~/personal/$1
+}
+
+function killnode {
+  sudo lsof -i :3000 | grep node | awk '{print $2}' | xargs kill -9
 }
